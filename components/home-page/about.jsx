@@ -12,7 +12,7 @@ export default function HomeAbout() {
                         <p className=" text-gray-700" style={{ lineHeight: '2' }}> Singapore Occupational Health Services provide preventive health and medical services to corporates and their employees. It is related to human work, work place and work environment. The company is guided by its motto "To Add quality to life of worker in his workplace“. The chief objectives of the company is safety of workers from injuries and diseases, and to improve the health status of the workers and his family, through health protections and promotions. Corporate clients also benefit from increased productivity of the workers, reduced absenteeism and improved relationship and trust between workers and management.</p>
                     </div>
                     <div className="flex flex-col gap-3 h-max md: min-h-80 lg:w-1/3 sm:w-full"  style={{
-                        backgroundImage: 'url(/about-img-1.png)',
+                        backgroundImage: 'url(/about-img-1.jpg)',
                         backgroundPosition: 'top center',
                         backgroundSize: 'cover',
                     }}>
@@ -21,7 +21,7 @@ export default function HomeAbout() {
                 </div>
                 <div className="flex w-full flex-wrap items-center h-auto sm:gap-6 sm:flex-col-reverse"> 
                     <div className="flex flex-col gap-3 h-max md: min-h-96 lg:w-1/3 sm:w-full"  style={{
-                        backgroundImage: 'url(/about-img-2.png)',
+                        backgroundImage: 'url(/about-img-2.jpg)',
                         backgroundPosition: 'top center',
                         backgroundSize: 'cover',
                     }}>

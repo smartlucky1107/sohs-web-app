@@ -3,7 +3,7 @@ import { FiPhoneCall } from "react-icons/fi";
 export default function HomeHero() {
     return (
         <section className="w-full flex justify-center items-center bg-blue-500 p-5 relative pb-0" style={{
-            backgroundImage: 'url(/hero-bg.png)',
+            backgroundImage: 'url(/hero-bg.jpg)',
             backgroundPosition: 'top center',
             backgroundSize: 'cover',
         }}>

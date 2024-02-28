@@ -1,7 +1,7 @@
 export default function HomeMotto() {
     return (
         <section className="w-full flex justify-center align-bottom relative md:max-h-[250px]"  style={{
-                backgroundImage: 'url(/motto-bg.png)',
+                backgroundImage: 'url(/motto-bg.jpg)',
                 backgroundPosition: 'bottom center',
                 backgroundSize: 'cover',
             }}>
