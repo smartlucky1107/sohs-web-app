@@ -16,7 +16,7 @@ export const logged_in = async (FormData) => {
 
 export const register_now = async (FormData) => {
     try {
-        const res = await fetch('http://localhost:3000/api/auth/register', {
+        const res = await fetch('https://sohs-web-app.vercel.app/api/auth/register', {
             headers: {
                 'Content-Type': 'application/json',
             },
