@@ -15,7 +15,7 @@ export default function HomeMotto() {
                     </div>
                 </div>
                 <div>
-                <img src="/sthetoscope.png" alt="doctor" className="max-w-[300px] sm:hidden" />
+                <img src="/sthetoscope.jpg" alt="doctor" className="max-w-[300px] sm:hidden" />
                 </div>
             </div>
         </section>

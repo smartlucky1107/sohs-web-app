@@ -5,7 +5,7 @@ import { FaLinkedinIn } from "react-icons/fa";
 export default function CommonFooter() {
     return (
         <section className="w-full flex flex-col bg-white justify-center items-center" style={{
-            backgroundImage: 'url(/footer-bg.png)',
+            backgroundImage: 'url(/footer-bg.jpg)',
             backgroundPosition: 'center center',
             backgroundSize: 'cover',
         }}>

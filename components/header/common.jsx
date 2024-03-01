@@ -44,7 +44,7 @@ export default function CommonHeader() {
                     <div className="h-full flex gap-6 items-center">
                         <img src="/logo.svg" className="h-[50px]" />
                         <div className=" md:flex sm:hidden h-full items-center gap-6">
-                            <a href="/home">Home</a>
+                            <a href="/">Home</a>
                             <a href="/about">About Us</a>
                             <a href="/services">Services</a>
                             <a href="/workers">Workers</a>
