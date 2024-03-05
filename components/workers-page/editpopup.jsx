@@ -1,66 +1,54 @@
-import React, { useState } from 'react';
-import { PoweroffOutlined } from '@ant-design/icons';
+import React, { useState, useEffect } from 'react';
 import { DatePicker, Input, Radio, Select, Button } from 'antd';
+import data from '@/pages/data/workers/data.json';
 import axios from 'axios';
- 
+
 const gender = [
     { label: 'Male', value: 'm' },
     { label: 'Female', value: 'f' },
 ];
 
-export default function WorkersPopup(props) {
+export default function WorkersEditPopup(props) {
+    const { id } = props.EditPopupState
     const [loadings, setLoadings] = useState([]);
     const [formData, setFormData] = useState({}); // State to hold form data
-    
-    const enterLoading = (index) => {
-      setLoadings((prevLoadings) => {
-        const newLoadings = [...prevLoadings];
-        newLoadings[index] = true;
-        return newLoadings;
-      });
-      setTimeout(() => {
-        setLoadings((prevLoadings) => {
-          const newLoadings = [...prevLoadings];
-          newLoadings[index] = false;
-          return newLoadings;
-        });
-      }, 6000);
-    };
+    const [workerData, setWorkerData] = useState({});
 
-    const isFinUnique = async (fin) => {
-      try {
-          const response = await axios.get(`/api/workers/checkFinUnique?fin=${fin}`); // Replace with your API endpoint to check 'fin' uniqueness
-          return response.data.isUnique; // Assuming the response contains a boolean indicating uniqueness
-      } catch (error) {
-          console.error('Failed to check uniqueness of fin:', error);
-          return false; // Assuming uniqueness check fails
-      }
-    };
+    useEffect(() => {
+      // Fetch data from the JSON file based on the ID received from props
+      const fetchData = async () => {
+        try {
+          // Assuming your data is an array of objects with an 'id' property
+          const worker = data.find(worker => worker.fin === id);
+          setWorkerData(worker);
+        } catch (error) {
+          console.error('Error fetching worker data:', error);
+        }
+      };
+  
+      fetchData();
+    }, [id]); // Run the effect whenever the ID changes
     
     const handleSubmit = async () => {
       try {
-          const isUnique = await isFinUnique(formData.fin);
-          if (!isUnique) {
               // 'fin' value is not unique, handle the case by showing an error message
-              alert('FIN already exists. Please enter a unique FIN.');
-              return;
-          }
-          await axios.post('/api/workers/addworker', formData); // Send POST request to API
+          const postData = {...formData, id}
+          await axios.post('/api/workers/editworker', postData); // Send POST request to API
           // Reset form data or handle success
       } catch (error) {
           // Handle error
           console.error('Failed to submit data:', error);
       }
     };
-
+    
     // Function to handle form input changes
     const handleInputChange = (key, value) => {
-        setFormData(prevData => ({
-            ...prevData,
-            [key]: value
-        }));
+      setFormData(prevData => ({
+          ...prevData,
+          [key]: value
+      }));
     };
-
+    
     return (
         <section className='fixed top-0 left-0 flex justify-center items-center w-full h-full bg-[rgba(0,0,0,0.6)]'>
             <div className='w-full max-w-[800px] bg-white flex flex-col relative'>
@@ -69,12 +57,16 @@ export default function WorkersPopup(props) {
                     backgroundPosition: 'center',
                     backgroundSize: 'cover',
                 }}>
-                    <h1 className="text-white text-xl sm:text-xl w-full h-full bg-[#0094f1a0] py-6 px-3 text-center">Write Personal Info</h1>
+                    <h1 className="text-white text-xl sm:text-xl w-full h-full bg-[#0094f1a0] py-6 px-3 text-center">Edit Personal Info</h1>
                 </div>
-                <div className='w-full p-6 flex flex-wrap gap-5 justify-center items-center'>
+                <div className={'w-full p-6 flex flex-wrap gap-5 justify-center items-center'}>
                     <Input size="large" placeholder="Name" style={{
                         width: '40%'
-                    }}  onChange={(e) => handleInputChange('name', e.target.value)} />
+                    }} onChange={(e) => handleInputChange('name', e.target.value)} />
+                    <Input size="large" placeholder="fin" style={{
+                        width: '40%'
+                    }} disabled onChange={(e) => handleInputChange('fin', e.target.value)}
+                    defaultValue={id} />
                     <Select
                       defaultValue="Job title" 
                       style={{
@@ -97,9 +89,6 @@ export default function WorkersPopup(props) {
                     <DatePicker placeholder={'Date_Joined'} size={'large'} style={{
                         width: '40%'
                     }} onChange={(selectedDate) => handleInputChange('date', selectedDate)} />
-                    <Input size="large" placeholder="NRIC/FIN" style={{
-                        width: '40%'
-                    }} onChange={(e) => handleInputChange('fin', e.target.value)} />
                     <Input size="large" type='number' placeholder="Years PJ" style={{
                         width: '40%'
                     }} onChange={(e) => handleInputChange('ypj', e.target.value)} />
@@ -124,7 +113,7 @@ export default function WorkersPopup(props) {
                       onChange={(selectedValue) => handleInputChange('dept', selectedValue)}
                     />
                     <Select
-                      defaultValue="IHDinf" 
+                      defaultValue="IHDinf"
                       style={{
                         width: '40%'
                       }}
@@ -177,7 +166,7 @@ export default function WorkersPopup(props) {
                       Submit
                     </Button>
                 </div>
-                <button onClick={() => props.setPopupState(null)} className="absolute top-[10px] right-[15px] text-white">
+                <button onClick={() => props.setEditPopupState({ visible: false })} className="absolute top-[10px] right-[15px] text-white">
                     X
                 </button>
             </div>
