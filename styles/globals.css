@@ -2,11 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
-html, body {
-    width: 100vw;
-    overflow-x: hidden;
+html,
+body {
+  width: 100vw;
+  overflow-x: hidden;
 }
-
 
 /* ::-webkit-scrollbar {
     display: none;
@@ -14,58 +14,75 @@ html, body {
 
 /* Customize font size for Ant Design table */
 .ant-table {
-    font-size: 15px; /* Adjust the font size as needed */
-    padding-bottom: 20px;
-    border-radius: 0;
-  }
-  
-  /* You can target specific columns or cells if needed */
-  .ant-table-cell {
-    font-size: 15px; /* Adjust the font size as needed */
-    width: 100%;
-    text-wrap: nowrap;
-  }
-  
-  /* Or target specific columns */
-  .ant-table-column {
-    font-size: 15px; /* Adjust the font size as needed */
-    border-radius: 0;
-  }
-   
-  .ant-table-thead > tr > th {
-    background-color: #0094f1 !important;
-    color: rgb(255, 255, 255) !important; /* Optionally, adjust text color for better contrast */
-    border-radius: 0 !important;
-  }
+  font-size: 15px; /* Adjust the font size as needed */
+  padding-bottom: 20px;
+  border-radius: 0;
+}
 
-  .ant-table-thead > tr > th::before {
-    background-color: transparent !important;
-  }
+/* You can target specific columns or cells if needed */
+.ant-table-cell {
+  font-size: 15px; /* Adjust the font size as needed */
+  width: 100%;
+  text-wrap: nowrap;
+}
 
-  /* Customize the gap between table header and body in Ant Design */
+/* Or target specific columns */
+.ant-table-column {
+  font-size: 15px; /* Adjust the font size as needed */
+  border-radius: 0;
+}
+
+.ant-table-thead > tr > th {
+  background-color: #0094f1 !important;
+  color: rgb(
+    255,
+    255,
+    255
+  ) !important; /* Optionally, adjust text color for better contrast */
+  border-radius: 0 !important;
+}
+
+.ant-table-thead > tr > th::before {
+  background-color: transparent !important;
+}
+
+/* Customize the gap between table header and body in Ant Design */
 .ant-table .ant-table-thead {
-    /* Adjust the bottom padding to create space */
-    padding-bottom: 20px !important; /* Set your desired gap */
-  }
-  
-  .ant-table .ant-table-tbody {
-    /* Adjust the top margin to create space */
-    margin-top: 20px !important; /* Set your desired gap */
-  }
+  /* Adjust the bottom padding to create space */
+  padding-bottom: 20px !important; /* Set your desired gap */
+}
 
-  .zebra-stripe {
-    background-color: #e7edf0; /* Choose your desired background color */
-  }
+.ant-table .ant-table-tbody {
+  /* Adjust the top margin to create space */
+  margin-top: 20px !important; /* Set your desired gap */
+}
 
-  .ant-table {
-    border: 1px solid #00000042; /* Customize the border color and style */
-  }
-  
-  .ant-table-cell {
-    border: 1px solid #00000042; /* Customize the border color and style for cells */
-  }
-  
-  .ant-table-header th {
-    border: 1px solid #00000042; /* Customize the border color and style for header cells */
-  }
-  
+.zebra-stripe {
+  background-color: #e7edf0; /* Choose your desired background color */
+}
+
+.ant-table {
+  border: 1px solid #00000042; /* Customize the border color and style */
+}
+
+.ant-table-cell {
+  border: 1px solid #00000042; /* Customize the border color and style for cells */
+}
+
+.ant-table-header th {
+  border: 1px solid #00000042; /* Customize the border color and style for header cells */
+}
+
+.servicesSwiper .swiper-slide:not(.swiper-slide-active) {
+  opacity: 0.3;
+}
+
+.servicesSwiper .swiper-pagination-bullet {
+  @apply w-[10px] h-[10px] bg-[#AEAEAE] rounded-full;
+  opacity: 1;
+  transition: 0.2s all ease-in-out;
+}
+
+.servicesSwiper .swiper-pagination-bullet.swiper-pagination-bullet-active {
+  @apply bg-[#040404];
+}
