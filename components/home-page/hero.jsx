@@ -20,10 +20,10 @@ export default function HomeHero() {
                     </div>
                 </div>
                 <div className="flex flex-col justify-center w-1/2 sm:w-full sm:mt-8">
-                    <img src="/doc-1.png" className="" />
+                    <img src="/doc-1.png" alt="doc-1" className="" />
                 </div>
             </div>
-            <img src="/wave.png" className="absolute bottom-0 w-full" />
+            <img src="/wave.png" alt="wave" className="absolute bottom-0 w-full" />
         </section>
     )
 }
