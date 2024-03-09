@@ -12,8 +12,8 @@ export default function ServicesSidebar() {
       href: "/services/medical-surveillance-programs",
     },
     {
-      label: "Programs & Periodic Medicals",
-      href: "/services/programs-and-periodic-medicals",
+      label: "Periodic Medical Examination",
+      href: "/services/periodic-medical-examination",
     },
     {
       label: "Pre-Placement Medicals",
@@ -24,32 +24,16 @@ export default function ServicesSidebar() {
       href: "/services/on-site-medical-services",
     },
     {
-      label: "Mask Fit Testing",
-      href: "/services/mask-fit-testing",
+      label: "Toxicology Surveillance",
+      href: "/services/toxicology-surveillance",
     },
     {
-      label: "Drug Testing Services",
-      href: "/services/drug-testing-services",
-    },
-    {
-      label: "Flu Programs",
-      href: "/services/flu-programs",
+      label: "Audiometry Examination",
+      href: "/services/audiometry-examination",
     },
     {
       label: "Company Wellness Programs",
       href: "/services/company-wellness-programs",
-    },
-    {
-      label: "Firefighter Medicals",
-      href: "/services/firefighter-medicals",
-    },
-    {
-      label: "Driver Medical",
-      href: "/services/driver-medical",
-    },
-    {
-      label: "Pilot Medical and Executive Medical",
-      href: "/services/pilot-medical-and-executive-medical",
     },
   ];
 

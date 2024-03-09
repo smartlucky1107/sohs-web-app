@@ -13,18 +13,18 @@ export default function CommonHeader() {
                     <div className="flex gap-4 h-full items-center sm:hidden">
                         <div className="flex h-full items-center gap-1">
                             <CiMail color="#fff" />
-                            <p className="text-white text-xs">to@example.com</p>
+                            <a href="mailto:sohspl@gmail.com" className="text-white text-xs">sohspl@gmail.com</a>
                         </div>
                         <div className="flex h-full items-center gap-1">
                             <CiClock2 color="#fff" />
-                            <p className="text-white text-xs">Mon - Sat 8:00 - 18:00</p>
+                            <p className="text-white text-xs">Mon - Fri 9:00 - 17:30</p>
                         </div>
                     </div>
                     <div className="flex gap-6 h-full items-center sm:w-full sm:justify-between">
                         <div className="flex gap-4 h-full items-center">
                             <div className="flex h-full items-center gap-1">
                                 <CiCircleInfo color="#fff" />
-                                <p className="text-white text-xs">Need help</p>
+                                <a href="/contact-us" className="text-white text-xs">Need help</a>
                             </div>
                             <div className="flex h-full items-center gap-1">
                                 <CiUser color="#fff" />
@@ -56,12 +56,12 @@ export default function CommonHeader() {
                         <div className="h-full flex gap-3 items-center">
                             <FiPhoneCall size={'25'} />
                             <div className="h-full flex flex-col justify-center">
-                                <p className="text-[10px] text-gray">Call us no</p>
-                                <h4 className="sm:text-xs">+(123) 456 7890</h4>
+                                <p className="text-[10px] text-gray">Call in</p>
+                                <h4 className="sm:text-xs"><a href="tel:65 68725020">+65 68725020</a>/<a href="tel:65 67772829">67772829</a></h4>
                             </div>
                         </div>
                         <div className="h-full flex items-center">
-                            <button className="text-white bg-[#0094f1] px-5 sm:px-3 sm:text-xs h-full">CONTACT US</button>
+                            <a href="/contact-us" className="flex items-center text-white bg-[#0094f1] px-5 sm:px-3 sm:text-xs h-full">CONTACT US</a>
                             <button className="sm:p-3 sm:text-xs md:hidden"><IoMdMenu /></button>
                         </div>
                     </div>

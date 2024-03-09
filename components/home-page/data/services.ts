@@ -2,41 +2,36 @@ export const servicesData = [
     {
       name: "Medical Surveillance Programs",
       image: "1.png",
-      link: "/",
+      link: "/services/medical-surveillance-programs",
     },
     {
-      name: "Periodic Bills",
+      name: "Periodic Medical Examination",
       image: "2.png",
-      link: "/",
+      link: "/services/periodic-medical-examination",
     },
     {
       name: "Pre Placement Medicals",
       image: "3.png",
-      link: "/",
+      link: "/services/pre-placement-medicals",
     },
     {
       name: "On-site Medical Services",
       image: "4.png",
-      link: "/",
+      link: "/services/on-site-medical-services",
     },
     {
-      name: "Mask Fit Testing",
+      name: "Toxicology Surveillance",
       image: "5.png",
-      link: "/",
+      link: "/services/toxicology-surveillance",
     },
     {
-      name: "Drug Testing Services",
+      name: "Audiometry Examination",
       image: "6.png",
-      link: "/",
+      link: "/services/audiometry-examination",
     },
     {
       name: "Company Wellness Programs",
       image: "7.png",
-      link: "/",
-    },
-    {
-      name: "Drug Testing Services",
-      image: "8.png",
-      link: "/",
+      link: "/services/company-wellness-programs",
     },
 ]

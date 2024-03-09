@@ -9,7 +9,7 @@ import ServicesFAQ from "@/components/services-page/faq";
 export default function Services() {
   return (
     <section className="w-full h-auto">
-      <ServicesHero title="Flu Programs"/>
+      <ServicesHero title="Toxicology Surveillance"/>
       <ServicesInfo />
 
       <div className="w-full max-w-[1280px] py-14 flex justify-center flex-col gap-6 mx-auto">
