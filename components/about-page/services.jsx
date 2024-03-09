@@ -49,7 +49,7 @@ export default function AboutServices() {
         backgroundRepeat: "no-repeat",
       }}
     >
-      <div className="w-full max-w-5xl pt-20 mx-auto gap-6">
+      <div className="w-full max-w-[1280px] pt-20 mx-auto gap-6">
         <div className="lg:grid grid-cols-4 items-center justify-between gap-20">
           <div className="lg:col-span-3 col-span-4">
             <h1 className="text-[50px]">Our Services</h1>
@@ -91,7 +91,7 @@ export default function AboutServices() {
           className="servicesSwiper mt-16"
         >
           {services.map((service, index) => (
-            <SwiperSlide className="pr-5 pb-[90px] !opacity-100">
+            <SwiperSlide key={'service-slide-'+index} className="pr-5 pb-[90px] !opacity-100">
               <div className="border border-[#111111] rounded-[5px] p-5 bg-white  shadow-[7px_7px]">
                 <div className="flex items-center justify-between">
                   <div className="w-[85px] h-[85px] bg-[#E7F5FF] rounded-full flex items-center justify-center">

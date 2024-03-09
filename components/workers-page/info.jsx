@@ -1,7 +1,7 @@
 export default function WorkersInfo() {
     return (
         <section className="flex w-full flex-col justify-center items-center py-10 px-4">
-            <div className="w-full max-w-[1024] flex flex-col justify-center items-center gap-7">
+            <div className="w-full max-w-[1280px] flex flex-col justify-center items-center gap-7">
                 <h1 className="text-3xl sm:text-2xl">SINGAPORE OCUPATIONAL HEALTH SERVICES PTE LTD</h1>
                 <div className="flex flex-col justify-center items-center gap-3">
                     <div className="flex sm:flex-wrap justify-center items-center w-full gap-3">

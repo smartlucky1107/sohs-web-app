@@ -9,7 +9,7 @@ export default function CommonHeader() {
     return (
         <section className="w-full flex flex-col bg-white justify-center items-center">
             <div className="flex w-full h-[40px] bg-black justify-center items-center px-4">
-                <div className="flex w-full max-w-5xl h-[40px] bg-black justify-between items-center">
+                <div className="flex w-full max-w-[1280px] h-[40px] bg-black justify-between items-center">
                     <div className="flex gap-4 h-full items-center sm:hidden">
                         <div className="flex h-full items-center gap-1">
                             <CiMail color="#fff" />
@@ -40,7 +40,7 @@ export default function CommonHeader() {
                 </div>
             </div>
             <div className="w-full h-[60px] flex items-center justify-center px-4">
-                <div className="flex w-full max-w-5xl h-[60px] justify-between items-center">
+                <div className="flex w-full max-w-[1280px] h-[60px] justify-between items-center">
                     <div className="h-full flex gap-6 items-center">
                         <img src="/logo.svg" alt="logo" className="h-[50px]" />
                         <div className=" md:flex sm:hidden h-full items-center gap-6">

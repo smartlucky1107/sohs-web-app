@@ -24,7 +24,7 @@ export default function TestTable(props) {
                         <button className="rounded py-3 px-5 uppercase text-black"><CiSearch /></button>
                     </div>
                     <div className="flex gap-3">
-                        <button onClick={() => props.setPopupState(1)} className="bg-[#0094f1] py-3 px-5 uppercase text-white">Add Test Result</button>
+                        <a href="/add-test" className="bg-[#0094f1] py-3 px-5 uppercase text-white">Add Test Result</a>
                         <button className="bg-[#0094f1] py-3 px-5 uppercase text-white">Import CSV</button>
                     </div>
                 </div>

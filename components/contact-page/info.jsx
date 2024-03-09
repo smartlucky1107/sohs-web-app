@@ -34,7 +34,7 @@ export default function ContactInformation() {
 
   return (
     <section className="w-full flex justify-center items-center p-5 relative">
-      <div className="w-full max-w-5xl py-14 flex justify-center flex-col gap-6">
+      <div className="w-full max-w-[1280px] py-14 flex justify-center flex-col gap-6">
         <div className="text-center mb-16">
           <h1 className="text-5xl sm:text-3xl md:text-4xl mb-14">
             Reach Out For Hearing Test From Experts!

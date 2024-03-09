@@ -1,7 +1,7 @@
 export default function AboutAbout() {
   return (
     <section className="w-full flex justify-center items-center p-5 relative">
-      <div className="w-full max-w-5xl pt-10 flex justify-center flex-col gap-6">
+      <div className="w-full max-w-[1280px] pt-10 flex justify-center flex-col gap-6">
         <div className="text-center mb-10">
           <h1 className="text-5xl mb-5">Our Motto</h1>
           <p className="text-gray-700">

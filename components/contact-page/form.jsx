@@ -11,7 +11,7 @@ export default function ContactForm() {
         backgroundRepeat: "no-repeat",
       }}
     >
-      <div className="w-full max-w-5xl flex justify-center mx-auto flex-col gap-6 py-10 px-5 lg:py-0 lg:px-0">
+      <div className="w-full max-w-[1280px] flex justify-center mx-auto flex-col gap-6 py-10 px-5 lg:py-0 lg:px-0">
         <div className="flex items-center gap-14 lg:flex-row flex-col">
           <div className="lg:w-1/2 w-full">
             <div className="space-y-9">

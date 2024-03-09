@@ -7,7 +7,7 @@ export default function HomeHero() {
             backgroundPosition: 'top center',
             backgroundSize: 'cover',
         }}>
-            <div className="w-full max-w-5xl pt-10 flex justify-center items-center sm:flex-col">
+            <div className="w-full max-w-[1280px] pt-10 flex justify-center items-center sm:flex-col">
                 <div className="flex flex-col justify-center w-1/2 gap-14 sm:w-full sm:gap-4">
                     <h1 className="text-white text-5xl sm:text-center sm:text-3xl">Get Our Best Hearing Test, Expert Right Here</h1>
                     <p className="text-white text-sm sm:text-center" style={{ lineHeight: '2.2' }}>Enim cras in eget urna. Ut proin integer tempor, bibendum quam ullamcorper faucibus. Nulla convallis ultrices augue condimentum non justo ultrices urna. Porttitor neque tortor ultricies vitae donec.</p>

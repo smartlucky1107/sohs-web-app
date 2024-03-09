@@ -86,3 +86,62 @@ body {
 .servicesSwiper .swiper-pagination-bullet.swiper-pagination-bullet-active {
   @apply bg-[#040404];
 }
+
+.testimonialsSwiper .swiper-button-prev,
+.testimonialsSwiper .swiper-button-next {
+  @apply text-[#8B8B8B];
+}
+
+.servicesFAQ {
+  background: none;
+  border: none;
+}
+
+.servicesFAQ .ant-collapse-item {
+  border: none;
+  margin-bottom: 20px;
+}
+
+.servicesFAQ .ant-collapse-item .ant-collapse-header {
+  min-height: 61px;
+  padding: 0 15px;
+  background-color: #f0f7fe;
+  border-radius: 0 !important;
+  position: relative;
+  padding-right: 50px;
+  display: flex;
+  align-items: center;
+}
+
+.servicesFAQ .ant-collapse-item-active .ant-collapse-header {
+  background-color: #0194f3;
+  color: white;
+}
+
+.servicesFAQ .ant-collapse-header-text {
+  font-size: 18px;
+  line-height: 32px;
+  user-select: none;
+}
+
+.servicesFAQ .ant-collapse-expand-icon {
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-65%);
+}
+
+.servicesFAQ .ant-collapse-item .ant-collapse-content {
+  border-top: 0;
+}
+
+.servicesFAQ
+  .ant-collapse-item
+  .ant-collapse-content
+  .ant-collapse-content-box {
+  font-size: 18px;
+  line-height: 32px;
+  color: #222222;
+  padding: 0;
+  padding-top: 20px;
+}

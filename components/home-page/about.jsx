@@ -1,7 +1,7 @@
 export default function HomeAbout() {
     return (
         <section className="w-full flex justify-center items-center p-5 relative">
-            <div className="w-full max-w-5xl pt-10 flex justify-center flex-col gap-6">
+            <div className="w-full max-w-[1280px] pt-10 flex justify-center flex-col gap-6">
                 <div className="flex gap-4 items-center sm:gap-1 w-full">
                     <h1 className="text-4xl">About Us</h1>
                     <img src="/icon-1.png" alt="icon" height={'100%'} />

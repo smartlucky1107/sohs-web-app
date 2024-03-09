@@ -10,7 +10,7 @@ export default function AboutSchedule() {
         backgroundRepeat: "no-repeat",
       }}
     >
-      <div className="w-full max-w-5xl flex justify-center mx-auto flex-col gap-6">
+      <div className="w-full max-w-[1280px] flex justify-center mx-auto flex-col gap-6">
         <div className="flex lg:items-start items-center justify-between flex-col lg:flex-row gap-8">
           <div>
             <h1 className="text-4xl text-white">

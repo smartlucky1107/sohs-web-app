@@ -1,4 +1,4 @@
-export default function TestsInfo() {
+export default function ResultInfo() {
     return (
         <section className="flex w-full flex-col justify-center items-center py-10 px-4">
             <div className="w-full max-w-[1280px] flex flex-col justify-center items-center gap-7">

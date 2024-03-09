@@ -18,7 +18,7 @@ export default function HomeFaq() {
             backgroundPosition: 'center',
             backgroundSize: 'cover',
         }}>
-            <div className="w-full h-full flex-col max-w-5xl flex justify-center sm:flex-col gap-8 py-14 pb-0">
+            <div className="w-full h-full flex-col max-w-[1280px] flex justify-center sm:flex-col gap-8 py-14 pb-0">
                 <div className="flex gap-12 items-center sm:flex-col w-full justify-center h-full">
                     <div className="flex w-1/2 sm:w-full h-full flex-col gap-6">
                         <p className=" text-blue-400">FAQ</p>

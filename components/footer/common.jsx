@@ -10,7 +10,7 @@ export default function CommonFooter() {
             backgroundSize: 'cover',
         }}>
             <div className="w-full flex items-center justify-center px-4 py-20">
-                <div className="flex w-full max-w-5xl justify-center items-center">
+                <div className="flex w-full max-w-[1280px] justify-center items-center">
                     <div className="h-full flex flex-col gap-6 items-center">
                         <img src="/logo.svg" alt="logo" className="h-[100px]" />
                         <div className="flex flex-wrap h-full items-center justify-center gap-6">
@@ -26,7 +26,7 @@ export default function CommonFooter() {
                 </div>
             </div>
             <div className="flex w-full h-[40px] bg-black justify-center items-center px-4">
-                <div className="flex w-full max-w-5xl h-[40px] bg-black justify-between items-center">
+                <div className="flex w-full max-w-[1280px] h-[40px] bg-black justify-between items-center">
                     <div className="flex gap-4 h-full items-center">
                         <div className="flex h-full items-center gap-1">
                             <p className="text-white text-xs">Copyright © 2023 American Packout</p>
