@@ -15,6 +15,13 @@ const TableMain = ({
     setEditPopupState({ visible: true, id: record.fin });
   };
 
+
+  function formatDate(dateString) {
+    const options = { year: 'numeric', month: '2-digit', day: '2-digit' };
+    const formattedDate = new Date(dateString).toLocaleDateString('en-US', options);
+    return formattedDate;
+  }
+
   const columns = [
     {
       title: "Name",
@@ -41,6 +48,12 @@ const TableMain = ({
       title: "DOB",
       dataIndex: "dob",
       key: "dob",
+      render: (dob) => {
+        
+        return (
+          <span>{formatDate(dob)}</span>
+        );
+      },
     },
     {
       title: "Empno",
@@ -51,6 +64,12 @@ const TableMain = ({
       title: "Date",
       dataIndex: "date",
       key: "date",
+      render: (date) => {
+        
+        return (
+          <span>{formatDate(date)}</span>
+        );
+      },
     },
     {
       title: "Job Title",

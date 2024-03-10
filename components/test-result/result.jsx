@@ -1,4 +1,4 @@
-import { Input, Radio } from "antd";
+import { DatePicker, Input, Radio } from "antd";
 import AirConduction from "./charts/airconduction";
 import BoneConduction from "./charts/boneconduction";
 import RightTable from "./tables/right";
@@ -34,7 +34,7 @@ export default function TestsResult() {
                     </div>
                     <div className="flex gap-4">
                         <p className=" text-nowrap">DOB:</p>
-                        <Input placeholder="DOB" />
+                        <DatePicker placeholder="DOB" />
                     </div>
                     <div className="flex gap-4">
                         <p className=" text-nowrap">Sex:</p>
@@ -190,13 +190,7 @@ export default function TestsResult() {
                         </Radio.Group>
                     </div>
                 </div>
-                <div className="w-full flex gap-4 justify-start font-semibold">
-                    <p className=" text-nowrap">Was the employee counselled on the usage of hearing protectors ?</p>
-                    <Radio.Group defaultValue={true}>
-                        <Radio value={true}>Yes</Radio>
-                        <Radio value={false}>No</Radio>
-                    </Radio.Group>
-                </div>
+                
                 
                 <div className="w-full flex justify-start flex-wrap gap-4 font-semibold">
                     <p className=" text-nowrap">Certification of fitness to work in noisy environment</p>

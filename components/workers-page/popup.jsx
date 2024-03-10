@@ -3,6 +3,8 @@ import { PoweroffOutlined } from "@ant-design/icons";
 import { DatePicker, Input, Radio, Select, Button } from "antd";
 import axios from "axios";
 import { useRouter } from "next/router";
+import FloatLabel from "../FloatLabel";
+import dayjs from "dayjs";
 
 const gender = [
   { label: "Male", value: "m" },
@@ -45,35 +47,35 @@ export default function WorkersPopup(props) {
   const handleSubmit = async () => {
     try {
       if (
-        formData.name === "" ||
+        formData.name == "" ||
         !formData.name ||
-        formData.jobt === "" ||
+        formData.jobt == "" ||
         !formData.jobt ||
-        formData.empno === "" ||
+        formData.empno == "" ||
         !formData.empno ||
-        formData.dob === "" ||
+        formData.dob == "" ||
         !formData.dob ||
-        formData.date === "" ||
+        formData.date == "" ||
         !formData.date ||
-        formData.fin === "" ||
+        formData.fin == "" ||
         !formData.fin ||
-        formData.ypj === "" ||
+        formData.ypj == "" ||
         !formData.ypj ||
-        formData.exp === "" ||
+        formData.exp == "" ||
         !formData.exp ||
-        formData.hist === "" ||
+        formData.hist == "" ||
         !formData.hist ||
-        formData.dept === "" ||
+        formData.dept == "" ||
         !formData.dept ||
-        formData.inf === "" ||
+        formData.inf == "" ||
         !formData.inf ||
-        formData.notify === "" ||
+        formData.notify == "" ||
         !formData.notify ||
-        formData.diag === "" ||
+        formData.diag == "" ||
         !formData.diag ||
-        formData.stat === "" ||
+        formData.stat == "" ||
         !formData.stat ||
-        formData.sex === "" ||
+        formData.sex == "" ||
         !formData.sex
       ) {
         return alert("All fields are required.");
@@ -119,155 +121,175 @@ export default function WorkersPopup(props) {
           </h1>
         </div>
         <div className="w-full p-6 flex flex-wrap gap-5 justify-center items-center">
-          <Input
-            size="large"
-            placeholder="Name"
-            style={{
-              width: "40%",
-            }}
-            onChange={(e) => handleInputChange("name", e.target.value)}
-          />
-          <Select
-            defaultValue="Job title"
-            style={{
-              width: "40%",
-            }}
-            options={[
-              { value: "Technician", label: <span>Technician</span> },
-              { value: "Senior Technician", label: <span>Senior</span> },
-              { value: "Component", label: <span>Component</span> },
-            ]}
-            onChange={(selectedValue) =>
-              handleInputChange("jobt", selectedValue)
-            }
-          />
-          <Input
-            size="large"
-            type="number"
-            placeholder="EMPO"
-            onChange={(e) => handleInputChange("empno", e.target.value)}
-            style={{
-              width: "40%",
-            }}
-          />
-          <DatePicker
-            placeholder={"DOB"}
-            size={"large"}
-            style={{
-              width: "40%",
-            }}
-            onChange={(selectedDate) => handleInputChange("dob", selectedDate)}
-          />
-          <DatePicker
-            placeholder={"Date_Joined"}
-            size={"large"}
-            style={{
-              width: "40%",
-            }}
-            onChange={(selectedDate) => handleInputChange("date", selectedDate)}
-          />
-          <Input
-            size="large"
-            placeholder="NRIC/FIN"
-            style={{
-              width: "40%",
-            }}
-            onChange={(e) => handleInputChange("fin", e.target.value)}
-          />
-          <Input
-            size="large"
-            type="number"
-            placeholder="Years PJ"
-            style={{
-              width: "40%",
-            }}
-            onChange={(e) => handleInputChange("ypj", e.target.value)}
-          />
-          <Input
-            size="large"
-            type="number"
-            placeholder="Years Exp"
-            style={{
-              width: "40%",
-            }}
-            onChange={(e) => handleInputChange("exp", e.target.value)}
-          />
-          <Input
-            size="large"
-            placeholder="OCC Hist"
-            style={{
-              width: "40%",
-            }}
-            onChange={(e) => handleInputChange("hist", e.target.value)}
-          />
-          <Select
-            defaultValue="Dept"
-            style={{
-              width: "40%",
-            }}
-            options={[
-              { value: "FE", label: <span>FE</span> },
-              { value: "BE", label: <span>BE</span> },
-              { value: "Repair", label: <span>Repair</span> },
-              { value: "Accessory", label: <span>Accessory</span> },
-              { value: "Component", label: <span>Component</span> },
-            ]}
-            onChange={(selectedValue) =>
-              handleInputChange("dept", selectedValue)
-            }
-          />
-          <Select
-            defaultValue="IHDinf"
-            style={{
-              width: "40%",
-            }}
-            options={[
-              { value: "TRUE", label: <span>TRUE</span> },
-              { value: "FALSE", label: <span>FALSE</span> },
-            ]}
-            onChange={(selectedValue) =>
-              handleInputChange("inf", selectedValue)
-            }
-          />
-          <Select
-            defaultValue="IHDdiag"
-            style={{
-              width: "40%",
-            }}
-            options={[
-              { value: "NIDE-NOTIFIED", label: <span>NIDE-NOTIFIED</span> },
-              { value: "ENT", label: <span>ENT</span> },
-            ]}
-            onChange={(selectedValue) =>
-              handleInputChange("diag", selectedValue)
-            }
-          />
-          <Select
-            defaultValue="Statutory"
-            style={{
-              width: "40%",
-            }}
-            options={[
-              { value: "TRUE", label: <span>TRUE</span> },
-              { value: "FALSE", label: <span>FALSE</span> },
-            ]}
-            onChange={(selectedValue) =>
-              handleInputChange("stat", selectedValue)
-            }
-          />
-          <Select
-            defaultValue="Notify"
-            style={{
-              width: "40%",
-            }}
-            options={[
-              { value: "TRUE", label: <span>TRUE</span> },
-              { value: "FALSE", label: <span>FALSE</span> },
-            ]}
-            onChange={(selectedValue) =>
-              handleInputChange("notify", selectedValue)
-            }
-          />
+          <FloatLabel label="Name" className="w-[40%]" value={formData.name}>
+            <Input
+              size="large"
+              onChange={(e) => handleInputChange("name", e.target.value)}
+              value={formData.name}
+            />
+          </FloatLabel>
+          <FloatLabel
+            label="Job title"
+            className="w-[40%]"
+            value={formData.jobt}
+          >
+            <Select
+              options={[
+                { value: "Technician", label: <span>Technician</span> },
+                { value: "Senior Technician", label: <span>Senior</span> },
+                { value: "Component", label: <span>Component</span> },
+              ]}
+              onChange={(selectedValue) =>
+                handleInputChange("jobt", selectedValue)
+              }
+              value={formData.jobt}
+            />
+          </FloatLabel>
+          <FloatLabel label="EMPO" className="w-[40%]" value={formData.empno}>
+            <Input
+              size="large"
+              type="number"
+              onChange={(e) => handleInputChange("empno", e.target.value)}
+              value={formData.empno}
+            />
+          </FloatLabel>
+          <FloatLabel
+            label="DOB"
+            className="w-[40%]"
+            value={formData.dob && dayjs(formData.dob)}
+          >
+             <DatePicker
+              size={"large"}
+              onChange={(selectedDate) =>
+                handleInputChange("dob", selectedDate)
+              }
+              value={formData.dob && dayjs(formData.dob)}
+              placeholder=""
+            />
+          </FloatLabel>
+          <FloatLabel
+            label="Date Joined"
+            className="w-[40%]"
+            value={formData.date && dayjs(formData.date)}
+          >
+            <DatePicker
+              size={"large"}
+              onChange={(selectedDate) =>
+                handleInputChange("date", selectedDate)
+              }
+              value={formData.date && dayjs(formData.date)}
+              placeholder=""
+            />
+          </FloatLabel>
+          <FloatLabel label="NRIC/FIN" className="w-[40%]" value={formData.fin}>
+            <Input
+              size="large"
+              onChange={(e) => handleInputChange("fin", e.target.value)}
+              value={formData.fin}
+            />
+          </FloatLabel>
+          <FloatLabel label="Years PJ" className="w-[40%]" value={formData.ypj}>
+            <Input
+              size="large"
+              type="number"
+              onChange={(e) => handleInputChange("ypj", e.target.value)}
+              value={formData.ypj}
+            />
+          </FloatLabel>
+          <FloatLabel
+            label="Years Exp"
+            className="w-[40%]"
+            value={formData.exp}
+          >
+            <Input
+              size="large"
+              type="number"
+              onChange={(e) => handleInputChange("exp", e.target.value)}
+              value={formData.exp}
+            />
+          </FloatLabel>
+          <FloatLabel
+            label="OCC Hist"
+            className="w-[40%]"
+            value={formData.hist}
+          >
+            <Input
+              size="large"
+              onChange={(e) => handleInputChange("hist", e.target.value)}
+              value={formData.hist}
+            />
+          </FloatLabel>
+          <FloatLabel label="Dept" className="w-[40%]" value={formData.dept}>
+            <Select
+              options={[
+                { value: "FE", label: <span>FE</span> },
+                { value: "BE", label: <span>BE</span> },
+                { value: "Repair", label: <span>Repair</span> },
+                { value: "Accessory", label: <span>Accessory</span> },
+                { value: "Component", label: <span>Component</span> },
+              ]}
+              onChange={(selectedValue) =>
+                handleInputChange("dept", selectedValue)
+              }
+              value={formData.dept}
+            />
+          </FloatLabel>
+          <FloatLabel label="IHDinf" className="w-[40%]" value={formData.inf}>
+            <Select
+              options={[
+                { value: "TRUE", label: <span>TRUE</span> },
+                { value: "FALSE", label: <span>FALSE</span> },
+              ]}
+              onChange={(selectedValue) =>
+                handleInputChange("inf", selectedValue)
+              }
+              value={formData.inf}
+            />
+          </FloatLabel>
+          <FloatLabel label="IHDdiag" className="w-[40%]" value={formData.diag}>
+            <Select
+              options={[
+                { value: "NIDE-NOTIFIED", label: <span>NIDE-NOTIFIED</span> },
+                { value: "ENT", label: <span>ENT</span> },
+              ]}
+              onChange={(selectedValue) =>
+                handleInputChange("diag", selectedValue)
+              }
+              value={formData.diag}
+            />
+          </FloatLabel>
+          <FloatLabel
+            label="Statutory"
+            className="w-[40%]"
+            value={formData.stat}
+          >
+            <Select
+              options={[
+                { value: "TRUE", label: <span>TRUE</span> },
+                { value: "FALSE", label: <span>FALSE</span> },
+              ]}
+              onChange={(selectedValue) =>
+                handleInputChange("stat", selectedValue)
+              }
+              value={formData.stat}
+            />
+          </FloatLabel>
+          <FloatLabel
+            label="Notify"
+            className="w-[40%]"
+            value={formData.notify}
+          >
+            <Select
+              options={[
+                { value: "TRUE", label: <span>TRUE</span> },
+                { value: "FALSE", label: <span>FALSE</span> },
+              ]}
+              onChange={(selectedValue) =>
+                handleInputChange("notify", selectedValue)
+              }
+              value={formData.notify}
+            />
+          </FloatLabel>
           <Radio.Group
             options={gender}
             optionType="button"
