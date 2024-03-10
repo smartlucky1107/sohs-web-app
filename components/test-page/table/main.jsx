@@ -15,9 +15,32 @@ const handleEdit = (record) => {
 
 const columns = [
   {
+    title: 'Name',
+    dataIndex: 'name',
+    key: 'name',
+    render: (text) => <a>{text}</a>,
+  },
+  {
+    title: 'Dep',
+    dataIndex: 'dep',
+    key: 'dep',
+  },
+  {
     title: 'NRIC/FIN',
     dataIndex: 'fin',
     key: 'fin',
+    render: (text) => <a>{text}</a>,
+  },
+  {
+    title: 'Sex',
+    dataIndex: 'sex',
+    key: 'sex',
+    render: (text) => <a>{text}</a>,
+  },
+  {
+    title: 'DOB',
+    dataIndex: 'dob',
+    key: 'dob',
     render: (text) => <a>{text}</a>,
   },
   {
@@ -26,9 +49,19 @@ const columns = [
     key: 'empno',
   },
   {
-    title: 'Yrs_exp',
-    dataIndex: 'exp',
-    key: 'exp',
+    title: 'Date Joined',
+    dataIndex: 'date_joined',
+    key: 'date_joined',
+  },
+  {
+    title: 'Job Title',
+    dataIndex: 'job_title',
+    key: 'job_title',
+  },
+  {
+    title: 'Yrs Exp',
+    dataIndex: 'yrs_exp',
+    key: 'yrs_exp',
   },
   {
     title: 'Statutory',

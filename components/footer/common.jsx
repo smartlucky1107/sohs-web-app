@@ -12,7 +12,7 @@ export default function CommonFooter() {
             <div className="w-full flex items-center justify-center px-4 py-20">
                 <div className="flex w-full max-w-[1280px] justify-center items-center">
                     <div className="h-full flex flex-col gap-6 items-center">
-                        <img src="/logo.svg" alt="logo" className="h-[100px]" />
+                        <img src="/footer-logo.png" alt="logo" className="h-[100px]" />
                         <div className="flex flex-wrap h-full items-center justify-center gap-6">
                             <a className="text-white " href="/home">Home</a>
                             <a className="text-white " href="/about">About Us</a>
@@ -21,7 +21,7 @@ export default function CommonFooter() {
                             <a className="text-white " href="/test">Test</a>
                             <a className="text-white " href="/contact">Contact</a>
                         </div>
-                        <button className="text-white bg-[#0094f1] px-5 sm:px-3 sm:text-xs py-3">CONTACT US</button>
+                        <a href="/contact" className=" flex items-center text-white bg-[#0094f1] px-5 sm:px-3 sm:text-xs py-3">CONTACT US</a>
                     </div>
                 </div>
             </div>

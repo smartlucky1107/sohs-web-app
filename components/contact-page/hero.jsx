@@ -17,7 +17,7 @@ export default function ContactHero() {
           </h1>
 
           <ul className="flex items-center justify-center gap-1.5">
-            <li className="text-lg text-white">Home</li>
+            <li className="text-lg text-white"><a href="/">Home</a></li>
             <li className="text-white text-xl">
               <BsChevronRight />
             </li>

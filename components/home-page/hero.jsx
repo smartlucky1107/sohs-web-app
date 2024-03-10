@@ -12,10 +12,10 @@ export default function HomeHero() {
                     <h1 className="text-white text-5xl sm:text-center sm:text-3xl">Get Our Best Hearing Test, Expert Right Here</h1>
                     <p className="text-white text-sm sm:text-center" style={{ lineHeight: '2.2' }}>Enim cras in eget urna. Ut proin integer tempor, bibendum quam ullamcorper faucibus. Nulla convallis ultrices augue condimentum non justo ultrices urna. Porttitor neque tortor ultricies vitae donec.</p>
                     <div className="flex gap-5 flex-wrap items-center">
-                        <button className="text-black bg-white px-7 py-2">CONTACT US</button>
+                        <a  href="/contact" className="text-black bg-white px-7 py-2">CONTACT US</a>
                         <div className="h-full flex gap-3 items-center justify-center">
-                            <FiPhoneCall size={'25'} color="#90f05d" />
-                            <h4 className="text-white">+(123) 456 7890</h4>
+                            <a href="tel:+6568725020"><FiPhoneCall size={'25'} color="#90f05d" /></a>
+                            <h4 className="text-white"><a href="tel:+6568725020">+65 68725020</a>/<a href="tel:+6567772829">67772829</a></h4>
                         </div>
                     </div>
                 </div>

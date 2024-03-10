@@ -24,7 +24,7 @@ export default function CommonHeader() {
                         <div className="flex gap-4 h-full items-center">
                             <div className="flex h-full items-center gap-1">
                                 <CiCircleInfo color="#fff" />
-                                <a href="/contact-us" className="text-white text-xs">Need help</a>
+                                <a href="/contact" className="text-white text-xs">Need help</a>
                             </div>
                             <div className="flex h-full items-center gap-1">
                                 <CiUser color="#fff" />
@@ -61,7 +61,7 @@ export default function CommonHeader() {
                             </div>
                         </div>
                         <div className="h-full flex items-center">
-                            <a href="/contact-us" className="flex items-center text-white bg-[#0094f1] px-5 sm:px-3 sm:text-xs h-full">CONTACT US</a>
+                            <a href="/contact" className="flex items-center text-white bg-[#0094f1] px-5 sm:px-3 sm:text-xs h-full">CONTACT US</a>
                             <button className="sm:p-3 sm:text-xs md:hidden"><IoMdMenu /></button>
                         </div>
                     </div>

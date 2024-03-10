@@ -8,9 +8,7 @@ export default function ContactInformation() {
       label: "Phone Number",
       details: (
         <>
-          Monday-Friday: 7am-6pm
-          <br />
-          Saturday: 8am-2pm, Sunday: Closed
+          Monday-Friday: 9:00 - 17:30
         </>
       ),
     },
@@ -19,16 +17,14 @@ export default function ContactInformation() {
       label: "Our Address",
       details: (
         <>
-          Monday-Friday: 7am-6pm
-          <br />
-          Saturday: 8am-2pm, Sunday: Closed
+          Singapore Occupational Health Services Pte Ltd, Tempco Technominium, 16 Ayer Rajah Crescent #06-06B, Singapore 139965
         </>
       ),
     },
     {
       icon: "/icons/email.png",
       label: "Email",
-      details: "info@georgetownbugs.com",
+      details: "sohspl@gmail.com ",
     },
   ];
 
@@ -40,10 +36,10 @@ export default function ContactInformation() {
             Reach Out For Hearing Test From Experts!
           </h1>
           <Link
-            href="tel:5128438643"
+            href="tel:+6568725020"
             className="text-white bg-[#0094f1] px-8 sm:px-5 sm:text-xs py-3 font-medium"
           >
-            CALL (512) 843-8643
+            CALL +65 68725020
           </Link>
         </div>
 

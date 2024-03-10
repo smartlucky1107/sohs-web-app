@@ -26,14 +26,14 @@ export default function ContactForm() {
 
               <div className="flex items-center gap-7 flex-row sm:flex-col">
                 <Link
-                  href="/"
+                  href="tel:+6568725020"
                   className="h-[51px] px-10 inline-block leading-[51px] bg-white tracking-[2px] uppercase font-medium"
                 >
                   Get in touch
                 </Link>
 
                 <Link
-                  href="tel:5128438643"
+                  href="tel:+6568725020"
                   className="text-lg font-medium text-white flex items-center justify-center gap-3"
                 >
                   <Image
@@ -42,7 +42,7 @@ export default function ContactForm() {
                     width={42}
                     height={42}
                   />
-                  (512) 843-8643
+                  +65 68725020
                 </Link>
               </div>
             </div>

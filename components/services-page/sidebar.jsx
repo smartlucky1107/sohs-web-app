@@ -8,32 +8,64 @@ export default function ServicesSidebar() {
 
   const services = [
     {
-      label: "Medical Surveillance Programs",
-      href: "/services/medical-surveillance-programs",
+      name: "Medical Surveillance Programs",
+      image: "1.png",
+      link: "/services/medical-surveillance-programs",
     },
     {
-      label: "Periodic Medical Examination",
-      href: "/services/periodic-medical-examination",
+      name: "Periodic Medical Examination",
+      image: "2.png",
+      link: "/services/periodic-medical-examination",
     },
     {
-      label: "Pre-Placement Medicals",
-      href: "/services/pre-placement-medicals",
+      name: "Pre Placement Medicals",
+      image: "3.png",
+      link: "/services/pre-placement-medicals",
     },
     {
-      label: "On-site Medical Services",
-      href: "/services/on-site-medical-services",
+      name: "On-site Medical Services",
+      image: "4.png",
+      link: "/services/on-site-medical-services",
     },
     {
-      label: "Toxicology Surveillance",
-      href: "/services/toxicology-surveillance",
+      name: "Toxicology Surveillance",
+      image: "5.png",
+      link: "/services/toxicology-surveillance",
     },
     {
-      label: "Audiometry Examination",
-      href: "/services/audiometry-examination",
+      name: "Audiometry Examination",
+      image: "6.png",
+      link: "/services/audiometry-examination",
     },
     {
-      label: "Company Wellness Programs",
-      href: "/services/company-wellness-programs",
+      name: "Company Wellness Programs",
+      image: "7.png",
+      link: "/services/company-wellness-programs",
+    },
+    {
+      name: "Statutory Medical Exaination ",
+      image: "7.png",
+      link: "/services/statutory-medical-exaination ",
+    },
+    {
+      name: "Management of Chronic Illnesses",
+      image: "7.png",
+      link: "/services/management-of-chronic-illnesses",
+    },
+    {
+      name: "Travel & Vaccination Services ",
+      image: "7.png",
+      link: "/services/travel-vaccination-services ",
+    },
+    {
+      name: "Genetic Blood Tests & Health Plan",
+      image: "7.png",
+      link: "/services/genetic-blood-tests-health-plan",
+    },
+    {
+      name: "Spirometry and respiratory assessment",
+      image: "7.png",
+      link: "/services/spirometry-and-respiratory-assessment",
     },
   ];
 
@@ -53,12 +85,12 @@ export default function ServicesSidebar() {
         {services.map((service, index) => (
           <li key={index}>
             <Link
-              href={service.href}
+              href={service.link}
               className="group flex items-center justify-between py-5"
             >
               <div className="flex items-center gap-1.5">
                 <span className="w-1.5 h-1.5 bg-[#49B2F6] rounded-full block"></span>
-                <span className="text-[#222222]">{service.label}</span>
+                <span className="text-[#222222]">{service.name}</span>
               </div>
 
               <div

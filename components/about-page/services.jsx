@@ -16,27 +16,39 @@ export default function AboutServices() {
   const services = [
     {
       icon: "/services/service-icon-1.png",
-      summary: "Medical Surveillance Programs & Periodic Medicals,",
+      summary: "Hearing Conservation Programme",
     },
     {
       icon: "/services/service-icon-2.png",
-      summary: "Pilot Medical and Executive Medical",
+      summary: "Statutory Medical Examination",
     },
     {
       icon: "/services/service-icon-3.png",
-      summary: "Company Wellness Programs",
+      summary: "Workplace Safety & Health Act",
     },
     {
       icon: "/services/service-icon-1.png",
-      summary: "Medical Surveillance Programs & Periodic Medicals,",
+      summary: "Code of Practices & Singapore Standards,",
     },
     {
       icon: "/services/service-icon-2.png",
-      summary: "Pilot Medical and Executive Medical",
+      summary: "National Immunisation Schedule",
     },
     {
       icon: "/services/service-icon-3.png",
-      summary: "Company Wellness Programs",
+      summary: "MOH Healthcare Schemes & Subsidies",
+    },
+    {
+      icon: "/services/service-icon-3.png",
+      summary: "Disability  Assessment",
+    },
+    {
+      icon: "/services/service-icon-3.png",
+      summary: "Medical Services & Tele-consult",
+    },
+    {
+      icon: "/services/service-icon-3.png",
+      summary: "Workplace Risk Assessment",
     },
   ];
 
@@ -52,7 +64,7 @@ export default function AboutServices() {
       <div className="w-full max-w-[1280px] pt-20 mx-auto gap-6">
         <div className="lg:grid grid-cols-4 items-center justify-between gap-20">
           <div className="lg:col-span-3 col-span-4">
-            <h1 className="text-[50px]">Our Services</h1>
+            <h1 className="text-[50px]">SELF HELP EDUCATIONAL ARTICLES</h1>
             <p className="text-lg leading-[30px] mt-2">
               At Curtis Plumbing, we understand that your plumbing and septic
               needs are unique. Our team is dedicatedproviding tailored
@@ -62,7 +74,7 @@ export default function AboutServices() {
 
           <div className="lg:col-span-1 col-span-4 mt-5 lg:mt-0">
             <Link
-              href="/"
+              href="tel:+6568725020"
               className="bg-[#111111] h-[53px] rounded-[5px] px-6 flex items-center justify-center text-white tracking-[2px] uppercase font-medium"
             >
               Call Us

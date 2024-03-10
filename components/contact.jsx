@@ -13,7 +13,7 @@ export default function CommonContact() {
                         <img src="./shapes/2.png" alt="shapes-2" className="absolute top-13 right-[-35px]" />
                         <img src="./shapes/3.png" alt="shapes-3" className="absolute top-0 left-[-30px]" />
                     </div>
-                    <a className="text-white bg-[#0094f1] px-6 py-2" href="">Contact Us</a>
+                    <a className="text-white bg-[#0094f1] px-6 py-2" href="/contact">Contact Us</a>
                 </div>
             </div>
         </section>

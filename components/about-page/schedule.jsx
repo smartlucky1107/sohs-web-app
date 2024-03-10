@@ -20,18 +20,13 @@ export default function AboutSchedule() {
 
           <div className="flex items-center gap-3">
             <Link
-              href="/"
+              href="/contact"
               className="h-[51px] px-10 flex items-center justify-center bg-white tracking-[2px] uppercase font-medium"
             >
               Contact US
             </Link>
 
-            <Link
-              href="/"
-              className="h-[51px] px-10 flex items-center justify-center border border-white text-white tracking-[2px] uppercase font-medium"
-            >
-              Buy now
-            </Link>
+            
           </div>
         </div>
       </div>

@@ -9,19 +9,19 @@ export default function ResultInfo() {
                             <div className="rounded-full w-[60px] h-[60px] bg-gray-200 flex justify-center items-center">
                                 <img width={'50%'} src={'/services/10.png'} alt="services" />
                             </div>
-                            <h3 className="text-sm">Office Contact No: 68725020, 67772829, 68720070</h3>
+                            <h3 className="text-sm">Office Contact No: <a href="tel:+6568725020">68725020</a>, <a href="tel:+6567772829">67772829</a>, <a href="tel:+6568720070">68720070</a></h3>
                         </div>
                         <div className="flex py-3 px-3 border-[rgba(0,0,0,0.3)] items-center border sm:w-full rounded bg-[#e5f3ff] gap-4">
                             <div className="rounded-full w-[60px] h-[60px] bg-gray-200 flex justify-center items-center">
                                 <img width={'50%'} src={'/services/11.png'} alt="services" />
                             </div>
-                            <h3 className="text-sm text-nowrap">Fax: 68725679</h3>
+                            <h3 className="text-sm text-nowrap">Fax: <a href="tel:+6568725679">68725679</a></h3>
                         </div>
                         <div className="flex py-3 px-3 border-[rgba(0,0,0,0.3)] items-center border sm:w-full rounded bg-[#e5f3ff] gap-4">
                             <div className="rounded-full w-[60px] h-[60px] bg-gray-200 flex justify-center items-center">
                                 <img width={'50%'} src={'/services/12.png'} alt="services" />
                             </div>
-                            <h3 className="text-sm text-nowrap">Mobile: 90738282</h3>
+                            <h3 className="text-sm text-nowrap">Mobile: <a href="tel:+6590738282">90738282</a></h3>
                         </div>
                     </div>
                     <div className="flex py-3 px-3 border-[rgba(0,0,0,0.3)] items-center border rounded bg-[#e5f3ff] gap-4">

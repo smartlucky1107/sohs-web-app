@@ -34,4 +34,29 @@ export const servicesData = [
       image: "7.png",
       link: "/services/company-wellness-programs",
     },
+    {
+      name: "Statutory Medical Exaination ",
+      image: "8.png",
+      link: "/services/statutory-medical-exaination ",
+    },
+    {
+      name: "Management of Chronic Illnesses",
+      image: "13.png",
+      link: "/services/management-of-chronic-illnesses",
+    },
+    {
+      name: "Travel & Vaccination Services ",
+      image: "14.png",
+      link: "/services/travel-vaccination-services ",
+    },
+    {
+      name: "Genetic Blood Tests & Health Plan",
+      image: "15.png",
+      link: "/services/genetic-blood-tests-health-plan",
+    },
+    {
+      name: "Spirometry and respiratory assessment",
+      image: "16.png",
+      link: "/services/spirometry-and-respiratory-assessment",
+    },
 ]
