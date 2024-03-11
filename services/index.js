@@ -16,16 +16,13 @@ export const logged_in = async (FormData) => {
 
 export const register_now = async (FormData) => {
   try {
-    const res = await fetch(
-      "https://sohs-web-app.vercel.app/api/auth/register",
-      {
-        headers: {
-          "Content-Type": "application/json",
-        },
-        method: "POST",
-        body: JSON.stringify(FormData),
-      }
-    );
+    const res = await fetch(config.apiUrl + "/auth/register", {
+      headers: {
+        "Content-Type": "application/json",
+      },
+      method: "POST",
+      body: JSON.stringify(FormData),
+    });
     const data = res.json();
     return data;
   } catch (error) {
@@ -35,7 +32,22 @@ export const register_now = async (FormData) => {
 
 export const fetchWorkers = async () => {
   try {
-    const apiUrl = config.apiUrl + "/workers"; // Replace this with your actual API route URL
+    const apiUrl = config.apiUrl + "/workers";
+    const response = await axios.get(apiUrl);
+    if (response.data.success) {
+      const data = response.data.data;
+      return data;
+    } else {
+      console.error("Error:", response.data.error);
+    }
+  } catch (error) {
+    console.error("Error fetching data:", error.message);
+  }
+};
+
+export const fetchTests = async () => {
+  try {
+    const apiUrl = config.apiUrl + "/tests";
     const response = await axios.get(apiUrl);
     if (response.data.success) {
       const data = response.data.data;

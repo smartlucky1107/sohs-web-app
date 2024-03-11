@@ -15,10 +15,12 @@ const TableMain = ({
     setEditPopupState({ visible: true, id: record.fin });
   };
 
-
   function formatDate(dateString) {
-    const options = { year: 'numeric', month: '2-digit', day: '2-digit' };
-    const formattedDate = new Date(dateString).toLocaleDateString('en-US', options);
+    const options = { year: "numeric", month: "2-digit", day: "2-digit" };
+    const formattedDate = new Date(dateString).toLocaleDateString(
+      "en-US",
+      options
+    );
     return formattedDate;
   }
 
@@ -49,10 +51,7 @@ const TableMain = ({
       dataIndex: "dob",
       key: "dob",
       render: (dob) => {
-        
-        return (
-          <span>{formatDate(dob)}</span>
-        );
+        return <span>{formatDate(dob)}</span>;
       },
     },
     {
@@ -65,10 +64,7 @@ const TableMain = ({
       dataIndex: "date",
       key: "date",
       render: (date) => {
-        
-        return (
-          <span>{formatDate(date)}</span>
-        );
+        return <span>{formatDate(date)}</span>;
       },
     },
     {
@@ -181,7 +177,8 @@ const TableMain = ({
     },
   ];
 
-  const [filteredData, setFilteredData] = useState([]);
+  const [filteredData, setFilteredData] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     async function fetchData() {
@@ -195,6 +192,8 @@ const TableMain = ({
       } else {
         setFilteredData(data);
       }
+
+      setIsLoading(false);
     }
 
     fetchData();
@@ -204,8 +203,13 @@ const TableMain = ({
     <Table
       scroll={x}
       columns={columns}
-      dataSource={filteredData.map((item, index) => ({ ...item, key: index }))}
+      dataSource={
+        filteredData &&
+        filteredData.map((item, index) => ({ ...item, key: index }))
+      }
       virtual={"scrollX"}
+      loading={isLoading}
+      locale={filteredData == null && { emptyText: "Loading..." }} // Set custom loading text
     />
   );
 };

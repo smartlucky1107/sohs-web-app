@@ -145,3 +145,11 @@ body {
   padding: 0;
   padding-top: 20px;
 }
+
+.ant-table-wrapper table {
+  @apply !w-auto;
+}
+
+.ant-select-dropdown {
+  z-index: 9999999999999999999999999 !important;
+}

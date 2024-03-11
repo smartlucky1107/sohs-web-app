@@ -22,7 +22,7 @@ export default function WorkersTable(props) {
               type="text"
               value={searchText}
               onChange={(e) => handleSearch(e.target.value)}
-              className="h-full px-5 py-3 rounded"
+              className="h-full px-5 py-3 rounded bg-[whitesmoke]"
               placeholder="Search ..."
               style={{
                 backgroundColor: "#f5f5f5 !important",

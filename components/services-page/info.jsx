@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function ServicesInfo() {
   return (
     <section className="flex w-full flex-col justify-center items-center py-10 px-4">
@@ -12,20 +14,26 @@ export default function ServicesInfo() {
                 <img width={"50%"} src={"/services/10.png"} alt="services" />
               </div>
               <h3 className="text-sm">
-                Office Contact No: <a href="tel:+6568725020">68725020</a>, <a href="tel:+6567772829">67772829</a>, <a href="tel:+6568720070">68720070</a>
+                Office Contact No: <Link href="tel:+6568725020">68725020</Link>,{" "}
+                <Link href="tel:+6567772829">67772829</Link>,{" "}
+                <Link href="tel:+6568720070">68720070</Link>
               </h3>
             </div>
             <div className="flex py-3 px-3 border-black items-center border sm:w-full bg-[#e5f3ff] gap-4">
               <div className="rounded-full w-[60px] h-[60px] bg-white border border-black flex justify-center items-center">
                 <img width={"50%"} src={"/services/11.png"} alt="services" />
               </div>
-              <h3 className="text-sm text-nowrap">Fax: <a href="tel:+6568725679">68725679</a></h3>
+              <h3 className="text-sm text-nowrap">
+                Fax: <Link href="tel:+6568725679">68725679</Link>
+              </h3>
             </div>
             <div className="flex py-3 px-3 border-black items-center border sm:w-full bg-[#E6FFF4] gap-4">
               <div className="rounded-full w-[60px] h-[60px] bg-white border border-black flex justify-center items-center">
                 <img width={"50%"} src={"/services/12.png"} alt="services" />
               </div>
-              <h3 className="text-sm text-nowrap">Mobile: <a href="tel:+6590738282">90738282</a></h3>
+              <h3 className="text-sm text-nowrap">
+                Mobile: <Link href="tel:+6590738282">90738282</Link>
+              </h3>
             </div>
           </div>
           <div className="flex py-3 px-3 border-black items-center border bg-[#DBF9FF] gap-4 w-full">

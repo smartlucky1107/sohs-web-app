@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { BsChevronRight } from "react-icons/bs";
 
 export default function ContactHero() {
@@ -17,7 +18,9 @@ export default function ContactHero() {
           </h1>
 
           <ul className="flex items-center justify-center gap-1.5">
-            <li className="text-lg text-white"><a href="/">Home</a></li>
+            <li className="text-lg text-white">
+              <Link href="/">Home</Link>
+            </li>
             <li className="text-white text-xl">
               <BsChevronRight />
             </li>

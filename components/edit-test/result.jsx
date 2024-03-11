@@ -1,14 +1,12 @@
 import { DatePicker, Input, Radio, Select } from "antd";
-import AirConduction from "./charts/airconduction";
-import BoneConduction from "./charts/boneconduction";
-import RightTable from "./tables/right";
-import LeftTable from "./tables/left";
+import AirConduction from "../test-result/charts/airconduction";
+import BoneConduction from "../test-result/charts/boneconduction";
+import RightTable from "../test-result/tables/right";
+import LeftTable from "../test-result/tables/left";
 import { useEffect, useState } from "react";
 import dayjs from "dayjs";
 import axios from "axios";
-import { useRouter } from "next/router";
 import { fetchWorkers } from "@/services";
-import WorkersPopup from "../workers-page/popup";
 
 const { Option } = Select;
 
@@ -17,8 +15,9 @@ const gender = [
   { label: "Female", value: "f" },
 ];
 
-export default function TestsResult() {
-  const router = useRouter();
+export default function TestsResult({ fin }) {
+  const id = fin;
+
   const airconddata = {
     labels: ["250Hz", "500Hz", "1kHz", "1kHz", "4kHz", "8kHz"],
     values: [65, 59, 80, 81, 56, 55, 40],
@@ -100,7 +99,9 @@ export default function TestsResult() {
 
   const isFinUnique = async (fin) => {
     try {
-      const response = await axios.get(`/api/tests/checkFinUnique?fin=${fin}`); // Replace with your API endpoint to check 'fin' uniqueness
+      const response = await axios.get(
+        `/api/tests/checkFinUnique?fin=${fin}&currentFin=${id}`
+      ); // Replace with your API endpoint to check 'fin' uniqueness
       return response.data.isUnique; // Assuming the response contains a boolean indicating uniqueness
     } catch (error) {
       console.error("Failed to check uniqueness of fin:", error);
@@ -108,7 +109,7 @@ export default function TestsResult() {
     }
   };
 
-  const handleSubmit = async () => {
+  const handleUpdate = async () => {
     try {
       const isExists = await isFinUnique(formData.fin);
       if (isExists) {
@@ -116,17 +117,29 @@ export default function TestsResult() {
         alert("FIN already exists. Please enter a unique FIN.");
         return;
       }
-      await axios.post("/api/tests/add-test", formData); // Send POST request to API
+      const testData = { ...formData, id: id };
+      await axios.post(`/api/tests/edit-test?fin=${id}`, testData); // Send POST request to API
       // Reset form data or handle success
-      setFormData({});
-      // alert("Data submitted successfully");
-      router.push("/test");
+      alert("Data updated successfully");
     } catch (error) {
       // Handle error
       console.error("Failed to submit data:", error);
       alert("Please fill up the required fields");
     }
   };
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(`/api/tests/test?fin=${id}`); // Replace with your API endpoint to check 'fin' uniqueness
+        setFormData(response.data); // Assuming the response contains a boolean indicating uniqueness
+      } catch (error) {
+        console.error("Failed to check uniqueness of fin:", error);
+        return false; // Assuming uniqueness check fails
+      }
+    };
+    id && fetchData();
+  }, [id]);
 
   useEffect(() => {
     async function fetchData() {
@@ -180,6 +193,7 @@ export default function TestsResult() {
                   option.children.toLowerCase().indexOf(input.toLowerCase()) >=
                   0
                 }
+                value={formData.name}
                 dropdownRender={(menu) => (
                   <div>
                     {menu}
@@ -203,7 +217,7 @@ export default function TestsResult() {
               </Select>
 
               {PopupState && (
-                <div className="[&_section]:!z-[99999999999999]">
+                <div className="[&_section]:!z-[999999999999]">
                   <WorkersPopup
                     setPopupState={setPopupState}
                     PopupState={PopupState}
@@ -327,8 +341,8 @@ export default function TestsResult() {
                 handleInputChange("excessive_noise", e.target.value)
               }
             >
-              <Radio value={true}>Yes</Radio>
-              <Radio value={false}>No</Radio>
+              <Radio value={"true"}>Yes</Radio>
+              <Radio value={"false"}>No</Radio>
             </Radio.Group>
           </div>
           <div className="flex gap-4 lg:flex-nowrap flex-wrap">
@@ -341,8 +355,8 @@ export default function TestsResult() {
                 handleInputChange("hearing_protectors", e.target.value)
               }
             >
-              <Radio value={true}>Yes</Radio>
-              <Radio value={false}>No</Radio>
+              <Radio value={"true"}>Yes</Radio>
+              <Radio value={"false"}>No</Radio>
             </Radio.Group>
           </div>
         </div>
@@ -595,16 +609,16 @@ export default function TestsResult() {
             value={formData.certification}
             onChange={(e) => handleInputChange("certification", e.target.value)}
           >
-            <Radio value={true}>Yes</Radio>
-            <Radio value={false}>No</Radio>
+            <Radio value={"true"}>Yes</Radio>
+            <Radio value={"false"}>No</Radio>
           </Radio.Group>
         </div>
 
         <button
-          onClick={handleSubmit}
+          onClick={handleUpdate}
           className="bg-[#0094f1] py-3 px-5 uppercase text-white"
         >
-          Submit
+          UPDATE
         </button>
       </div>
     </section>

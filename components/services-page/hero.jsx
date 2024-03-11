@@ -1,7 +1,7 @@
+import Link from "next/link";
 import { BsChevronRight } from "react-icons/bs";
 
 export default function ServicesHero(props) {
-  
   return (
     <section
       className="w-full flex justify-center items-center bg-white p-5 relative pb-0 h-[313px] bg-cover"
@@ -14,30 +14,29 @@ export default function ServicesHero(props) {
       <div className="w-full max-w-[1280px] pt-10 flex justify-center items-center sm:flex-col">
         <div className="flex flex-col justify-center w-1/2 gap-14 sm:w-full sm:gap-4">
           <h1 className="text-white text-5xl sm:text-center sm:text-3xl text-center">
-            {props.title ? props.title : 'Services'}
+            {props.title ? props.title : "Services"}
           </h1>
 
           <ul className="flex items-center justify-center gap-1.5">
-            <li className="text-lg text-white"><a href="/">Home</a></li>
+            <li className="text-lg text-white">
+              <Link href="/">Home</Link>
+            </li>
             <li className="text-white text-xl">
               <BsChevronRight />
             </li>
-            <li className="text-lg text-white"><a href="/services">Services</a></li>
-            {
-              props.title ? 
-              (
-                <>
-                  <li className="text-white text-xl">
-                    <BsChevronRight />
-                  </li>
-                  <li className="text-lg text-white">{props.title}</li>
-                </>
-              ) : 
-              (
-                <></>
-              )
-            }
-
+            <li className="text-lg text-white">
+              <Link href="/services">Services</Link>
+            </li>
+            {props.title ? (
+              <>
+                <li className="text-white text-xl">
+                  <BsChevronRight />
+                </li>
+                <li className="text-lg text-white">{props.title}</li>
+              </>
+            ) : (
+              <></>
+            )}
           </ul>
         </div>
       </div>
