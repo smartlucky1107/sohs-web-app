@@ -50,7 +50,7 @@ export default function ContactForm() {
 
           {/* Form */}
           <div className="lg:w-1/2 w-full">
-            <form className="space-y-2.5">
+            {/* <form className="space-y-2.5">
               <input
                 type="text"
                 className="bg-white h-[59px] px-5 w-full text-lg outline-none"
@@ -77,7 +77,15 @@ export default function ContactForm() {
                 className="bg-white p-5 w-full text-lg outline-none"
                 placeholder="How Would You Like Us To Help?:"
               ></textarea>
-            </form>
+            </form> */}
+
+            <Image
+              src="/contact-image.png"
+              alt=""
+              width={800}
+              height={593}
+              className="h-[593px] w-full object-contain py-3"
+            />
           </div>
         </div>
       </div>

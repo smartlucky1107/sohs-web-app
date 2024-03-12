@@ -1,5 +1,5 @@
-import React, { useEffect, useRef } from 'react';
-import Chart from 'chart.js/auto';
+import React, { useEffect, useRef } from "react";
+import Chart from "chart.js/auto";
 
 const BoneConduction = ({ data }) => {
   const chartRef = useRef(null);
@@ -7,7 +7,7 @@ const BoneConduction = ({ data }) => {
 
   useEffect(() => {
     if (chartRef && chartRef.current) {
-      const ctx = chartRef.current.getContext('2d');
+      const ctx = chartRef.current.getContext("2d");
 
       // Destroy previous chart instance if exists
       if (chartInstance.current) {
@@ -16,15 +16,22 @@ const BoneConduction = ({ data }) => {
 
       // Create new chart instance
       chartInstance.current = new Chart(ctx, {
-        type: 'line',
+        type: "line",
         data: {
           labels: data.labels,
           datasets: [
             {
-              label: 'Bone Conduction',
+              label: "Left",
+              data: data.values2,
+              fill: false,
+              borderColor: "rgb(75, 192, 192)",
+              tension: 0.1,
+            },
+            {
+              label: "Right",
               data: data.values,
               fill: false,
-              borderColor: 'rgb(75, 192, 192)',
+              borderColor: "rgb(192, 75, 113)",
               tension: 0.1,
             },
           ],

@@ -14,7 +14,7 @@ export default function Workers() {
   useSession({
     required: true,
     onUnauthenticated() {
-      router.push("/login");
+      router.push("/login?redirect=" + router.pathname);
     },
   });
 

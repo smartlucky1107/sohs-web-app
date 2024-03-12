@@ -19,15 +19,17 @@ const gender = [
 
 export default function TestsResult() {
   const router = useRouter();
-  const airconddata = {
-    labels: ["250Hz", "500Hz", "1kHz", "1kHz", "4kHz", "8kHz"],
-    values: [65, 59, 80, 81, 56, 55, 40],
-  };
+  const [airconddata, setAirconddata] = useState({
+    labels: ["250Hz", "500Hz", "1kHz", "2kHz", "3kHz", "4kHz", "6kHz", "8kHz"],
+    values: [65, 59, 80, 81, 56, 55, 40, 68],
+    values2: [65, 59, 80, 81, 56, 55, 40, 68],
+  });
 
-  const boneconddata = {
-    labels: ["250Hz", "500Hz", "1kHz", "1kHz", "4kHz", "8kHz"],
+  const [boneconddata, setBoneconddata] = useState({
+    labels: ["250Hz", "500Hz", "1kHz", "2kHz", "3kHz", "4kHz", "6kHz", "8kHz"],
     values: [65, 59, 80, 81, 56, 55, 40],
-  };
+    values2: [65, 59, 80, 81, 56, 55, 40],
+  });
 
   const [PopupState, setPopupState] = useState(null);
   const [workerNames, setWorkerNames] = useState([]);
@@ -51,6 +53,7 @@ export default function TestsResult() {
     air_l2: "",
     air_l3: "",
     air_l4: "",
+    air_l6: "",
     air_l8: "",
     bone_l0_25: "",
     bone_l0_5: "",
@@ -58,6 +61,7 @@ export default function TestsResult() {
     bone_l2: "",
     bone_l3: "",
     bone_l4: "",
+    bone_l6: "",
     bone_l8: "",
     air_r0_25: "",
     air_r0_5: "",
@@ -65,6 +69,7 @@ export default function TestsResult() {
     air_r2: "",
     air_r3: "",
     air_r4: "",
+    air_r6: "",
     air_r8: "",
     bone_r0_25: "",
     bone_r0_5: "",
@@ -72,6 +77,7 @@ export default function TestsResult() {
     bone_r2: "",
     bone_r3: "",
     bone_r4: "",
+    bone_r6: "",
     bone_r8: "",
     name_and_signature: "",
     date_tested: "",
@@ -81,10 +87,6 @@ export default function TestsResult() {
     dwd_left: "",
     otoscopy_right: "",
     otoscopy_left: "",
-    otoscopy_norma: "",
-    otoscopy_wax_present: "",
-    otoscopy_scarred_tm: "",
-    otoscopy_tm_perforatio: "",
     diagnosis: "Normal",
     action_plans: "Notify OSHD, MOM",
     action_plans_text: "",
@@ -97,6 +99,62 @@ export default function TestsResult() {
       [key]: value,
     }));
   };
+
+  useEffect(() => {
+    const airValues = [
+      formData.air_r0_25,
+      formData.air_r0_5,
+      formData.air_r1,
+      formData.air_r2,
+      formData.air_r3,
+      formData.air_r4,
+      formData.air_r6,
+      formData.air_r8,
+    ];
+    const airValues2 = [
+      formData.air_l0_25,
+      formData.air_l0_5,
+      formData.air_l1,
+      formData.air_l2,
+      formData.air_l3,
+      formData.air_l4,
+      formData.air_l6,
+      formData.air_l8,
+    ];
+
+    setAirconddata((prevData) => ({
+      ...prevData,
+      values: airValues,
+      values2: airValues2,
+    }));
+
+    const boneValues = [
+      formData.bone_r0_25,
+      formData.bone_r0_5,
+      formData.bone_r1,
+      formData.bone_r2,
+      formData.bone_r3,
+      formData.bone_r4,
+      formData.bone_r6,
+      formData.bone_r8,
+    ];
+    const boneValues2 = [
+      formData.bone_l0_25,
+      formData.bone_l0_5,
+      formData.bone_l1,
+      formData.bone_l2,
+      formData.bone_l3,
+      formData.bone_l4,
+      formData.bone_l6,
+      formData.bone_l8,
+    ];
+
+    setBoneconddata((prevData) => ({
+      ...prevData,
+      values: boneValues,
+      values2: boneValues2,
+    }));
+  }, [formData]);
 
   const isFinUnique = async (fin) => {
     try {
@@ -155,52 +213,65 @@ export default function TestsResult() {
       <div className="w-full max-w-[1280px] flex flex-col justify-center items-center gap-7 ">
         <div className="w-full flex gap-4 lg:flex-nowrap flex-wrap">
           <p className=" lg:text-nowrap">Company Address:</p>
-          <Input
+          <Select
+            options={[
+              { value: "Company 1", label: "Company 1" },
+              { value: "Company 2", label: "Company 2" },
+              { value: "Company 3", label: "Company 3" },
+              { value: "Company 4", label: "Company 4" },
+              { value: "Company 5", label: "Company 5" },
+            ]}
             placeholder="Company Address"
-            value={formData.company_address}
-            onChange={(e) =>
-              handleInputChange("company_address", e.target.value)
+            value={
+              formData.company_address ? formData.company_address : undefined
             }
+            onChange={(selectedOption) =>
+              handleInputChange("company_address", selectedOption)
+            }
+            className="w-full"
           />
         </div>
         <div className="w-full flex justify-start flex-wrap gap-4">
           <div className="flex gap-4 lg:flex-nowrap flex-wrap">
             <p className=" lg:text-nowrap">Name:</p>
             <div>
-              <Select
-                className="w-[183px]"
-                showSearch
-                placeholder="Name"
-                optionFilterProp="children"
-                onChange={(selectedValue) =>
-                  handleInputChange("name", selectedValue)
-                }
-                onSelect={onNameSelect}
-                filterOption={(input, option) =>
-                  option.children.toLowerCase().indexOf(input.toLowerCase()) >=
-                  0
-                }
-                dropdownRender={(menu) => (
-                  <div>
-                    {menu}
-                    <button
-                      type="button"
-                      className="bg-[#0094f1] px-3 py-2 text-white text-xs w-full rounded mt-2"
-                      onClick={() => {
-                        setPopupState(true);
-                      }}
-                    >
-                      Add Worker
-                    </button>
-                  </div>
-                )}
-              >
-                {workerNames.map((worker, index) => (
-                  <Option value={worker.name} key={index}>
-                    {worker.name}
-                  </Option>
-                ))}
-              </Select>
+              {!PopupState && (
+                <Select
+                  className="w-[280px]"
+                  showSearch
+                  placeholder="Name"
+                  optionFilterProp="children"
+                  onChange={(selectedValue) =>
+                    handleInputChange("name", selectedValue)
+                  }
+                  onSelect={onNameSelect}
+                  filterOption={(input, option) =>
+                    option.children
+                      .toLowerCase()
+                      .indexOf(input.toLowerCase()) >= 0
+                  }
+                  dropdownRender={(menu) => (
+                    <div>
+                      {menu}
+                      <button
+                        type="button"
+                        className="bg-[#0094f1] px-3 py-2 text-white text-xs w-full rounded mt-2"
+                        onClick={() => {
+                          setPopupState(true);
+                        }}
+                      >
+                        Add Worker
+                      </button>
+                    </div>
+                  )}
+                >
+                  {workerNames.map((worker, index) => (
+                    <Option value={worker.name} key={index}>
+                      {worker.name}
+                    </Option>
+                  ))}
+                </Select>
+              )}
 
               {PopupState && (
                 <div className="[&_section]:!z-[99999999999999]">
@@ -223,6 +294,7 @@ export default function TestsResult() {
           <div className="flex gap-4 lg:flex-nowrap flex-wrap">
             <p className=" lg:text-nowrap">DOB:</p>
             <DatePicker
+              className="h-[32px]"
               placeholder="DOB"
               value={formData.dob && dayjs(formData.dob)}
               onChange={(selectedDate) =>
@@ -252,6 +324,7 @@ export default function TestsResult() {
           <div className="flex gap-4 lg:flex-nowrap flex-wrap">
             <p className=" lg:text-nowrap">Date Joined:</p>
             <DatePicker
+              className="h-[32px]"
               placeholder="Date Joined"
               value={formData.date && dayjs(formData.date)}
               onChange={(selectedDate) =>
@@ -386,6 +459,7 @@ export default function TestsResult() {
           <div className="flex gap-4 lg:flex-nowrap flex-wrap max-w-[300px]">
             <p className=" lg:text-nowrap">Date Tested</p>
             <DatePicker
+              className="h-[32px]"
               placeholder="Date Tested"
               value={formData.date_tested && dayjs(formData.date_tested)}
               onChange={(selectedDate) =>
@@ -439,62 +513,40 @@ export default function TestsResult() {
           <div className="grid grid-cols-2 gap-4 max-w-3xl">
             <div className="flex gap-4 lg:flex-nowrap flex-wrap max-w-[300px]">
               <p className=" lg:text-nowrap">Right</p>
-              <Input
-                placeholder="Right"
-                value={formData.otoscopy_right}
-                onChange={(e) =>
-                  handleInputChange("otoscopy_right", e.target.value)
+              <Select
+                options={[
+                  { value: "Wax Present", label: <span>Wax Present</span> },
+                  { value: "TM Perforatio", label: <span>TM Perforatio</span> },
+                  { value: "Normal", label: <span>Normal</span> },
+                  { value: "Scarred TM", label: <span>Scarred TM</span> },
+                ]}
+                onChange={(selectedValue) =>
+                  handleInputChange("otoscopy_right", selectedValue)
                 }
+                placeholder="Right"
+                value={
+                  formData.otoscopy_right ? formData.otoscopy_right : undefined
+                }
+                className="w-[247px]"
               />
             </div>
             <div className="flex gap-4 lg:flex-nowrap flex-wrap max-w-[300px]">
               <p className=" lg:text-nowrap">Left</p>
-              <Input
+              <Select
+                options={[
+                  { value: "Wax Present", label: <span>Wax Present</span> },
+                  { value: "TM Perforatio", label: <span>TM Perforatio</span> },
+                  { value: "Normal", label: <span>Normal</span> },
+                  { value: "Scarred TM", label: <span>Scarred TM</span> },
+                ]}
+                onChange={(selectedValue) =>
+                  handleInputChange("otoscopy_left", selectedValue)
+                }
                 placeholder="Left"
-                value={formData.otoscopy_left}
-                onChange={(e) =>
-                  handleInputChange("otoscopy_left", e.target.value)
+                value={
+                  formData.otoscopy_left ? formData.otoscopy_left : undefined
                 }
-              />
-            </div>
-            <div className="flex gap-4 lg:flex-nowrap flex-wrap max-w-[300px]">
-              <p className=" lg:text-nowrap">Norma</p>
-              <Input
-                placeholder="Norma"
-                value={formData.otoscopy_norma}
-                onChange={(e) =>
-                  handleInputChange("otoscopy_norma", e.target.value)
-                }
-              />
-            </div>
-            <div className="flex gap-4 lg:flex-nowrap flex-wrap max-w-[300px]">
-              <p className=" lg:text-nowrap">Wax Present</p>
-              <Input
-                placeholder="Wax Present"
-                value={formData.otoscopy_wax_present}
-                onChange={(e) =>
-                  handleInputChange("otoscopy_wax_present", e.target.value)
-                }
-              />
-            </div>
-            <div className="flex gap-4 lg:flex-nowrap flex-wrap max-w-[300px]">
-              <p className=" lg:text-nowrap">Scarred TM</p>
-              <Input
-                placeholder="Scarred TM"
-                value={formData.otoscopy_scarred_tm}
-                onChange={(e) =>
-                  handleInputChange("otoscopy_scarred_tm", e.target.value)
-                }
-              />
-            </div>
-            <div className="flex gap-4 lg:flex-nowrap flex-wrap max-w-[300px]">
-              <p className=" lg:text-nowrap">TM Perforatio</p>
-              <Input
-                placeholder="TM Perforatio"
-                value={formData.otoscopy_tm_perforatio}
-                onChange={(e) =>
-                  handleInputChange("otoscopy_tm_perforatio", e.target.value)
-                }
+                className="w-[257px]"
               />
             </div>
           </div>

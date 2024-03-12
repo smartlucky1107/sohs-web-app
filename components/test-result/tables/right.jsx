@@ -1,8 +1,34 @@
 import React, { useState } from "react";
-import { Space, Table, Tag, Modal } from "antd";
+import { Table } from "antd";
 import { x } from "joi";
 
-const NumberTable = ({ handleInputChange, label, setIsModalOpen }) => {
+const cells = [
+  "air_r0_25",
+  "air_r0_5",
+  "air_r1",
+  "air_r2",
+  "air_r3",
+  "air_r4",
+  "air_r6",
+  "air_r8",
+  "bone_r0_25",
+  "bone_r0_5",
+  "bone_r1",
+  "bone_r2",
+  "bone_r3",
+  "bone_r4",
+  "bone_r6",
+  "bone_r8",
+];
+
+export const NumberTable = ({
+  handleInputChange,
+  formData,
+  label,
+  setLabel,
+}) => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+
   const columns = [
     {
       title: "1",
@@ -36,8 +62,14 @@ const NumberTable = ({ handleInputChange, label, setIsModalOpen }) => {
         <button
           className="w-full h-full"
           onClick={(e) => {
-            handleInputChange(label, 0);
-            setIsModalOpen(false);
+            formData.bone_r6 !== ""
+              ? undefined
+              : setCurrentIndex((prevIndex) =>
+                  !label ? (prevIndex + 1) % cells.length : prevIndex
+                );
+            handleInputChange(label ? label : cells[currentIndex], 0);
+
+            setLabel("");
           }}
         >
           0
@@ -47,8 +79,14 @@ const NumberTable = ({ handleInputChange, label, setIsModalOpen }) => {
         <button
           className="w-full h-full"
           onClick={(e) => {
-            handleInputChange(label, 5);
-            setIsModalOpen(false);
+            formData.bone_r6 !== ""
+              ? undefined
+              : setCurrentIndex((prevIndex) =>
+                  !label ? (prevIndex + 1) % cells.length : prevIndex
+                );
+            handleInputChange(label ? label : cells[currentIndex], 5);
+
+            setLabel("");
           }}
         >
           5
@@ -58,8 +96,14 @@ const NumberTable = ({ handleInputChange, label, setIsModalOpen }) => {
         <button
           className="w-full h-full"
           onClick={(e) => {
-            handleInputChange(label, 10);
-            setIsModalOpen(false);
+            formData.bone_r6 !== ""
+              ? undefined
+              : setCurrentIndex((prevIndex) =>
+                  !label ? (prevIndex + 1) % cells.length : prevIndex
+                );
+            handleInputChange(label ? label : cells[currentIndex], 10);
+
+            setLabel("");
           }}
         >
           10
@@ -69,8 +113,14 @@ const NumberTable = ({ handleInputChange, label, setIsModalOpen }) => {
         <button
           className="w-full h-full"
           onClick={(e) => {
-            handleInputChange(label, 15);
-            setIsModalOpen(false);
+            formData.bone_r6 !== ""
+              ? undefined
+              : setCurrentIndex((prevIndex) =>
+                  !label ? (prevIndex + 1) % cells.length : prevIndex
+                );
+            handleInputChange(label ? label : cells[currentIndex], 15);
+
+            setLabel("");
           }}
         >
           15
@@ -80,8 +130,14 @@ const NumberTable = ({ handleInputChange, label, setIsModalOpen }) => {
         <button
           className="w-full h-full"
           onClick={(e) => {
-            handleInputChange(label, 20);
-            setIsModalOpen(false);
+            formData.bone_r6 !== ""
+              ? undefined
+              : setCurrentIndex((prevIndex) =>
+                  !label ? (prevIndex + 1) % cells.length : prevIndex
+                );
+            handleInputChange(label ? label : cells[currentIndex], 20);
+
+            setLabel("");
           }}
         >
           20
@@ -93,8 +149,14 @@ const NumberTable = ({ handleInputChange, label, setIsModalOpen }) => {
         <button
           className="w-full h-full"
           onClick={(e) => {
-            handleInputChange(label, 25);
-            setIsModalOpen(false);
+            formData.bone_r6 !== ""
+              ? undefined
+              : setCurrentIndex((prevIndex) =>
+                  !label ? (prevIndex + 1) % cells.length : prevIndex
+                );
+            handleInputChange(label ? label : cells[currentIndex], 25);
+
+            setLabel("");
           }}
         >
           25
@@ -104,8 +166,14 @@ const NumberTable = ({ handleInputChange, label, setIsModalOpen }) => {
         <button
           className="w-full h-full"
           onClick={(e) => {
-            handleInputChange(label, 30);
-            setIsModalOpen(false);
+            formData.bone_r6 !== ""
+              ? undefined
+              : setCurrentIndex((prevIndex) =>
+                  !label ? (prevIndex + 1) % cells.length : prevIndex
+                );
+            handleInputChange(label ? label : cells[currentIndex], 30);
+
+            setLabel("");
           }}
         >
           30
@@ -115,8 +183,14 @@ const NumberTable = ({ handleInputChange, label, setIsModalOpen }) => {
         <button
           className="w-full h-full"
           onClick={(e) => {
-            handleInputChange(label, 35);
-            setIsModalOpen(false);
+            formData.bone_r6 !== ""
+              ? undefined
+              : setCurrentIndex((prevIndex) =>
+                  !label ? (prevIndex + 1) % cells.length : prevIndex
+                );
+            handleInputChange(label ? label : cells[currentIndex], 35);
+
+            setLabel("");
           }}
         >
           35
@@ -126,8 +200,14 @@ const NumberTable = ({ handleInputChange, label, setIsModalOpen }) => {
         <button
           className="w-full h-full"
           onClick={(e) => {
-            handleInputChange(label, 40);
-            setIsModalOpen(false);
+            formData.bone_r6 !== ""
+              ? undefined
+              : setCurrentIndex((prevIndex) =>
+                  !label ? (prevIndex + 1) % cells.length : prevIndex
+                );
+            handleInputChange(label ? label : cells[currentIndex], 40);
+
+            setLabel("");
           }}
         >
           40
@@ -137,8 +217,14 @@ const NumberTable = ({ handleInputChange, label, setIsModalOpen }) => {
         <button
           className="w-full h-full"
           onClick={(e) => {
-            handleInputChange(label, 45);
-            setIsModalOpen(false);
+            formData.bone_r6 !== ""
+              ? undefined
+              : setCurrentIndex((prevIndex) =>
+                  !label ? (prevIndex + 1) % cells.length : prevIndex
+                );
+            handleInputChange(label ? label : cells[currentIndex], 45);
+
+            setLabel("");
           }}
         >
           45
@@ -150,8 +236,14 @@ const NumberTable = ({ handleInputChange, label, setIsModalOpen }) => {
         <button
           className="w-full h-full"
           onClick={(e) => {
-            handleInputChange(label, 50);
-            setIsModalOpen(false);
+            formData.bone_r6 !== ""
+              ? undefined
+              : setCurrentIndex((prevIndex) =>
+                  !label ? (prevIndex + 1) % cells.length : prevIndex
+                );
+            handleInputChange(label ? label : cells[currentIndex], 50);
+
+            setLabel("");
           }}
         >
           50
@@ -161,8 +253,14 @@ const NumberTable = ({ handleInputChange, label, setIsModalOpen }) => {
         <button
           className="w-full h-full"
           onClick={(e) => {
-            handleInputChange(label, 55);
-            setIsModalOpen(false);
+            formData.bone_r6 !== ""
+              ? undefined
+              : setCurrentIndex((prevIndex) =>
+                  !label ? (prevIndex + 1) % cells.length : prevIndex
+                );
+            handleInputChange(label ? label : cells[currentIndex], 55);
+
+            setLabel("");
           }}
         >
           55
@@ -172,8 +270,14 @@ const NumberTable = ({ handleInputChange, label, setIsModalOpen }) => {
         <button
           className="w-full h-full"
           onClick={(e) => {
-            handleInputChange(label, 60);
-            setIsModalOpen(false);
+            formData.bone_r6 !== ""
+              ? undefined
+              : setCurrentIndex((prevIndex) =>
+                  !label ? (prevIndex + 1) % cells.length : prevIndex
+                );
+            handleInputChange(label ? label : cells[currentIndex], 60);
+
+            setLabel("");
           }}
         >
           60
@@ -183,8 +287,14 @@ const NumberTable = ({ handleInputChange, label, setIsModalOpen }) => {
         <button
           className="w-full h-full"
           onClick={(e) => {
-            handleInputChange(label, 65);
-            setIsModalOpen(false);
+            formData.bone_r6 !== ""
+              ? undefined
+              : setCurrentIndex((prevIndex) =>
+                  !label ? (prevIndex + 1) % cells.length : prevIndex
+                );
+            handleInputChange(label ? label : cells[currentIndex], 65);
+
+            setLabel("");
           }}
         >
           65
@@ -194,8 +304,14 @@ const NumberTable = ({ handleInputChange, label, setIsModalOpen }) => {
         <button
           className="w-full h-full"
           onClick={(e) => {
-            handleInputChange(label, 70);
-            setIsModalOpen(false);
+            formData.bone_r6 !== ""
+              ? undefined
+              : setCurrentIndex((prevIndex) =>
+                  !label ? (prevIndex + 1) % cells.length : prevIndex
+                );
+            handleInputChange(label ? label : cells[currentIndex], 70);
+
+            setLabel("");
           }}
         >
           70
@@ -207,8 +323,14 @@ const NumberTable = ({ handleInputChange, label, setIsModalOpen }) => {
         <button
           className="w-full h-full"
           onClick={(e) => {
-            handleInputChange(label, 75);
-            setIsModalOpen(false);
+            formData.bone_r6 !== ""
+              ? undefined
+              : setCurrentIndex((prevIndex) =>
+                  !label ? (prevIndex + 1) % cells.length : prevIndex
+                );
+            handleInputChange(label ? label : cells[currentIndex], 75);
+
+            setLabel("");
           }}
         >
           75
@@ -218,8 +340,14 @@ const NumberTable = ({ handleInputChange, label, setIsModalOpen }) => {
         <button
           className="w-full h-full"
           onClick={(e) => {
-            handleInputChange(label, 80);
-            setIsModalOpen(false);
+            formData.bone_r6 !== ""
+              ? undefined
+              : setCurrentIndex((prevIndex) =>
+                  !label ? (prevIndex + 1) % cells.length : prevIndex
+                );
+            handleInputChange(label ? label : cells[currentIndex], 80);
+
+            setLabel("");
           }}
         >
           80
@@ -229,8 +357,14 @@ const NumberTable = ({ handleInputChange, label, setIsModalOpen }) => {
         <button
           className="w-full h-full"
           onClick={(e) => {
-            handleInputChange(label, 85);
-            setIsModalOpen(false);
+            formData.bone_r6 !== ""
+              ? undefined
+              : setCurrentIndex((prevIndex) =>
+                  !label ? (prevIndex + 1) % cells.length : prevIndex
+                );
+            handleInputChange(label ? label : cells[currentIndex], 85);
+
+            setLabel("");
           }}
         >
           85
@@ -240,8 +374,14 @@ const NumberTable = ({ handleInputChange, label, setIsModalOpen }) => {
         <button
           className="w-full h-full"
           onClick={(e) => {
-            handleInputChange(label, 90);
-            setIsModalOpen(false);
+            formData.bone_r6 !== ""
+              ? undefined
+              : setCurrentIndex((prevIndex) =>
+                  !label ? (prevIndex + 1) % cells.length : prevIndex
+                );
+            handleInputChange(label ? label : cells[currentIndex], 90);
+
+            setLabel("");
           }}
         >
           90
@@ -251,8 +391,14 @@ const NumberTable = ({ handleInputChange, label, setIsModalOpen }) => {
         <button
           className="w-full h-full"
           onClick={(e) => {
-            handleInputChange(label, 95);
-            setIsModalOpen(false);
+            formData.bone_r6 !== ""
+              ? undefined
+              : setCurrentIndex((prevIndex) =>
+                  !label ? (prevIndex + 1) % cells.length : prevIndex
+                );
+            handleInputChange(label ? label : cells[currentIndex], 95);
+
+            setLabel("");
           }}
         >
           95
@@ -275,39 +421,10 @@ const NumberTable = ({ handleInputChange, label, setIsModalOpen }) => {
   );
 };
 
-const ActionsButton = ({ handleInputChange, label, data }) => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const showModal = () => {
-    setIsModalOpen(true);
-  };
-
-  const handleCancel = () => {
-    setIsModalOpen(false);
-  };
-
-  return (
-    <>
-      <button onClick={showModal} className="w-[55px] h-[52px]">
-        {data}
-      </button>
-      <Modal
-        title="Basic Modal"
-        visible={isModalOpen}
-        onCancel={handleCancel}
-        className="[&_.ant-btn-primary]:!hidden"
-      >
-        <NumberTable
-          handleInputChange={handleInputChange}
-          label={label}
-          setIsModalOpen={setIsModalOpen}
-        />
-      </Modal>
-    </>
-  );
-};
-
 const RightTable = ({ handleInputChange, formData }) => {
+  const [label, setLabel] = useState("air_r0_25");
+  const [numberTableDisplayed, setNumberTableDisplayed] = useState(false);
+
   const columns = [
     {
       title: "FREQ/KHz",
@@ -359,119 +476,275 @@ const RightTable = ({ handleInputChange, formData }) => {
     {
       freq: <span class="px-4">Rt AC/db</span>,
       0.25: (
-        <ActionsButton
-          handleInputChange={handleInputChange}
-          label="air_r0_25"
-          data={formData.air_r0_25}
-        />
+        <button
+          onClick={() => {
+            setNumberTableDisplayed(true);
+            setLabel("air_r0_25");
+          }}
+          className="w-[55px] h-[52px] flex items-center justify-center"
+        >
+          {formData.air_r0_25}
+
+          {formData.air_r0_25 === "" ? <span className="blink"></span> : ""}
+        </button>
       ),
       0.5: (
-        <ActionsButton
-          handleInputChange={handleInputChange}
-          label="air_r0_5"
-          data={formData.air_r0_5}
-        />
+        <button
+          onClick={() => {
+            setNumberTableDisplayed(true);
+            setLabel("air_r0_5");
+          }}
+          className="w-[55px] h-[52px] flex items-center justify-center"
+        >
+          {formData.air_r0_5}
+
+          {formData.air_r0_25 !== "" && formData.air_r0_5 === "" ? (
+            <span className="blink"></span>
+          ) : (
+            ""
+          )}
+        </button>
       ),
       one: (
-        <ActionsButton
-          handleInputChange={handleInputChange}
-          label="air_r1"
-          data={formData.air_r1}
-        />
+        <button
+          onClick={() => {
+            setNumberTableDisplayed(true);
+            setLabel("air_r1");
+          }}
+          className="w-[55px] h-[52px] flex items-center justify-center"
+        >
+          {formData.air_r1}
+
+          {formData.air_r0_5 !== "" && formData.air_r1 === "" ? (
+            <span className="blink"></span>
+          ) : (
+            ""
+          )}
+        </button>
       ),
       two: (
-        <ActionsButton
-          handleInputChange={handleInputChange}
-          label="air_r2"
-          data={formData.air_r2}
-        />
+        <button
+          onClick={() => {
+            setNumberTableDisplayed(true);
+            setLabel("air_r2");
+          }}
+          className="w-[55px] h-[52px] flex items-center justify-center"
+        >
+          {formData.air_r2}
+
+          {formData.air_r1 !== "" && formData.air_r2 === "" ? (
+            <span className="blink"></span>
+          ) : (
+            ""
+          )}
+        </button>
       ),
       three: (
-        <ActionsButton
-          handleInputChange={handleInputChange}
-          label="air_r3"
-          data={formData.air_r3}
-        />
+        <button
+          onClick={() => {
+            setNumberTableDisplayed(true);
+            setLabel("air_r3");
+          }}
+          className="w-[55px] h-[52px] flex items-center justify-center"
+        >
+          {formData.air_r3}
+
+          {formData.air_r2 !== "" && formData.air_r3 === "" ? (
+            <span className="blink"></span>
+          ) : (
+            ""
+          )}
+        </button>
       ),
       four: (
-        <ActionsButton
-          handleInputChange={handleInputChange}
-          label="air_r4"
-          data={formData.air_r4}
-        />
+        <button
+          onClick={() => {
+            setNumberTableDisplayed(true);
+            setLabel("air_r4");
+          }}
+          className="w-[55px] h-[52px] flex items-center justify-center"
+        >
+          {formData.air_r4}
+
+          {formData.air_r3 !== "" && formData.air_r4 === "" ? (
+            <span className="blink"></span>
+          ) : (
+            ""
+          )}
+        </button>
       ),
       six: (
-        <ActionsButton
-          handleInputChange={handleInputChange}
-          label="air_r6"
-          data={formData.air_r6}
-        />
+        <button
+          onClick={() => {
+            setNumberTableDisplayed(true);
+            setLabel("air_r6");
+          }}
+          className="w-[55px] h-[52px] flex items-center justify-center"
+        >
+          {formData.air_r6}
+
+          {formData.air_r4 !== "" && formData.air_r6 === "" ? (
+            <span className="blink"></span>
+          ) : (
+            ""
+          )}
+        </button>
       ),
       eight: (
-        <ActionsButton
-          handleInputChange={handleInputChange}
-          label="air_r8"
-          data={formData.air_r8}
-        />
+        <button
+          onClick={() => {
+            setNumberTableDisplayed(true);
+            setLabel("air_r8");
+          }}
+          className="w-[55px] h-[52px] flex items-center justify-center"
+        >
+          {formData.air_r8}
+
+          {formData.air_r6 !== "" && formData.air_r8 === "" ? (
+            <span className="blink"></span>
+          ) : (
+            ""
+          )}
+        </button>
       ),
     },
     {
       freq: <span class="px-4">Rt BC/db</span>,
       0.25: (
-        <ActionsButton
-          handleInputChange={handleInputChange}
-          label="bone_r0_25"
-          data={formData.bone_r0_25}
-        />
+        <button
+          onClick={() => {
+            setNumberTableDisplayed(true);
+            setLabel("bone_r0_25");
+          }}
+          className="w-[55px] h-[52px] flex items-center justify-center"
+        >
+          {formData.bone_r0_25}
+
+          {formData.air_r8 !== "" && formData.bone_r0_25 === "" ? (
+            <span className="blink"></span>
+          ) : (
+            ""
+          )}
+        </button>
       ),
       0.5: (
-        <ActionsButton
-          handleInputChange={handleInputChange}
-          label="bone_r0_5"
-          data={formData.bone_r0_5}
-        />
+        <button
+          onClick={() => {
+            setNumberTableDisplayed(true);
+            setLabel("bone_r0_5");
+          }}
+          className="w-[55px] h-[52px] flex items-center justify-center"
+        >
+          {formData.bone_r0_5}
+
+          {formData.bone_r0_25 !== "" && formData.bone_r0_5 === "" ? (
+            <span className="blink"></span>
+          ) : (
+            ""
+          )}
+        </button>
       ),
       one: (
-        <ActionsButton
-          handleInputChange={handleInputChange}
-          label="bone_r1"
-          data={formData.bone_r1}
-        />
+        <button
+          onClick={() => {
+            setNumberTableDisplayed(true);
+            setLabel("bone_r1");
+          }}
+          className="w-[55px] h-[52px] flex items-center justify-center"
+        >
+          {formData.bone_r1}
+
+          {formData.bone_r0_5 !== "" && formData.bone_r1 === "" ? (
+            <span className="blink"></span>
+          ) : (
+            ""
+          )}
+        </button>
       ),
       two: (
-        <ActionsButton
-          handleInputChange={handleInputChange}
-          label="bone_r2"
-          data={formData.bone_r2}
-        />
+        <button
+          onClick={() => {
+            setNumberTableDisplayed(true);
+            setLabel("bone_r2");
+          }}
+          className="w-[55px] h-[52px] flex items-center justify-center"
+        >
+          {formData.bone_r2}
+
+          {formData.bone_r1 !== "" && formData.bone_r2 === "" ? (
+            <span className="blink"></span>
+          ) : (
+            ""
+          )}
+        </button>
       ),
       three: (
-        <ActionsButton
-          handleInputChange={handleInputChange}
-          label="bone_r3"
-          data={formData.bone_r3}
-        />
+        <button
+          onClick={() => {
+            setNumberTableDisplayed(true);
+            setLabel("bone_r3");
+          }}
+          className="w-[55px] h-[52px] flex items-center justify-center"
+        >
+          {formData.bone_r3}
+
+          {formData.bone_r2 !== "" && formData.bone_r3 === "" ? (
+            <span className="blink"></span>
+          ) : (
+            ""
+          )}
+        </button>
       ),
       four: (
-        <ActionsButton
-          handleInputChange={handleInputChange}
-          label="bone_r4"
-          data={formData.bone_r4}
-        />
+        <button
+          onClick={() => {
+            setNumberTableDisplayed(true);
+            setLabel("bone_r4");
+          }}
+          className="w-[55px] h-[52px] flex items-center justify-center"
+        >
+          {formData.bone_r4}
+
+          {formData.bone_r3 !== "" && formData.bone_r4 === "" ? (
+            <span className="blink"></span>
+          ) : (
+            ""
+          )}
+        </button>
       ),
       six: (
-        <ActionsButton
-          handleInputChange={handleInputChange}
-          label="bone_r6"
-          data={formData.bone_r6}
-        />
+        <button
+          onClick={() => {
+            setNumberTableDisplayed(true);
+            setLabel("bone_r6");
+          }}
+          className="w-[55px] h-[52px] flex items-center justify-center"
+        >
+          {formData.bone_r6}
+
+          {formData.bone_r4 !== "" && formData.bone_r6 === "" ? (
+            <span className="blink"></span>
+          ) : (
+            ""
+          )}
+        </button>
       ),
       eight: (
-        <ActionsButton
-          handleInputChange={handleInputChange}
-          label="bone_r8"
-          data={formData.bone_r8}
-        />
+        <button
+          onClick={() => {
+            setNumberTableDisplayed(true);
+            setLabel("bone_r8");
+          }}
+          className="w-[55px] h-[52px] flex items-center justify-center"
+        >
+          {formData.bone_r8}
+
+          {formData.bone_r6 !== "" && formData.bone_r8 === "" ? (
+            <span className="blink"></span>
+          ) : (
+            ""
+          )}
+        </button>
       ),
     },
   ];
@@ -486,6 +759,18 @@ const RightTable = ({ handleInputChange, formData }) => {
         scroll={x}
         className="[&_td]:!p-0"
       />
+
+      {numberTableDisplayed && (
+        <div className="mt-3">
+          <p>Click the value you want to input</p>
+          <NumberTable
+            handleInputChange={handleInputChange}
+            label={label}
+            setLabel={setLabel}
+            formData={formData}
+          />
+        </div>
+      )}
     </>
   );
 };

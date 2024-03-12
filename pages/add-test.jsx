@@ -12,15 +12,31 @@ export default function TestResult() {
   useSession({
     required: true,
     onUnauthenticated() {
-      router.push("/login");
+      router.push("/login?redirect=" + router.pathname);
     },
   });
+
+  const handlePrint = () => {
+    window.print();
+  };
 
   return (
     <section className="w-full h-auto">
       <ResultHero />
-      <ResultInfo />
-      <TestsResult />
+
+      <div className="w-full max-w-[1280px] mx-auto flex flex-col justify-center items-center gap-7 mt-5">
+        <button
+          onClick={handlePrint}
+          className="ml-auto block bg-green-500 py-2 px-4 rounded text-white text-sm"
+        >
+          Print
+        </button>
+      </div>
+
+      <div id="section-to-print">
+        <ResultInfo />
+        <TestsResult />
+      </div>
       <CommonContact />
     </section>
   );

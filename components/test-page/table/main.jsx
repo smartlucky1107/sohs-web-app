@@ -4,21 +4,13 @@ import { x } from "joi";
 import { MdEditNote } from "react-icons/md";
 import { fetchTests } from "@/services";
 import Link from "next/link";
+import { formatDate } from "@/utils/formatDate";
 
 const TableMain = ({ searchText, setEditPopupState }) => {
   const handleEdit = (record) => {
     // Display an alert with the value of the "name" key from the record
     setEditPopupState({ visible: true, id: record.fin });
   };
-
-  function formatDate(dateString) {
-    const options = { year: "numeric", month: "2-digit", day: "2-digit" };
-    const formattedDate = new Date(dateString).toLocaleDateString(
-      "en-US",
-      options
-    );
-    return formattedDate;
-  }
 
   const columns = [
     {

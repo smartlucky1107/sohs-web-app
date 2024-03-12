@@ -1,13 +1,17 @@
-import { register_now } from "@/services";
+import { logged_in, register_now } from "@/services";
+import { Alert } from "antd";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import React from "react";
 import { useState } from "react";
-import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 export default function register() {
   const [formData, setFormData] = useState({ email: "", password: "" });
   const [error, setError] = useState({ email: "", password: "", name: "" });
+  const [errorMessage, setErrorMessage] = useState({ msg: "", type: "" });
+
+  const router = useRouter();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -26,9 +30,14 @@ export default function register() {
 
     const res = await register_now(formData);
     if (res.success) {
-      toast.success(res.message);
+      setErrorMessage({ msg: res.message, type: "success" });
+
+      const resLogin = await logged_in(formData);
+      if (!resLogin.error) {
+        router.push("/");
+      }
     } else {
-      toast.error(res.message);
+      setErrorMessage({ msg: res.message, type: "error" });
     }
   };
   return (
@@ -118,6 +127,15 @@ export default function register() {
                 >
                   Create
                 </button>
+
+                {errorMessage.msg != "" && (
+                  <Alert
+                    className="capitalize"
+                    message={errorMessage.msg}
+                    type={errorMessage.type}
+                  />
+                )}
+
                 <p className="text-sm font-light text-gray-500 dark:text-gray-400">
                   ALready have an account{" "}
                   <Link
@@ -132,7 +150,6 @@ export default function register() {
           </div>
         </div>
       </section>
-      <ToastContainer />
     </>
   );
 }

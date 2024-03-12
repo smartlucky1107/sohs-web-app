@@ -59,8 +59,10 @@ export default function CommonHeader() {
                     </>
                   ) : (
                     <>
-                      <Link href="/login">Sign In</Link> /{" "}
-                      <Link href="/register">Register</Link>
+                      <Link href={"/login?redirect=" + router.pathname}>
+                        Sign In
+                      </Link>{" "}
+                      / <Link href="/register">Register</Link>
                     </>
                   )}
                 </p>
