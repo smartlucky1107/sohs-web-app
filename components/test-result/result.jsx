@@ -215,11 +215,20 @@ export default function TestsResult() {
           <p className=" lg:text-nowrap">Company Address:</p>
           <Select
             options={[
-              { value: "Company 1", label: "Company 1" },
-              { value: "Company 2", label: "Company 2" },
-              { value: "Company 3", label: "Company 3" },
-              { value: "Company 4", label: "Company 4" },
-              { value: "Company 5", label: "Company 5" },
+              { value: "3R", label: "3R" },
+              { value: "ADEPT", label: "ADEPT" },
+              { value: "ADVANCE", label: "ADVANCE" },
+              { value: "AFPD", label: "AFPD" },
+              { value: "AIA", label: "AIA" },
+              { value: "AMNET", label: "AMNET" },
+              { value: "AMSMART", label: "AMSMART" },
+              { value: "ART", label: "ART" },
+              { value: "ASSIST", label: "ASSIST" },
+              { value: "AVIVA", label: "AVIVA" },
+              { value: "AWOLF", label: "AWOLF" },
+              { value: "BONN", label: "BONN" },
+              { value: "C&P", label: "C&P" },
+              { value: "CENT", label: "CENT" },
             ]}
             placeholder="Company Address"
             value={
