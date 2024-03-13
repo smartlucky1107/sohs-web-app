@@ -150,10 +150,7 @@ body {
   @apply !w-auto;
 }
 
-.ant-picker-dropdown,
-.ant-select-dropdown {
-  z-index: 9999999999999999999999999 !important;
-}
+
 
 @media print {
   @page {
