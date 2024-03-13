@@ -16,7 +16,7 @@ export default function CommonFooter() {
       <div className="w-full flex items-center justify-center px-4 py-20">
         <div className="flex w-full max-w-[1280px] justify-center items-center">
           <div className="h-full flex flex-col gap-6 items-center">
-            <img src="/logo.png" alt="logo" className="h-[100px]" />
+            <img src="/footer-logo.png" alt="logo" className="h-[100px]" />
             <div className="flex flex-wrap h-full items-center justify-center gap-6">
               <Link className="text-white " href="/">
                 Home

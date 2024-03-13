@@ -6,12 +6,7 @@ import { fetchTests } from "@/services";
 import Link from "next/link";
 import { formatDate } from "@/utils/formatDate";
 
-const TableMain = ({ searchText, setEditPopupState }) => {
-  const handleEdit = (record) => {
-    // Display an alert with the value of the "name" key from the record
-    setEditPopupState({ visible: true, id: record.fin });
-  };
-
+const TableMain = ({ searchText }) => {
   const columns = [
     {
       title: "Name",
@@ -65,22 +60,23 @@ const TableMain = ({ searchText, setEditPopupState }) => {
     },
     {
       title: "Statutory",
-      dataIndex: "stat",
-      key: "stat",
-      render: (stat) => {
-        // let color = "green";
-        // if (stat === "FALSE") {
-        //   color = "volcano";
-        // }
-        // if (stat === "TRUE") {
-        //   color = "green";
-        // }
-        // return (
-        //   <Tag color={color} key={stat}>
-        //     {stat.toUpperCase()}
-        //   </Tag>
-        // );
-        return "";
+      dataIndex: "statutory",
+      key: "statutory",
+      render: (statutory) => {
+        let color = "green";
+        if (statutory === "FALSE") {
+          color = "volcano";
+        }
+        if (statutory === "TRUE") {
+          color = "green";
+        }
+        return (
+          statutory && (
+            <Tag color={color} key={statutory}>
+              {statutory?.toUpperCase()}
+            </Tag>
+          )
+        );
       },
     },
     {
@@ -88,274 +84,287 @@ const TableMain = ({ searchText, setEditPopupState }) => {
       dataIndex: "notify",
       key: "notify",
       render: (notify) => {
-        // let color = "green";
-        // if (notify === "yes") {
-        //   color = "volcano";
-        // }
-        // if (notify === "no") {
-        //   color = "green";
-        // }
-        // return (
-        //   <Tag color={color} key={notify}>
-        //     {notify.toUpperCase()}
-        //   </Tag>
-        // );
-        return "";
+        let color = "green";
+        if (notify === "yes") {
+          color = "volcano";
+        }
+        if (notify === "no") {
+          color = "green";
+        }
+        return (
+          notify && (
+            <Tag color={color} key={notify}>
+              {notify?.toUpperCase()}
+            </Tag>
+          )
+        );
       },
     },
     {
       title: "IHDinf",
-      dataIndex: "inf",
-      key: "inf",
-      render: (inf) => {
-        // let color = "green";
-        // if (inf === "FALSE") {
-        //   color = "volcano";
-        // }
-        // if (inf === "TRUE") {
-        //   color = "green";
-        // }
-        // return (
-        //   <Tag color={color} key={inf}>
-        //     {inf.toUpperCase()}
-        //   </Tag>
-        // );
-        return "";
+      dataIndex: "IHDinf",
+      key: "IHDinf",
+      render: (IHDinf) => {
+        let color = "green";
+        if (IHDinf === "FALSE") {
+          color = "volcano";
+        }
+        if (IHDinf === "TRUE") {
+          color = "green";
+        }
+        return (
+          IHDinf && (
+            <Tag color={color} key={IHDinf}>
+              {IHDinf?.toUpperCase()}
+            </Tag>
+          )
+        );
       },
     },
     {
       title: "IHDiag",
-      dataIndex: "diag",
-      key: "diag",
-      render: (diag) => {
-        // let color = "green";
-        // if (diag === "nide-notified") {
-        //   color = "volcano";
-        // }
-        // if (diag === "ent") {
-        //   color = "green";
-        // }
-        // return (
-        //   <Tag color={color} key={diag}>
-        //     {diag.toUpperCase()}
-        //   </Tag>
-        // );
-        return "";
+      dataIndex: "IHDiag",
+      key: "IHDiag",
+      render: (IHDiag) => {
+        let color = "green";
+        if (IHDiag === "nide-notified") {
+          color = "volcano";
+        }
+        if (IHDiag === "ent") {
+          color = "green";
+        }
+        return (
+          IHDiag && (
+            <Tag color={color} key={IHDiag}>
+              {IHDiag?.toUpperCase()}
+            </Tag>
+          )
+        );
       },
     },
     {
       title: "Occ_hist",
-      dataIndex: "hist",
-      key: "hist",
+      dataIndex: "occ_hist",
+      key: "occ_hist",
     },
     {
       title: "Ear Discharge",
-      dataIndex: "edisc",
-      key: "edisc",
+      dataIndex: "ear_discharge",
+      key: "ear_discharge",
       render: (inf) => {
-        // let color = "green";
-        // if (inf === "FALSE") {
-        //   color = "volcano";
-        // }
-        // if (inf === "TRUE") {
-        //   color = "green";
-        // }
-        // return (
-        //   <Tag color={color} key={inf}>
-        //     {inf.toUpperCase()}
-        //   </Tag>
-        // );
-        return "";
+        let color = "green";
+        if (inf === "FALSE") {
+          color = "volcano";
+        }
+        if (inf === "TRUE") {
+          color = "green";
+        }
+        return (
+          inf && (
+            <Tag color={color} key={inf}>
+              {inf?.toUpperCase()}
+            </Tag>
+          )
+        );
       },
     },
     {
       title: "Ear Operation",
-      dataIndex: "erop",
-      key: "erop",
+      dataIndex: "ear_operation",
+      key: "ear_operation",
       render: (inf) => {
-        // let color = "green";
-        // if (inf === "FALSE") {
-        //   color = "volcano";
-        // }
-        // if (inf === "TRUE") {
-        //   color = "green";
-        // }
-        // return (
-        //   <Tag color={color} key={inf}>
-        //     {inf.toUpperCase()}
-        //   </Tag>
-        // );
-        return "";
+        let color = "green";
+        if (inf === "FALSE") {
+          color = "volcano";
+        }
+        if (inf === "TRUE") {
+          color = "green";
+        }
+        return (
+          inf && (
+            <Tag color={color} key={inf}>
+              {inf?.toUpperCase()}
+            </Tag>
+          )
+        );
       },
     },
     {
       title: "Ringing Ears",
-      dataIndex: "rine",
-      key: "rine",
+      dataIndex: "ringing_ears",
+      key: "ringing_ears",
       render: (inf) => {
-        // let color = "green";
-        // if (inf === "FALSE") {
-        //   color = "volcano";
-        // }
-        // if (inf === "TRUE") {
-        //   color = "green";
-        // }
-        // return (
-        //   <Tag color={color} key={inf}>
-        //     {inf.toUpperCase()}
-        //   </Tag>
-        // );
-        return "";
+        let color = "green";
+        if (inf === "FALSE") {
+          color = "volcano";
+        }
+        if (inf === "TRUE") {
+          color = "green";
+        }
+        return (
+          inf && (
+            <Tag color={color} key={inf}>
+              {inf?.toUpperCase()}
+            </Tag>
+          )
+        );
       },
     },
     {
       title: "Head or Ear",
-      dataIndex: "hear",
-      key: "hear",
+      dataIndex: "head_or_ear",
+      key: "head_or_ear",
       render: (inf) => {
-        // let color = "green";
-        // if (inf === "FALSE") {
-        //   color = "volcano";
-        // }
-        // if (inf === "TRUE") {
-        //   color = "green";
-        // }
-        // return (
-        //   <Tag color={color} key={inf}>
-        //     {inf.toUpperCase()}
-        //   </Tag>
-        // );
-        return "";
+        let color = "green";
+        if (inf === "FALSE") {
+          color = "volcano";
+        }
+        if (inf === "TRUE") {
+          color = "green";
+        }
+        return (
+          inf && (
+            <Tag color={color} key={inf}>
+              {inf?.toUpperCase()}
+            </Tag>
+          )
+        );
       },
     },
     {
       title: "Ear Problem",
-      dataIndex: "earp",
-      key: "earp",
+      dataIndex: "ear_problem",
+      key: "ear_problem",
       render: (inf) => {
-        // let color = "green";
-        // if (inf === "FALSE") {
-        //   color = "volcano";
-        // }
-        // if (inf === "TRUE") {
-        //   color = "green";
-        // }
-        // return (
-        //   <Tag color={color} key={inf}>
-        //     {inf.toUpperCase()}
-        //   </Tag>
-        // );
-        return "";
+        let color = "green";
+        if (inf === "FALSE") {
+          color = "volcano";
+        }
+        if (inf === "TRUE") {
+          color = "green";
+        }
+        return (
+          inf && (
+            <Tag color={color} key={inf}>
+              {inf?.toUpperCase()}
+            </Tag>
+          )
+        );
       },
     },
     {
       title: "Loud Noise Exposure",
-      dataIndex: "lnexp",
-      key: "lnexp",
+      dataIndex: "loud_noise_exposure",
+      key: "loud_noise_exposure",
       render: (inf) => {
-        // let color = "green";
-        // if (inf === "FALSE") {
-        //   color = "volcano";
-        // }
-        // if (inf === "TRUE") {
-        //   color = "green";
-        // }
-        // return (
-        //   <Tag color={color} key={inf}>
-        //     {inf.toUpperCase()}
-        //   </Tag>
-        // );
-        return "";
+        let color = "green";
+        if (inf === "FALSE") {
+          color = "volcano";
+        }
+        if (inf === "TRUE") {
+          color = "green";
+        }
+        return (
+          inf && (
+            <Tag color={color} key={inf}>
+              {inf?.toUpperCase()}
+            </Tag>
+          )
+        );
       },
     },
     {
       title: "Medication",
-      dataIndex: "medic",
-      key: "medic",
+      dataIndex: "medication",
+      key: "medication",
       render: (inf) => {
-        // let color = "green";
-        // if (inf === "FALSE") {
-        //   color = "volcano";
-        // }
-        // if (inf === "TRUE") {
-        //   color = "green";
-        // }
-        // return (
-        //   <Tag color={color} key={inf}>
-        //     {inf.toUpperCase()}
-        //   </Tag>
-        // );
-        return "";
+        let color = "green";
+        if (inf === "FALSE") {
+          color = "volcano";
+        }
+        if (inf === "TRUE") {
+          color = "green";
+        }
+        return (
+          inf && (
+            <Tag color={color} key={inf}>
+              {inf?.toUpperCase()}
+            </Tag>
+          )
+        );
       },
     },
     {
       title: "Military Service",
-      dataIndex: "milser",
-      key: "milser",
+      dataIndex: "military_service",
+      key: "military_service",
       render: (inf) => {
-        // let color = "green";
-        // if (inf === "FALSE") {
-        //   color = "volcano";
-        // }
-        // if (inf === "TRUE") {
-        //   color = "green";
-        // }
-        // return (
-        //   <Tag color={color} key={inf}>
-        //     {inf.toUpperCase()}
-        //   </Tag>
-        // );
-        return "";
+        let color = "green";
+        if (inf === "FALSE") {
+          color = "volcano";
+        }
+        if (inf === "TRUE") {
+          color = "green";
+        }
+        return (
+          inf && (
+            <Tag color={color} key={inf}>
+              {inf?.toUpperCase()}
+            </Tag>
+          )
+        );
       },
     },
     {
       title: "Medical Problem",
-      dataIndex: "medicp",
-      key: "medicp",
+      dataIndex: "medical_problem",
+      key: "medical_problem",
       render: (inf) => {
-        // let color = "green";
-        // if (inf === "FALSE") {
-        //   color = "volcano";
-        // }
-        // if (inf === "TRUE") {
-        //   color = "green";
-        // }
-        // return (
-        //   <Tag color={color} key={inf}>
-        //     {inf.toUpperCase()}
-        //   </Tag>
-        // );
-        return "";
+        let color = "green";
+        if (inf === "FALSE") {
+          color = "volcano";
+        }
+        if (inf === "TRUE") {
+          color = "green";
+        }
+        return (
+          inf && (
+            <Tag color={color} key={inf}>
+              {inf?.toUpperCase()}
+            </Tag>
+          )
+        );
       },
     },
     {
       title: "Med_hist",
-      dataIndex: "medhist",
-      key: "medhist",
+      dataIndex: "med_hist",
+      key: "med_hist",
     },
     {
       title: "Other Info",
-      dataIndex: "othin",
-      key: "othin",
+      dataIndex: "other_info",
+      key: "other_info",
     },
     {
       title: "Counsel",
       dataIndex: "counsel",
       key: "counsel",
       render: (inf) => {
-        // let color = "green";
-        // if (inf === "FALSE") {
-        //   color = "volcano";
-        // }
-        // if (inf === "TRUE") {
-        //   color = "green";
-        // }
-        // return (
-        //   <Tag color={color} key={inf}>
-        //     {inf.toUpperCase()}
-        //   </Tag>
-        // );
-        return "";
+        let color = "green";
+        if (inf === "FALSE") {
+          color = "volcano";
+        }
+        if (inf === "TRUE") {
+          color = "green";
+        }
+        return (
+          inf && (
+            <Tag color={color} key={inf}>
+              {inf?.toUpperCase()}
+            </Tag>
+          )
+        );
       },
     },
     {
@@ -363,19 +372,20 @@ const TableMain = ({ searchText, setEditPopupState }) => {
       dataIndex: "protect",
       key: "protect",
       render: (inf) => {
-        // let color = "green";
-        // if (inf === "FALSE") {
-        //   color = "volcano";
-        // }
-        // if (inf === "TRUE") {
-        //   color = "green";
-        // }
-        // return (
-        //   <Tag color={color} key={inf}>
-        //     {inf.toUpperCase()}
-        //   </Tag>
-        // );
-        return "";
+        let color = "green";
+        if (inf === "FALSE") {
+          color = "volcano";
+        }
+        if (inf === "TRUE") {
+          color = "green";
+        }
+        return (
+          inf && (
+            <Tag color={color} key={inf}>
+              {inf?.toUpperCase()}
+            </Tag>
+          )
+        );
       },
     },
     {
@@ -393,19 +403,20 @@ const TableMain = ({ searchText, setEditPopupState }) => {
       dataIndex: "demo",
       key: "demo",
       render: (inf) => {
-        // let color = "green";
-        // if (inf === "FALSE") {
-        //   color = "volcano";
-        // }
-        // if (inf === "TRUE") {
-        //   color = "green";
-        // }
-        // return (
-        //   <Tag color={color} key={inf}>
-        //     {inf.toUpperCase()}
-        //   </Tag>
-        // );
-        return "";
+        let color = "green";
+        if (inf === "FALSE") {
+          color = "volcano";
+        }
+        if (inf === "TRUE") {
+          color = "green";
+        }
+        return (
+          inf && (
+            <Tag color={color} key={inf}>
+              {inf?.toUpperCase()}
+            </Tag>
+          )
+        );
       },
     },
     {
@@ -593,19 +604,20 @@ const TableMain = ({ searchText, setEditPopupState }) => {
       dataIndex: "report",
       key: "report",
       render: (inf) => {
-        // let color = "green";
-        // if (inf === "FALSE") {
-        //   color = "volcano";
-        // }
-        // if (inf === "TRUE") {
-        //   color = "green";
-        // }
-        // return (
-        //   <Tag color={color} key={inf}>
-        //     {inf.toUpperCase()}
-        //   </Tag>
-        // );
-        return "";
+        let color = "green";
+        if (inf === "FALSE") {
+          color = "volcano";
+        }
+        if (inf === "TRUE") {
+          color = "green";
+        }
+        return (
+          inf && (
+            <Tag color={color} key={inf}>
+              {inf?.toUpperCase()}
+            </Tag>
+          )
+        );
       },
     },
     {
@@ -617,6 +629,16 @@ const TableMain = ({ searchText, setEditPopupState }) => {
       title: "Action",
       dataIndex: "action_plans",
       key: "action",
+      render: (inf, record) => {
+        return (
+          <span>
+            {inf.replace(" (Date)", "") +
+              " (" +
+              record.action_plans_text +
+              ") "}
+          </span>
+        );
+      },
     },
     {
       title: "Diagnosis",
@@ -631,82 +653,113 @@ const TableMain = ({ searchText, setEditPopupState }) => {
     },
     {
       title: "review1yr",
-      dataIndex: "rev1y",
-      key: "rev1y",
-      render: (inf) => {
-        // let color = "green";
-        // if (inf === "FALSE") {
-        //   color = "volcano";
-        // }
-        // if (inf === "TRUE") {
-        //   color = "green";
-        // }
-        // return (
-        //   <Tag color={color} key={inf}>
-        //     {inf.toUpperCase()}
-        //   </Tag>
-        // );
-        return "";
+      dataIndex: "review1yr",
+      key: "review1yr",
+      render: (inf, record) => {
+        let color = "green";
+        if (inf === "FALSE") {
+          color = "volcano";
+        }
+        if (inf === "TRUE") {
+          color = "green";
+        }
+
+        if (
+          !inf &&
+          (record.action_plans_text === "1 year" ||
+            record.action_plans_text === "1 years" ||
+            record.action_plans_text === "1 yrs")
+        ) {
+          color = "green";
+          inf = "TRUE";
+        } else {
+          color = "volcano";
+          inf = "FALSE";
+        }
+
+        return (
+          inf && (
+            <Tag color={color} key={inf}>
+              {inf?.toUpperCase()}
+            </Tag>
+          )
+        );
       },
     },
     {
       title: "review6mo",
-      dataIndex: "rev6m",
-      key: "rev6m",
-      render: (inf) => {
-        // let color = "green";
-        // if (inf === "FALSE") {
-        //   color = "volcano";
-        // }
-        // if (inf === "TRUE") {
-        //   color = "green";
-        // }
-        // return (
-        //   <Tag color={color} key={inf}>
-        //     {inf.toUpperCase()}
-        //   </Tag>
-        // );
-        return "";
+      dataIndex: "review6mo",
+      key: "review6mo",
+      render: (inf, record) => {
+        let color = "green";
+        if (inf === "FALSE") {
+          color = "volcano";
+        }
+        if (inf === "TRUE") {
+          color = "green";
+        }
+
+        if (
+          !inf &&
+          (record.action_plans_text === "6 months" ||
+            record.action_plans_text === "6 month" ||
+            record.action_plans_text === "6 mo")
+        ) {
+          color = "green";
+          inf = "TRUE";
+        } else {
+          color = "volcano";
+          inf = "FALSE";
+        }
+        return (
+          inf && (
+            <Tag color={color} key={inf}>
+              {inf?.toUpperCase()}
+            </Tag>
+          )
+        );
       },
     },
     {
       title: "tonotify",
-      dataIndex: "tontfy",
-      key: "tontfy",
+      dataIndex: "tonotify",
+      key: "tonotify",
       render: (inf) => {
-        // let color = "green";
-        // if (inf === "FALSE") {
-        //   color = "volcano";
-        // }
-        // if (inf === "TRUE") {
-        //   color = "green";
-        // }
-        // return (
-        //   <Tag color={color} key={inf}>
-        //     {inf.toUpperCase()}
-        //   </Tag>
-        // );
-        return "";
+        let color = "green";
+        if (inf === "FALSE") {
+          color = "volcano";
+        }
+        if (inf === "TRUE") {
+          color = "green";
+        }
+        return (
+          inf && (
+            <Tag color={color} key={inf}>
+              {inf?.toUpperCase()}
+            </Tag>
+          )
+        );
       },
     },
     {
       title: "Notified",
-      dataIndex: "notfid",
-      key: "notfid",
+      dataIndex: "notified",
+      key: "notified",
       render: (inf) => {
-        // let color = "green";
-        // if (inf === "FALSE") {
-        //   color = "volcano";
-        // }
-        // if (inf === "TRUE") {
-        //   color = "green";
-        // }
-        // return (
-        //   <Tag color={color} key={inf}>
-        //     {inf.toUpperCase()}
-        //   </Tag>
-        // );
-        return "";
+        let color = "green";
+        if (inf === "FALSE") {
+          color = "volcano";
+        }
+        if (inf === "TRUE") {
+          color = "green";
+        }
+        return (
+          inf && (
+            <Tag color={color} key={inf}>
+              {inf?.toUpperCase()}
+            </Tag>
+          )
+        );
       },
     },
     {

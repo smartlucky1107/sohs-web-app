@@ -26,6 +26,7 @@ export const NumberTable = ({
   formData,
   label,
   setLabel,
+  setGraphRefresh,
 }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -68,6 +69,7 @@ export const NumberTable = ({
                   !label ? (prevIndex + 1) % cells.length : prevIndex
                 );
             handleInputChange(label ? label : cells[currentIndex], 0);
+            setGraphRefresh(label ? label : cells[currentIndex]);
 
             setLabel("");
           }}
@@ -85,6 +87,7 @@ export const NumberTable = ({
                   !label ? (prevIndex + 1) % cells.length : prevIndex
                 );
             handleInputChange(label ? label : cells[currentIndex], 5);
+            setGraphRefresh(label ? label : cells[currentIndex]);
 
             setLabel("");
           }}
@@ -102,6 +105,7 @@ export const NumberTable = ({
                   !label ? (prevIndex + 1) % cells.length : prevIndex
                 );
             handleInputChange(label ? label : cells[currentIndex], 10);
+            setGraphRefresh(label ? label : cells[currentIndex]);
 
             setLabel("");
           }}
@@ -119,6 +123,7 @@ export const NumberTable = ({
                   !label ? (prevIndex + 1) % cells.length : prevIndex
                 );
             handleInputChange(label ? label : cells[currentIndex], 15);
+            setGraphRefresh(label ? label : cells[currentIndex]);
 
             setLabel("");
           }}
@@ -136,6 +141,7 @@ export const NumberTable = ({
                   !label ? (prevIndex + 1) % cells.length : prevIndex
                 );
             handleInputChange(label ? label : cells[currentIndex], 20);
+            setGraphRefresh(label ? label : cells[currentIndex]);
 
             setLabel("");
           }}
@@ -155,6 +161,7 @@ export const NumberTable = ({
                   !label ? (prevIndex + 1) % cells.length : prevIndex
                 );
             handleInputChange(label ? label : cells[currentIndex], 25);
+            setGraphRefresh(label ? label : cells[currentIndex]);
 
             setLabel("");
           }}
@@ -172,6 +179,7 @@ export const NumberTable = ({
                   !label ? (prevIndex + 1) % cells.length : prevIndex
                 );
             handleInputChange(label ? label : cells[currentIndex], 30);
+            setGraphRefresh(label ? label : cells[currentIndex]);
 
             setLabel("");
           }}
@@ -189,6 +197,7 @@ export const NumberTable = ({
                   !label ? (prevIndex + 1) % cells.length : prevIndex
                 );
             handleInputChange(label ? label : cells[currentIndex], 35);
+            setGraphRefresh(label ? label : cells[currentIndex]);
 
             setLabel("");
           }}
@@ -206,6 +215,7 @@ export const NumberTable = ({
                   !label ? (prevIndex + 1) % cells.length : prevIndex
                 );
             handleInputChange(label ? label : cells[currentIndex], 40);
+            setGraphRefresh(label ? label : cells[currentIndex]);
 
             setLabel("");
           }}
@@ -223,6 +233,7 @@ export const NumberTable = ({
                   !label ? (prevIndex + 1) % cells.length : prevIndex
                 );
             handleInputChange(label ? label : cells[currentIndex], 45);
+            setGraphRefresh(label ? label : cells[currentIndex]);
 
             setLabel("");
           }}
@@ -242,6 +253,7 @@ export const NumberTable = ({
                   !label ? (prevIndex + 1) % cells.length : prevIndex
                 );
             handleInputChange(label ? label : cells[currentIndex], 50);
+            setGraphRefresh(label ? label : cells[currentIndex]);
 
             setLabel("");
           }}
@@ -259,6 +271,7 @@ export const NumberTable = ({
                   !label ? (prevIndex + 1) % cells.length : prevIndex
                 );
             handleInputChange(label ? label : cells[currentIndex], 55);
+            setGraphRefresh(label ? label : cells[currentIndex]);
 
             setLabel("");
           }}
@@ -276,6 +289,7 @@ export const NumberTable = ({
                   !label ? (prevIndex + 1) % cells.length : prevIndex
                 );
             handleInputChange(label ? label : cells[currentIndex], 60);
+            setGraphRefresh(label ? label : cells[currentIndex]);
 
             setLabel("");
           }}
@@ -293,6 +307,7 @@ export const NumberTable = ({
                   !label ? (prevIndex + 1) % cells.length : prevIndex
                 );
             handleInputChange(label ? label : cells[currentIndex], 65);
+            setGraphRefresh(label ? label : cells[currentIndex]);
 
             setLabel("");
           }}
@@ -310,6 +325,7 @@ export const NumberTable = ({
                   !label ? (prevIndex + 1) % cells.length : prevIndex
                 );
             handleInputChange(label ? label : cells[currentIndex], 70);
+            setGraphRefresh(label ? label : cells[currentIndex]);
 
             setLabel("");
           }}
@@ -329,6 +345,7 @@ export const NumberTable = ({
                   !label ? (prevIndex + 1) % cells.length : prevIndex
                 );
             handleInputChange(label ? label : cells[currentIndex], 75);
+            setGraphRefresh(label ? label : cells[currentIndex]);
 
             setLabel("");
           }}
@@ -346,6 +363,7 @@ export const NumberTable = ({
                   !label ? (prevIndex + 1) % cells.length : prevIndex
                 );
             handleInputChange(label ? label : cells[currentIndex], 80);
+            setGraphRefresh(label ? label : cells[currentIndex]);
 
             setLabel("");
           }}
@@ -363,6 +381,7 @@ export const NumberTable = ({
                   !label ? (prevIndex + 1) % cells.length : prevIndex
                 );
             handleInputChange(label ? label : cells[currentIndex], 85);
+            setGraphRefresh(label ? label : cells[currentIndex]);
 
             setLabel("");
           }}
@@ -380,6 +399,7 @@ export const NumberTable = ({
                   !label ? (prevIndex + 1) % cells.length : prevIndex
                 );
             handleInputChange(label ? label : cells[currentIndex], 90);
+            setGraphRefresh(label ? label : cells[currentIndex]);
 
             setLabel("");
           }}
@@ -397,6 +417,7 @@ export const NumberTable = ({
                   !label ? (prevIndex + 1) % cells.length : prevIndex
                 );
             handleInputChange(label ? label : cells[currentIndex], 95);
+            setGraphRefresh(label ? label : cells[currentIndex]);
 
             setLabel("");
           }}
@@ -421,9 +442,8 @@ export const NumberTable = ({
   );
 };
 
-const RightTable = ({ handleInputChange, formData }) => {
-  const [label, setLabel] = useState("air_r0_25");
-  const [numberTableDisplayed, setNumberTableDisplayed] = useState(false);
+const RightTable = ({ handleInputChange, formData, setGraphRefresh }) => {
+  const [label, setLabel] = useState();
 
   const columns = [
     {
@@ -478,7 +498,6 @@ const RightTable = ({ handleInputChange, formData }) => {
       0.25: (
         <button
           onClick={() => {
-            setNumberTableDisplayed(true);
             setLabel("air_r0_25");
           }}
           className="w-[55px] h-[52px] flex items-center justify-center"
@@ -491,14 +510,14 @@ const RightTable = ({ handleInputChange, formData }) => {
       0.5: (
         <button
           onClick={() => {
-            setNumberTableDisplayed(true);
             setLabel("air_r0_5");
           }}
           className="w-[55px] h-[52px] flex items-center justify-center"
         >
           {formData.air_r0_5}
 
-          {formData.air_r0_25 !== "" && formData.air_r0_5 === "" ? (
+          {(formData.air_r0_25 !== "" && formData.air_r0_5 === "") ||
+          label == "air_r0_5" ? (
             <span className="blink"></span>
           ) : (
             ""
@@ -508,14 +527,14 @@ const RightTable = ({ handleInputChange, formData }) => {
       one: (
         <button
           onClick={() => {
-            setNumberTableDisplayed(true);
             setLabel("air_r1");
           }}
           className="w-[55px] h-[52px] flex items-center justify-center"
         >
           {formData.air_r1}
 
-          {formData.air_r0_5 !== "" && formData.air_r1 === "" ? (
+          {(formData.air_r0_5 !== "" && formData.air_r1 === "") ||
+          label == "air_r1" ? (
             <span className="blink"></span>
           ) : (
             ""
@@ -525,14 +544,14 @@ const RightTable = ({ handleInputChange, formData }) => {
       two: (
         <button
           onClick={() => {
-            setNumberTableDisplayed(true);
             setLabel("air_r2");
           }}
           className="w-[55px] h-[52px] flex items-center justify-center"
         >
           {formData.air_r2}
 
-          {formData.air_r1 !== "" && formData.air_r2 === "" ? (
+          {(formData.air_r1 !== "" && formData.air_r2 === "") ||
+          label == "air_r2" ? (
             <span className="blink"></span>
           ) : (
             ""
@@ -542,14 +561,14 @@ const RightTable = ({ handleInputChange, formData }) => {
       three: (
         <button
           onClick={() => {
-            setNumberTableDisplayed(true);
             setLabel("air_r3");
           }}
           className="w-[55px] h-[52px] flex items-center justify-center"
         >
           {formData.air_r3}
 
-          {formData.air_r2 !== "" && formData.air_r3 === "" ? (
+          {(formData.air_r2 !== "" && formData.air_r3 === "") ||
+          label == "air_r3" ? (
             <span className="blink"></span>
           ) : (
             ""
@@ -559,14 +578,14 @@ const RightTable = ({ handleInputChange, formData }) => {
       four: (
         <button
           onClick={() => {
-            setNumberTableDisplayed(true);
             setLabel("air_r4");
           }}
           className="w-[55px] h-[52px] flex items-center justify-center"
         >
           {formData.air_r4}
 
-          {formData.air_r3 !== "" && formData.air_r4 === "" ? (
+          {(formData.air_r3 !== "" && formData.air_r4 === "") ||
+          label == "air_r4" ? (
             <span className="blink"></span>
           ) : (
             ""
@@ -576,14 +595,14 @@ const RightTable = ({ handleInputChange, formData }) => {
       six: (
         <button
           onClick={() => {
-            setNumberTableDisplayed(true);
             setLabel("air_r6");
           }}
           className="w-[55px] h-[52px] flex items-center justify-center"
         >
           {formData.air_r6}
 
-          {formData.air_r4 !== "" && formData.air_r6 === "" ? (
+          {(formData.air_r4 !== "" && formData.air_r6 === "") ||
+          label == "air_r6" ? (
             <span className="blink"></span>
           ) : (
             ""
@@ -593,14 +612,14 @@ const RightTable = ({ handleInputChange, formData }) => {
       eight: (
         <button
           onClick={() => {
-            setNumberTableDisplayed(true);
             setLabel("air_r8");
           }}
           className="w-[55px] h-[52px] flex items-center justify-center"
         >
           {formData.air_r8}
 
-          {formData.air_r6 !== "" && formData.air_r8 === "" ? (
+          {(formData.air_r6 !== "" && formData.air_r8 === "") ||
+          label == "air_r8" ? (
             <span className="blink"></span>
           ) : (
             ""
@@ -613,14 +632,14 @@ const RightTable = ({ handleInputChange, formData }) => {
       0.25: (
         <button
           onClick={() => {
-            setNumberTableDisplayed(true);
             setLabel("bone_r0_25");
           }}
           className="w-[55px] h-[52px] flex items-center justify-center"
         >
           {formData.bone_r0_25}
 
-          {formData.air_r8 !== "" && formData.bone_r0_25 === "" ? (
+          {(formData.air_r8 !== "" && formData.bone_r0_25 === "") ||
+          label == "bone_r0_25" ? (
             <span className="blink"></span>
           ) : (
             ""
@@ -630,14 +649,14 @@ const RightTable = ({ handleInputChange, formData }) => {
       0.5: (
         <button
           onClick={() => {
-            setNumberTableDisplayed(true);
             setLabel("bone_r0_5");
           }}
           className="w-[55px] h-[52px] flex items-center justify-center"
         >
           {formData.bone_r0_5}
 
-          {formData.bone_r0_25 !== "" && formData.bone_r0_5 === "" ? (
+          {(formData.bone_r0_25 !== "" && formData.bone_r0_5 === "") ||
+          label == "bone_r0_5" ? (
             <span className="blink"></span>
           ) : (
             ""
@@ -647,14 +666,14 @@ const RightTable = ({ handleInputChange, formData }) => {
       one: (
         <button
           onClick={() => {
-            setNumberTableDisplayed(true);
             setLabel("bone_r1");
           }}
           className="w-[55px] h-[52px] flex items-center justify-center"
         >
           {formData.bone_r1}
 
-          {formData.bone_r0_5 !== "" && formData.bone_r1 === "" ? (
+          {(formData.bone_r0_5 !== "" && formData.bone_r1 === "") ||
+          label == "bone_r1" ? (
             <span className="blink"></span>
           ) : (
             ""
@@ -664,14 +683,14 @@ const RightTable = ({ handleInputChange, formData }) => {
       two: (
         <button
           onClick={() => {
-            setNumberTableDisplayed(true);
             setLabel("bone_r2");
           }}
           className="w-[55px] h-[52px] flex items-center justify-center"
         >
           {formData.bone_r2}
 
-          {formData.bone_r1 !== "" && formData.bone_r2 === "" ? (
+          {(formData.bone_r1 !== "" && formData.bone_r2 === "") ||
+          label == "bone_r2" ? (
             <span className="blink"></span>
           ) : (
             ""
@@ -681,14 +700,14 @@ const RightTable = ({ handleInputChange, formData }) => {
       three: (
         <button
           onClick={() => {
-            setNumberTableDisplayed(true);
             setLabel("bone_r3");
           }}
           className="w-[55px] h-[52px] flex items-center justify-center"
         >
           {formData.bone_r3}
 
-          {formData.bone_r2 !== "" && formData.bone_r3 === "" ? (
+          {(formData.bone_r2 !== "" && formData.bone_r3 === "") ||
+          label == "bone_r3" ? (
             <span className="blink"></span>
           ) : (
             ""
@@ -698,14 +717,14 @@ const RightTable = ({ handleInputChange, formData }) => {
       four: (
         <button
           onClick={() => {
-            setNumberTableDisplayed(true);
             setLabel("bone_r4");
           }}
           className="w-[55px] h-[52px] flex items-center justify-center"
         >
           {formData.bone_r4}
 
-          {formData.bone_r3 !== "" && formData.bone_r4 === "" ? (
+          {(formData.bone_r3 !== "" && formData.bone_r4 === "") ||
+          label == "bone_r4" ? (
             <span className="blink"></span>
           ) : (
             ""
@@ -715,14 +734,14 @@ const RightTable = ({ handleInputChange, formData }) => {
       six: (
         <button
           onClick={() => {
-            setNumberTableDisplayed(true);
             setLabel("bone_r6");
           }}
           className="w-[55px] h-[52px] flex items-center justify-center"
         >
           {formData.bone_r6}
 
-          {formData.bone_r4 !== "" && formData.bone_r6 === "" ? (
+          {(formData.bone_r4 !== "" && formData.bone_r6 === "") ||
+          label == "bone_r6" ? (
             <span className="blink"></span>
           ) : (
             ""
@@ -732,14 +751,14 @@ const RightTable = ({ handleInputChange, formData }) => {
       eight: (
         <button
           onClick={() => {
-            setNumberTableDisplayed(true);
             setLabel("bone_r8");
           }}
           className="w-[55px] h-[52px] flex items-center justify-center"
         >
           {formData.bone_r8}
 
-          {formData.bone_r6 !== "" && formData.bone_r8 === "" ? (
+          {(formData.bone_r6 !== "" && formData.bone_r8 === "") ||
+          label == "bone_r8" ? (
             <span className="blink"></span>
           ) : (
             ""
@@ -760,17 +779,16 @@ const RightTable = ({ handleInputChange, formData }) => {
         className="[&_td]:!p-0"
       />
 
-      {numberTableDisplayed && (
-        <div className="mt-3">
-          <p>Click the value you want to input</p>
-          <NumberTable
-            handleInputChange={handleInputChange}
-            label={label}
-            setLabel={setLabel}
-            formData={formData}
-          />
-        </div>
-      )}
+      <div className="mt-3">
+        <p>Click the value you want to input</p>
+        <NumberTable
+          handleInputChange={handleInputChange}
+          label={label}
+          setLabel={setLabel}
+          formData={formData}
+          setGraphRefresh={setGraphRefresh}
+        />
+      </div>
     </>
   );
 };

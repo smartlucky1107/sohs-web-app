@@ -177,8 +177,10 @@ const TableMain = ({
       const data = await fetchWorkers();
 
       if (searchText) {
-        const filtered = data.filter((item) =>
-          item.name.toLowerCase().includes(searchText.toLowerCase())
+        const filtered = data.filter(
+          (item) =>
+            item.name.toLowerCase().includes(searchText.toLowerCase()) ||
+            item.fin.toLowerCase().includes(searchText.toLowerCase())
         );
         setFilteredData(filtered);
       } else {

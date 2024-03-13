@@ -6,5 +6,9 @@ export function formatDate(dateString) {
 
   const formattedDate = `${day}/${month}/${year}`;
 
-  return formattedDate;
+  if (day) {
+    return formattedDate;
+  } else {
+    return "";
+  }
 }

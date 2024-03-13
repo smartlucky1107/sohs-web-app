@@ -118,6 +118,7 @@ export default function WorkersEditPopup(props) {
             value={formData.dob && dayjs(formData.dob)}
           >
             <DatePicker
+              format="DD/MM/YYYY"
               size={"large"}
               onChange={(selectedDate) =>
                 handleInputChange("dob", selectedDate)
@@ -133,6 +134,7 @@ export default function WorkersEditPopup(props) {
             value={formData.date && dayjs(formData.date)}
           >
             <DatePicker
+              format="DD/MM/YYYY"
               size={"large"}
               onChange={(selectedDate) =>
                 handleInputChange("date", selectedDate)

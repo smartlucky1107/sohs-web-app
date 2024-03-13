@@ -169,6 +169,9 @@ body {
     left: 0;
     top: 0;
   }
+  .print-w-130px {
+    width: 130px !important;
+  }
 }
 
 .blink {

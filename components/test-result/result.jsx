@@ -88,16 +88,57 @@ export default function TestsResult() {
     otoscopy_right: "",
     otoscopy_left: "",
     diagnosis: "Normal",
-    action_plans: "Notify OSHD, MOM",
+    action_plans: "No Action",
     action_plans_text: "",
     certification: true,
   });
+  const [graphRefresh, setGraphRefresh] = useState(true);
 
   const handleInputChange = (key, value) => {
     setFormData((prevData) => ({
       ...prevData,
       [key]: value,
     }));
+
+    if (key === "yrs_exposure") {
+      setGraphRefresh("yes_refresh");
+    }
+
+    if (key === "diagnosis") {
+      setFormData((prevData) => ({
+        ...prevData,
+        ["action_plans_text"]: "",
+      }));
+
+      if (value === "Normal") {
+        setFormData((prevData) => ({
+          ...prevData,
+          ["action_plans"]: "No Action",
+        }));
+      } else if (value === "Slight hearing loss") {
+        setFormData((prevData) => ({
+          ...prevData,
+          ["action_plans"]: "No Action",
+        }));
+      } else if (value === "Causes other than noise") {
+        setFormData((prevData) => ({
+          ...prevData,
+          ["action_plans"]: "Review (Date)",
+          ["action_plans_text"]: "6 months",
+        }));
+      } else if (value === "NID Suspect") {
+        setFormData((prevData) => ({
+          ...prevData,
+          ["action_plans"]: "Review (Date)",
+          ["action_plans_text"]: "6 months",
+        }));
+      } else if (value === "NID Early") {
+        setFormData((prevData) => ({
+          ...prevData,
+          ["action_plans"]: "Notify OSHD/MOM",
+        }));
+      }
+    }
   };
 
   useEffect(() => {
@@ -154,7 +195,89 @@ export default function TestsResult() {
       values: boneValues,
       values2: boneValues2,
     }));
-  }, [formData]);
+  }, [graphRefresh]);
+
+  useEffect(() => {
+    if (
+      (formData.air_r0_5 !== "" &&
+        formData.air_r0_5 <= 30 &&
+        formData.air_r1 !== "" &&
+        formData.air_r1 <= 30 &&
+        formData.air_r2 !== "" &&
+        formData.air_r2 <= 30 &&
+        formData.air_r3 !== "" &&
+        formData.air_r3 <= 30 &&
+        formData.air_r4 !== "" &&
+        formData.air_r4 <= 30 &&
+        formData.air_r6 !== "" &&
+        formData.air_r6 <= 30 &&
+        formData.air_r8 !== "" &&
+        formData.air_r8 <= 30) ||
+      (formData.air_l0_5 !== "" &&
+        formData.air_l0_5 <= 30 &&
+        formData.air_l1 !== "" &&
+        formData.air_l1 <= 30 &&
+        formData.air_l2 !== "" &&
+        formData.air_l2 <= 30 &&
+        formData.air_l3 !== "" &&
+        formData.air_l3 <= 30 &&
+        formData.air_l4 !== "" &&
+        formData.air_l4 <= 30 &&
+        formData.air_l6 !== "" &&
+        formData.air_l6 <= 30 &&
+        formData.air_l8 !== "" &&
+        formData.air_l8 <= 30)
+    ) {
+      handleInputChange("diagnosis", "Normal");
+      handleInputChange("action_plans", "No Action");
+      handleInputChange("action_plans_text", "");
+    } else if (
+      formData.air_r4 > 30 &&
+      formData.air_l4 > 30 &&
+      formData.bone_r4 > 30 &&
+      formData.bone_l4 > 30 &&
+      formData.yrs_exposure > 5
+    ) {
+      handleInputChange("diagnosis", "NID Early");
+      handleInputChange("action_plans", "Notify OSHD/MOM");
+      handleInputChange("action_plans_text", "");
+    } else if (
+      formData.air_r4 > 30 &&
+      formData.air_l4 > 30 &&
+      formData.bone_r4 > 30 &&
+      formData.bone_l4 > 30 &&
+      formData.yrs_exposure < 5
+    ) {
+      handleInputChange("diagnosis", "NID Suspect");
+      handleInputChange("action_plans", "Review (Date)");
+      handleInputChange("action_plans_text", "6 months");
+    } else if (
+      (formData.air_r0_5 > 30 && formData.air_r0_5 < 45) ||
+      (formData.air_r1 > 30 && formData.air_r1 < 45) ||
+      (formData.air_r2 > 30 && formData.air_r2 < 45) ||
+      (formData.air_r3 > 30 && formData.air_r2 < 45) ||
+      (formData.air_r4 > 30 && formData.air_r4 > 45) ||
+      (formData.air_r6 > 30 && formData.air_r6 < 45) ||
+      (formData.air_r8 > 30 && formData.air_r8 < 45) ||
+      (formData.air_l2 > 30 && formData.air_l1 < 45) ||
+      (formData.air_r1 > 30 && formData.air_r1 < 45) ||
+      (formData.air_r2 > 30 && formData.air_r2 < 45) ||
+      (formData.air_r3 > 30 && formData.air_r2 < 45) ||
+      (formData.air_r4 > 30 && formData.air_r4 > 45) ||
+      (formData.air_r6 > 30 && formData.air_r6 < 45) ||
+      (formData.air_r8 > 30 && formData.air_r8 < 45)
+    ) {
+      handleInputChange("diagnosis", "Slight hearing loss");
+      handleInputChange("action_plans", "No Action");
+      handleInputChange("action_plans_text", "");
+    } else {
+      if (formData.air_l0_25 !== "") {
+        handleInputChange("diagnosis", "Causes other than noise");
+        handleInputChange("action_plans", "Review (Date)");
+        handleInputChange("action_plans_text", "6 months");
+      }
+    }
+  }, [graphRefresh]);
 
   const isFinUnique = async (fin) => {
     try {
@@ -189,7 +312,7 @@ export default function TestsResult() {
   useEffect(() => {
     async function fetchData() {
       const data = await fetchWorkers();
-      setWorkerNames(data.slice(0, 0 + 10));
+      setWorkerNames(data?.slice(0, 0 + 10));
     }
 
     fetchData();
@@ -199,6 +322,19 @@ export default function TestsResult() {
     const worker = workerNames.find((worker) => worker.name === value);
 
     handleInputChange("fin", worker.fin);
+    handleInputChange("dob", worker.dob);
+    handleInputChange("sex", worker.sex);
+    handleInputChange("empno", worker.empno);
+    handleInputChange("date", worker.date);
+    handleInputChange("jobt", worker.jobt);
+    handleInputChange("yrs_exposure", worker.exp);
+    handleInputChange("dept", worker.dept);
+  };
+
+  const onFinSelect = (value) => {
+    const worker = workerNames.find((worker) => worker.fin === value);
+
+    handleInputChange("name", worker.name);
     handleInputChange("dob", worker.dob);
     handleInputChange("sex", worker.sex);
     handleInputChange("empno", worker.empno);
@@ -246,13 +382,14 @@ export default function TestsResult() {
             <div>
               {!PopupState && (
                 <Select
-                  className="w-[280px]"
+                  className="w-[280px] print-w-130px"
                   showSearch
                   placeholder="Name"
                   optionFilterProp="children"
                   onChange={(selectedValue) =>
                     handleInputChange("name", selectedValue)
                   }
+                  value={formData.name ? formData.name : undefined}
                   onSelect={onNameSelect}
                   filterOption={(input, option) =>
                     option.children
@@ -294,15 +431,55 @@ export default function TestsResult() {
           </div>
           <div className="flex gap-4 lg:flex-nowrap flex-wrap">
             <p className=" lg:text-nowrap">NRIC/FIN:</p>
-            <Input
+            {/* <Input
               placeholder="NRIC/FIN"
               value={formData.fin}
+              className="print-w-130px"
               onChange={(e) => handleInputChange("fin", e.target.value)}
-            />
+            /> */}
+
+            {!PopupState && (
+              <Select
+                className="w-[183px] print-w-130px"
+                showSearch
+                placeholder="NRIC/FIN"
+                optionFilterProp="children"
+                onChange={(selectedValue) =>
+                  handleInputChange("fin", selectedValue)
+                }
+                onSelect={onFinSelect}
+                filterOption={(input, option) =>
+                  option.children.toLowerCase().indexOf(input.toLowerCase()) >=
+                  0
+                }
+                value={formData.fin ? formData.fin : undefined}
+                dropdownRender={(menu) => (
+                  <div>
+                    {menu}
+                    <button
+                      type="button"
+                      className="bg-[#0094f1] px-3 py-2 text-white text-xs w-full rounded mt-2"
+                      onClick={() => {
+                        setPopupState(true);
+                      }}
+                    >
+                      Add Worker
+                    </button>
+                  </div>
+                )}
+              >
+                {workerNames.map((worker, index) => (
+                  <Option value={worker.fin} key={index}>
+                    {worker.fin}
+                  </Option>
+                ))}
+              </Select>
+            )}
           </div>
           <div className="flex gap-4 lg:flex-nowrap flex-wrap">
             <p className=" lg:text-nowrap">DOB:</p>
             <DatePicker
+              format="DD/MM/YYYY"
               className="h-[32px]"
               placeholder="DOB"
               value={formData.dob && dayjs(formData.dob)}
@@ -327,12 +504,14 @@ export default function TestsResult() {
             <Input
               placeholder="Emp. No."
               value={formData.empno}
+              className="print-w-130px"
               onChange={(e) => handleInputChange("empno", e.target.value)}
             />
           </div>
           <div className="flex gap-4 lg:flex-nowrap flex-wrap">
             <p className=" lg:text-nowrap">Date Joined:</p>
             <DatePicker
+              format="DD/MM/YYYY"
               className="h-[32px]"
               placeholder="Date Joined"
               value={formData.date && dayjs(formData.date)}
@@ -434,6 +613,7 @@ export default function TestsResult() {
             <RightTable
               handleInputChange={handleInputChange}
               formData={formData}
+              setGraphRefresh={setGraphRefresh}
             />
           </div>
           <div>
@@ -441,6 +621,7 @@ export default function TestsResult() {
             <LeftTable
               handleInputChange={handleInputChange}
               formData={formData}
+              setGraphRefresh={setGraphRefresh}
             />
           </div>
         </div>
@@ -468,6 +649,7 @@ export default function TestsResult() {
           <div className="flex gap-4 lg:flex-nowrap flex-wrap max-w-[300px]">
             <p className=" lg:text-nowrap">Date Tested</p>
             <DatePicker
+              format="DD/MM/YYYY"
               className="h-[32px]"
               placeholder="Date Tested"
               value={formData.date_tested && dayjs(formData.date_tested)}
@@ -599,8 +781,8 @@ export default function TestsResult() {
                 handleInputChange("action_plans_text", "");
               }}
             >
-              <Radio className="my-2" value="Notify OSHD, MOM">
-                1. Notify OSHD, MOM
+              <Radio className="my-2" value="Notify OSHD/MOM">
+                1. Notify OSHD/MOM
               </Radio>
               <Radio className="my-2" value="Review (Date)">
                 2.{" "}
