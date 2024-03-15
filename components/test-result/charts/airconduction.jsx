@@ -34,7 +34,37 @@ const AirConduction = ({ data }) => {
               borderColor: "rgb(192, 75, 113)",
               tension: 0.1,
             },
+            {
+              label: "",
+              data: [30, 30, 30, 30, 30, 30, 30],
+              fill: false,
+              borderColor: "rgb(209 209 209)",
+              tension: 0.1,
+            },
           ],
+        },
+        options: {
+          scales: {
+            y: {
+              min: 0, // Set the minimum value for the y-axis
+              max: 100, // Set the maximum value for the y-axis
+              reverse: true,
+            },
+          },
+          plugins: {
+            tooltip: {
+              filter: function (tooltipItem) {
+                return tooltipItem.dataset.label !== ""; // Exclude the dataset with an empty label from showing tooltips
+              },
+            },
+            legend: {
+              labels: {
+                filter: function (legendItem, chartData) {
+                  return legendItem.text !== ""; // Exclude the label with an empty text from showing in the legend
+                },
+              },
+            },
+          },
         },
       });
     }

@@ -155,19 +155,29 @@ body {
   z-index: 999999999999 !important;
 }
 
+#section-to-print {
+  visibility: hidden;
+  height: 0;
+}
+
 @media print {
   @page {
-    size: A4 landscape;
+    size: A4;
   }
 
   body {
     visibility: hidden;
+    padding: 0;
+  }
+  section {
+    height: 0;
   }
   #section-to-print {
     visibility: visible;
     position: absolute;
     left: 0;
     top: 0;
+    height: auto;
   }
   .print-w-130px {
     width: 130px !important;

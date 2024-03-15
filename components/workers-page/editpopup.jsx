@@ -4,6 +4,7 @@ import dayjs from "dayjs";
 import axios from "axios";
 import { fetchWorkers } from "@/services";
 import FloatLabel from "../FloatLabel";
+import { validateNRICFormat } from "@/utils/validateNRICFormat";
 
 const gender = [
   { label: "Male", value: "m" },
@@ -35,6 +36,10 @@ export default function WorkersEditPopup(props) {
 
   const handleSubmit = async () => {
     try {
+      if (!validateNRICFormat(formData.fin)) {
+        alert("NRIC/FIN is not valid. Please enter a valid NRIC.");
+        return;
+      }
       // 'fin' value is not unique, handle the case by showing an error message
       const postData = { ...formData, id };
       await axios.post("/api/workers/editworker", postData); // Send POST request to API
@@ -202,11 +207,38 @@ export default function WorkersEditPopup(props) {
             />
           </FloatLabel>
 
+          <FloatLabel
+            label="Company Address"
+            className="w-[calc(80%_+_20px)]"
+            value={formData.company_address}
+          >
+            <Select
+              options={[
+                { value: "C&P", label: "C&P" },
+                { value: "SEO", label: "SEO" },
+                { value: "CONCEPT", label: "CONCEPT" },
+                { value: "CT", label: "CT" },
+                { value: "FOOD", label: "FOOD" },
+                { value: "CWT", label: "CWT" },
+                { value: "AWOLF", label: "AWOLF" },
+                { value: "PRAGAS", label: "PRAGAS" },
+                { value: "PROS", label: "PROS" },
+              ]}
+              value={
+                formData.company_address ? formData.company_address : undefined
+              }
+              onChange={(selectedOption) =>
+                handleInputChange("company_address", selectedOption)
+              }
+              className="w-full"
+            />
+          </FloatLabel>
+
           <FloatLabel label="IHDinf" className="w-[40%]" value={formData.inf}>
             <Select
               options={[
-                { value: "TRUE", label: <span>TRUE</span> },
-                { value: "FALSE", label: <span>FALSE</span> },
+                { value: "YES", label: <span>YES</span> },
+                { value: "NO", label: <span>NO</span> },
               ]}
               onChange={(selectedValue) =>
                 handleInputChange("inf", selectedValue)
@@ -235,8 +267,8 @@ export default function WorkersEditPopup(props) {
           >
             <Select
               options={[
-                { value: "TRUE", label: <span>TRUE</span> },
-                { value: "FALSE", label: <span>FALSE</span> },
+                { value: "YES", label: <span>YES</span> },
+                { value: "NO", label: <span>NO</span> },
               ]}
               onChange={(selectedValue) =>
                 handleInputChange("stat", selectedValue)
@@ -252,8 +284,8 @@ export default function WorkersEditPopup(props) {
           >
             <Select
               options={[
-                { value: "TRUE", label: <span>TRUE</span> },
-                { value: "FALSE", label: <span>FALSE</span> },
+                { value: "YES", label: <span>YES</span> },
+                { value: "NO", label: <span>NO</span> },
               ]}
               onChange={(selectedValue) =>
                 handleInputChange("notify", selectedValue)

@@ -31,6 +31,7 @@ export default function Workers() {
       <WorkersTable
         setPopupState={setPopupState}
         setEditPopupState={setEditPopupState}
+        EditPopupState={EditPopupState}
         PopupState={PopupState}
       />
       <CommonContact />

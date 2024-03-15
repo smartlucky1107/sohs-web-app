@@ -5,24 +5,31 @@ import { CiSearch } from "react-icons/ci";
 import TableMain from "./table/main";
 import Papa from "papaparse";
 import axios from "axios";
+import { downloadExcelFile, readExcelFile } from "@/utils/excelfile";
 
 const { Search } = Input;
 
 function getDateString(date) {
   var dateString = date;
-  var dateParts = dateString.split("/");
-  var formattedDate = new Date(
-    dateParts[2],
-    dateParts[0] - 1,
-    dateParts[1],
-    18,
-    0,
-    0
-  ).toUTCString();
-  return formattedDate;
+
+  if (typeof dateString === "string") {
+    var dateParts = dateString.split("/");
+    var formattedDate = new Date(
+      dateParts[2],
+      dateParts[0] - 1,
+      dateParts[1],
+      18,
+      0,
+      0
+    ).toUTCString();
+    return formattedDate;
+  } else {
+    return "";
+  }
 }
 
 export default function WorkersTable(props) {
+  const [data, setData] = useState([]);
   const [searchText, setSearchText] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [file, setFile] = useState(null);
@@ -53,48 +60,43 @@ export default function WorkersTable(props) {
     setIsLoading(true);
 
     if (file) {
-      const reader = new FileReader();
-
-      reader.onload = (event) => {
-        const csvData = event.target.result;
-
-        // Inside the reader.onload callback
-        const { data, errors, meta } = Papa.parse(csvData, {
-          header: true,
-          skipEmptyLines: true,
-        });
-
-        if (errors.length === 0) {
+      if (file) {
+        readExcelFile(file, (excelData) => {
           let allData = [];
 
-          data.map((item) => {
+          excelData.map((item) => {
             const formData = {
               name: item.Name,
               jobt: item[Object.keys(item).find((key) => key === "Job Title")],
               empno: item.Empno,
-              dob: getDateString(item.DOB),
-              date: getDateString(item.Date),
+              dob:
+                getDateString(item.DOB) != "Invalid Date"
+                  ? getDateString(item.DOB)
+                  : "",
+              date:
+                getDateString(item.Date) != "Invalid Date"
+                  ? getDateString(item.Date)
+                  : "",
               fin: item[Object.keys(item).find((key) => key === "NRIC/FIN")],
               ypj: item.Yrs_pj,
               exp: item.Yrs_exp,
               hist: item.Occ_hist,
               dept: item.Dept,
+              company_address:
+                item[
+                  Object.keys(item).find((key) => key === "Company Address")
+                ],
               inf: item.IHDinf,
               notify: item.Notify,
-              diag: item.IHDiag,
+              diag: item.IHDdiag,
               stat: item.Statutory,
               sex: item.Sex,
             };
             allData.push(formData);
           });
-
           importData(allData);
-        } else {
-          console.error("Error parsing CSV:", errors);
-        }
-      };
-
-      reader.readAsText(file);
+        });
+      }
     }
   };
 
@@ -104,6 +106,33 @@ export default function WorkersTable(props) {
 
   const handleFileUpload = (e) => {
     setFile(e.target.files[0]);
+  };
+
+  const handleExport = () => {
+    let Data = [];
+
+    data.map((data) => {
+      Data.push({
+        Name: data.name,
+        "Job Title": data.jobt,
+        Empno: data.empno,
+        DOB: data.dob,
+        Date: data.date,
+        "NRIC/FIN": data.fin,
+        Yrs_pj: data.ypj,
+        Yrs_exp: data.exp,
+        Occ_hist: data.hist,
+        Dept: data.dept,
+        "Company Address": data.company_address,
+        IHDinf: data.inf,
+        Notify: data.notify,
+        IHDdiag: data.diag,
+        Statutory: data.stat,
+        Sex: data.sex,
+      });
+    });
+
+    downloadExcelFile(Data, "workers.xlsx");
   };
 
   return (
@@ -138,7 +167,13 @@ export default function WorkersTable(props) {
               className="bg-[#0094f1] py-3 px-5 uppercase text-white"
               onClick={showModal}
             >
-              Import CSV
+              Import Excel
+            </button>
+            <button
+              onClick={handleExport}
+              className="bg-[#0094f1] py-3 px-5 uppercase text-white"
+            >
+              Export Excel
             </button>
           </div>
         </div>
@@ -148,10 +183,11 @@ export default function WorkersTable(props) {
           setEditPopupState={props.setEditPopupState}
           PopupState={props.PopupState}
           EditPopupState={props.EditPopupState}
+          setData={setData}
         />
 
         <Modal
-          title="Import CSV File"
+          title="Import Excel File"
           open={isModalOpen}
           onOk={handleOk}
           onCancel={handleCancel}
@@ -159,10 +195,10 @@ export default function WorkersTable(props) {
         >
           {isLoading ? (
             <Spin tip="Importing...">
-              <Input type="file" accept=".csv" onChange={handleFileUpload} />
+              <Input type="file" onChange={handleFileUpload} />
             </Spin>
           ) : (
-            <Input type="file" accept=".csv" onChange={handleFileUpload} />
+            <Input type="file" onChange={handleFileUpload} />
           )}
         </Modal>
       </div>

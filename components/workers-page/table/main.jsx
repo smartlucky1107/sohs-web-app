@@ -4,16 +4,29 @@ import { x } from "joi";
 import { MdEditNote } from "react-icons/md";
 import { fetchWorkers } from "@/services";
 import { formatDate } from "@/utils/formatDate";
+import axios from "axios";
 
 const TableMain = ({
   searchText,
   setEditPopupState,
   PopupState,
   EditPopupState,
+  setData,
 }) => {
   const handleEdit = (record) => {
     // Display an alert with the value of the "name" key from the record
     setEditPopupState({ visible: true, id: record.fin });
+  };
+
+  const handleDelete = async (_id) => {
+    try {
+      await axios.post(`/api/workers/deleteworker`, { _id }); // Send POST request to API
+      // Reset form data or handle success
+      alert("Data deleted successfully");
+    } catch (error) {
+      // Handle error
+      console.error("Failed to submit data:", error);
+    }
   };
 
   const columns = [
@@ -21,6 +34,11 @@ const TableMain = ({
       title: "Name",
       dataIndex: "name",
       key: "name",
+    },
+    {
+      title: "Company Address",
+      dataIndex: "company_address",
+      key: "company_address",
     },
     {
       title: "Dept",
@@ -80,16 +98,18 @@ const TableMain = ({
       key: "stat",
       render: (stat) => {
         let color = "green";
-        if (stat === "false") {
+        if (stat === "No" || stat === "false") {
           color = "volcano";
         }
-        if (stat === "true") {
+        if (stat === "Yes" || stat === "true") {
           color = "green";
         }
         return (
-          <Tag color={color} key={stat}>
-            {stat.toUpperCase()}
-          </Tag>
+          stat && (
+            <Tag color={color} key={stat}>
+              {stat.toUpperCase()}
+            </Tag>
+          )
         );
       },
     },
@@ -99,16 +119,18 @@ const TableMain = ({
       key: "notify",
       render: (notify) => {
         let color = "green";
-        if (notify === "yes") {
+        if (notify === "Yes") {
           color = "volcano";
         }
-        if (notify === "no") {
+        if (notify === "No") {
           color = "green";
         }
         return (
-          <Tag color={color} key={notify}>
-            {notify.toUpperCase()}
-          </Tag>
+          notify && (
+            <Tag color={color} key={notify}>
+              {notify.toUpperCase()}
+            </Tag>
+          )
         );
       },
     },
@@ -118,16 +140,18 @@ const TableMain = ({
       key: "inf",
       render: (inf) => {
         let color = "green";
-        if (inf === "false") {
+        if (inf === "No" || inf === "false") {
           color = "volcano";
         }
-        if (inf === "true") {
+        if (inf === "Yes" || inf === "true") {
           color = "green";
         }
         return (
-          <Tag color={color} key={inf}>
-            {inf.toUpperCase()}
-          </Tag>
+          inf && (
+            <Tag color={color} key={inf}>
+              {inf.toUpperCase()}
+            </Tag>
+          )
         );
       },
     },
@@ -144,9 +168,11 @@ const TableMain = ({
           color = "green";
         }
         return (
-          <Tag color={color} key={diag}>
-            {diag.toUpperCase()}
-          </Tag>
+          diag && (
+            <Tag color={color} key={diag}>
+              {diag.toUpperCase()}
+            </Tag>
+          )
         );
       },
     },
@@ -159,12 +185,21 @@ const TableMain = ({
       title: "Action",
       key: "action",
       render: (_, record) => (
-        <a
-          className="bg-[#0094f1] text-white py-3 px-4"
-          onClick={() => handleEdit(record)}
-        >
-          EDIT
-        </a>
+        <>
+          <a
+            className="bg-[#0094f1] text-white py-3 px-4"
+            onClick={() => handleEdit(record)}
+          >
+            EDIT
+          </a>
+
+          <a
+            className="bg-red-500 text-white py-3 px-4"
+            onClick={() => handleDelete(record._id)}
+          >
+            Delete
+          </a>
+        </>
       ),
     },
   ];
@@ -183,15 +218,17 @@ const TableMain = ({
             item.fin.toLowerCase().includes(searchText.toLowerCase())
         );
         setFilteredData(filtered);
+        setData(filtered);
       } else {
         setFilteredData(data);
+        setData(data);
       }
 
       setIsLoading(false);
     }
 
     fetchData();
-  }, [searchText, PopupState, EditPopupState]);
+  }, [searchText, PopupState, EditPopupState, handleDelete]);
 
   return (
     <Table

@@ -3,7 +3,6 @@ import { Table } from "antd";
 import { x } from "joi";
 
 const cells = [
-  "air_r0_25",
   "air_r0_5",
   "air_r1",
   "air_r2",
@@ -11,7 +10,7 @@ const cells = [
   "air_r4",
   "air_r6",
   "air_r8",
-  "bone_r0_25",
+
   "bone_r0_5",
   "bone_r1",
   "bone_r2",
@@ -452,11 +451,6 @@ const RightTable = ({ handleInputChange, formData, setGraphRefresh }) => {
       key: "freq",
     },
     {
-      title: "0.25",
-      dataIndex: "0.25",
-      key: "0.25",
-    },
-    {
       title: "0.5",
       dataIndex: "0.5",
       key: "0.5",
@@ -495,33 +489,16 @@ const RightTable = ({ handleInputChange, formData, setGraphRefresh }) => {
   const data = [
     {
       freq: <span class="px-4">Rt AC/db</span>,
-      0.25: (
-        <button
-          onClick={() => {
-            setLabel("air_r0_25");
-          }}
-          className="w-[55px] h-[52px] flex items-center justify-center"
-        >
-          {formData.air_r0_25}
-
-          {formData.air_r0_25 === "" ? <span className="blink"></span> : ""}
-        </button>
-      ),
       0.5: (
         <button
           onClick={() => {
             setLabel("air_r0_5");
           }}
-          className="w-[55px] h-[52px] flex items-center justify-center"
+          className="w-[71px] h-[52px] flex items-center justify-center"
         >
           {formData.air_r0_5}
 
-          {(formData.air_r0_25 !== "" && formData.air_r0_5 === "") ||
-          label == "air_r0_5" ? (
-            <span className="blink"></span>
-          ) : (
-            ""
-          )}
+          {formData.air_r0_5 === "" ? <span className="blink"></span> : ""}
         </button>
       ),
       one: (
@@ -529,7 +506,7 @@ const RightTable = ({ handleInputChange, formData, setGraphRefresh }) => {
           onClick={() => {
             setLabel("air_r1");
           }}
-          className="w-[55px] h-[52px] flex items-center justify-center"
+          className="w-[71px] h-[52px] flex items-center justify-center"
         >
           {formData.air_r1}
 
@@ -546,7 +523,7 @@ const RightTable = ({ handleInputChange, formData, setGraphRefresh }) => {
           onClick={() => {
             setLabel("air_r2");
           }}
-          className="w-[55px] h-[52px] flex items-center justify-center"
+          className="w-[71px] h-[52px] flex items-center justify-center"
         >
           {formData.air_r2}
 
@@ -563,7 +540,7 @@ const RightTable = ({ handleInputChange, formData, setGraphRefresh }) => {
           onClick={() => {
             setLabel("air_r3");
           }}
-          className="w-[55px] h-[52px] flex items-center justify-center"
+          className="w-[71px] h-[52px] flex items-center justify-center"
         >
           {formData.air_r3}
 
@@ -580,7 +557,7 @@ const RightTable = ({ handleInputChange, formData, setGraphRefresh }) => {
           onClick={() => {
             setLabel("air_r4");
           }}
-          className="w-[55px] h-[52px] flex items-center justify-center"
+          className="w-[71px] h-[52px] flex items-center justify-center"
         >
           {formData.air_r4}
 
@@ -597,7 +574,7 @@ const RightTable = ({ handleInputChange, formData, setGraphRefresh }) => {
           onClick={() => {
             setLabel("air_r6");
           }}
-          className="w-[55px] h-[52px] flex items-center justify-center"
+          className="w-[71px] h-[52px] flex items-center justify-center"
         >
           {formData.air_r6}
 
@@ -614,7 +591,7 @@ const RightTable = ({ handleInputChange, formData, setGraphRefresh }) => {
           onClick={() => {
             setLabel("air_r8");
           }}
-          className="w-[55px] h-[52px] flex items-center justify-center"
+          className="w-[71px] h-[52px] flex items-center justify-center"
         >
           {formData.air_r8}
 
@@ -629,33 +606,16 @@ const RightTable = ({ handleInputChange, formData, setGraphRefresh }) => {
     },
     {
       freq: <span class="px-4">Rt BC/db</span>,
-      0.25: (
-        <button
-          onClick={() => {
-            setLabel("bone_r0_25");
-          }}
-          className="w-[55px] h-[52px] flex items-center justify-center"
-        >
-          {formData.bone_r0_25}
-
-          {(formData.air_r8 !== "" && formData.bone_r0_25 === "") ||
-          label == "bone_r0_25" ? (
-            <span className="blink"></span>
-          ) : (
-            ""
-          )}
-        </button>
-      ),
       0.5: (
         <button
           onClick={() => {
             setLabel("bone_r0_5");
           }}
-          className="w-[55px] h-[52px] flex items-center justify-center"
+          className="w-[71px] h-[52px] flex items-center justify-center"
         >
           {formData.bone_r0_5}
 
-          {(formData.bone_r0_25 !== "" && formData.bone_r0_5 === "") ||
+          {(formData.air_r8 !== "" && formData.bone_r0_5 === "") ||
           label == "bone_r0_5" ? (
             <span className="blink"></span>
           ) : (
@@ -668,7 +628,7 @@ const RightTable = ({ handleInputChange, formData, setGraphRefresh }) => {
           onClick={() => {
             setLabel("bone_r1");
           }}
-          className="w-[55px] h-[52px] flex items-center justify-center"
+          className="w-[71px] h-[52px] flex items-center justify-center"
         >
           {formData.bone_r1}
 
@@ -685,7 +645,7 @@ const RightTable = ({ handleInputChange, formData, setGraphRefresh }) => {
           onClick={() => {
             setLabel("bone_r2");
           }}
-          className="w-[55px] h-[52px] flex items-center justify-center"
+          className="w-[71px] h-[52px] flex items-center justify-center"
         >
           {formData.bone_r2}
 
@@ -702,7 +662,7 @@ const RightTable = ({ handleInputChange, formData, setGraphRefresh }) => {
           onClick={() => {
             setLabel("bone_r3");
           }}
-          className="w-[55px] h-[52px] flex items-center justify-center"
+          className="w-[71px] h-[52px] flex items-center justify-center"
         >
           {formData.bone_r3}
 
@@ -719,7 +679,7 @@ const RightTable = ({ handleInputChange, formData, setGraphRefresh }) => {
           onClick={() => {
             setLabel("bone_r4");
           }}
-          className="w-[55px] h-[52px] flex items-center justify-center"
+          className="w-[71px] h-[52px] flex items-center justify-center"
         >
           {formData.bone_r4}
 
@@ -736,7 +696,7 @@ const RightTable = ({ handleInputChange, formData, setGraphRefresh }) => {
           onClick={() => {
             setLabel("bone_r6");
           }}
-          className="w-[55px] h-[52px] flex items-center justify-center"
+          className="w-[71px] h-[52px] flex items-center justify-center"
         >
           {formData.bone_r6}
 
@@ -753,7 +713,7 @@ const RightTable = ({ handleInputChange, formData, setGraphRefresh }) => {
           onClick={() => {
             setLabel("bone_r8");
           }}
-          className="w-[55px] h-[52px] flex items-center justify-center"
+          className="w-[71px] h-[52px] flex items-center justify-center"
         >
           {formData.bone_r8}
 

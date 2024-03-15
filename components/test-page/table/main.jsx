@@ -6,13 +6,18 @@ import { fetchTests } from "@/services";
 import Link from "next/link";
 import { formatDate } from "@/utils/formatDate";
 
-const TableMain = ({ searchText }) => {
+const TableMain = ({ searchData, dateRange, setData }) => {
   const columns = [
     {
       title: "Name",
       dataIndex: "name",
       key: "name",
       render: (text) => <a>{text}</a>,
+    },
+    {
+      title: "Company Address",
+      dataIndex: "company_address",
+      key: "company_address",
     },
     {
       title: "Dept",
@@ -435,11 +440,6 @@ const TableMain = ({ searchText }) => {
       key: "learex",
     },
     {
-      title: "air_r1",
-      dataIndex: "air_r0_25",
-      key: "air_r1",
-    },
-    {
       title: "air_r2",
       dataIndex: "air_r0_5",
       key: "air_r2",
@@ -473,11 +473,6 @@ const TableMain = ({ searchText }) => {
       title: "air_r8",
       dataIndex: "air_r8",
       key: "air_r8",
-    },
-    {
-      title: "air_l1",
-      dataIndex: "air_l0_25",
-      key: "air_l1",
     },
     {
       title: "air_l2",
@@ -515,11 +510,6 @@ const TableMain = ({ searchText }) => {
       key: "air_l8",
     },
     {
-      title: "bone_r1",
-      dataIndex: "bone_r0_25",
-      key: "bone_r1",
-    },
-    {
       title: "bone_r2",
       dataIndex: "bone_r0_5",
       key: "bone_r2",
@@ -553,11 +543,6 @@ const TableMain = ({ searchText }) => {
       title: "bone_r8",
       dataIndex: "bone_r8",
       key: "bone_r8",
-    },
-    {
-      title: "bone_l1",
-      dataIndex: "bone_l0_25",
-      key: "bone_l1",
     },
     {
       title: "bone_l2",
@@ -665,10 +650,11 @@ const TableMain = ({ searchText }) => {
         }
 
         if (
-          !inf &&
-          (record.action_plans_text === "1 year" ||
-            record.action_plans_text === "1 years" ||
-            record.action_plans_text === "1 yrs")
+          (!inf &&
+            (record.action_plans_text === "1 year" ||
+              record.action_plans_text === "1 years" ||
+              record.action_plans_text === "1 yrs")) ||
+          record.action_plans_text.includes("1 y")
         ) {
           color = "green";
           inf = "TRUE";
@@ -700,10 +686,11 @@ const TableMain = ({ searchText }) => {
         }
 
         if (
-          !inf &&
-          (record.action_plans_text === "6 months" ||
-            record.action_plans_text === "6 month" ||
-            record.action_plans_text === "6 mo")
+          (!inf &&
+            (record.action_plans_text === "6 months" ||
+              record.action_plans_text === "6 month" ||
+              record.action_plans_text === "6 mo")) ||
+          record.action_plans_text.includes("6 mo")
         ) {
           color = "green";
           inf = "TRUE";
@@ -782,20 +769,41 @@ const TableMain = ({ searchText }) => {
     async function fetchData() {
       const data = await fetchTests();
 
-      if (searchText) {
-        const filtered = data.filter((item) =>
-          item.name.toLowerCase().includes(searchText.toLowerCase())
+      let filtered = data;
+
+      if (searchData?.name) {
+        filtered = filtered.filter((item) =>
+          item.name.toLowerCase().includes(searchData.name.toLowerCase())
         );
-        setFilteredData(filtered);
-      } else {
-        setFilteredData(data);
       }
+      if (searchData?.fin) {
+        filtered = filtered.filter((item) =>
+          item.fin.toLowerCase().includes(searchData.fin.toLowerCase())
+        );
+      }
+      if (searchData?.company_address) {
+        filtered = filtered.filter((item) =>
+          item.company_address
+            .toLowerCase()
+            .includes(searchData.company_address.toLowerCase())
+        );
+      }
+
+      if (dateRange?.length === 2) {
+        filtered = filtered.filter((item) => {
+          const itemDate = new Date(item.date_tested);
+          return itemDate >= dateRange[0] && itemDate <= dateRange[1];
+        });
+      }
+
+      setFilteredData(filtered);
+      setData(filtered);
 
       setIsLoading(false);
     }
 
     fetchData();
-  }, [searchText]);
+  }, [searchData, dateRange]);
 
   return (
     <Table

@@ -5,6 +5,7 @@ import axios from "axios";
 import { useRouter } from "next/router";
 import FloatLabel from "../FloatLabel";
 import dayjs from "dayjs";
+import { validateNRICFormat } from "@/utils/validateNRICFormat";
 
 const gender = [
   { label: "Male", value: "m" },
@@ -76,7 +77,9 @@ export default function WorkersPopup(props) {
         formData.stat == "" ||
         !formData.stat ||
         formData.sex == "" ||
-        !formData.sex
+        !formData.sex ||
+        formData.company_address == "" ||
+        !formData.company_address
       ) {
         return alert("All fields are required.");
       }
@@ -85,6 +88,10 @@ export default function WorkersPopup(props) {
       if (!isUnique) {
         // 'fin' value is not unique, handle the case by showing an error message
         alert("FIN already exists. Please enter a unique FIN.");
+        return;
+      }
+      if (!validateNRICFormat(formData.fin)) {
+        alert("NRIC/FIN is not valid. Please enter a valid NRIC.");
         return;
       }
       await axios.post("/api/workers/addworker", formData); // Send POST request to API
@@ -236,11 +243,37 @@ export default function WorkersPopup(props) {
               value={formData.dept}
             />
           </FloatLabel>
+          <FloatLabel
+            label="Company Address"
+            className="w-[calc(80%_+_20px)]"
+            value={formData.company_address}
+          >
+            <Select
+              options={[
+                { value: "C&P", label: "C&P" },
+                { value: "SEO", label: "SEO" },
+                { value: "CONCEPT", label: "CONCEPT" },
+                { value: "CT", label: "CT" },
+                { value: "FOOD", label: "FOOD" },
+                { value: "CWT", label: "CWT" },
+                { value: "AWOLF", label: "AWOLF" },
+                { value: "PRAGAS", label: "PRAGAS" },
+                { value: "PROS", label: "PROS" },
+              ]}
+              value={
+                formData.company_address ? formData.company_address : undefined
+              }
+              onChange={(selectedOption) =>
+                handleInputChange("company_address", selectedOption)
+              }
+              className="w-full"
+            />
+          </FloatLabel>
           <FloatLabel label="IHDinf" className="w-[40%]" value={formData.inf}>
             <Select
               options={[
-                { value: "TRUE", label: <span>TRUE</span> },
-                { value: "FALSE", label: <span>FALSE</span> },
+                { value: "YES", label: <span>YES</span> },
+                { value: "NO", label: <span>NO</span> },
               ]}
               onChange={(selectedValue) =>
                 handleInputChange("inf", selectedValue)
@@ -267,8 +300,8 @@ export default function WorkersPopup(props) {
           >
             <Select
               options={[
-                { value: "TRUE", label: <span>TRUE</span> },
-                { value: "FALSE", label: <span>FALSE</span> },
+                { value: "YES", label: <span>YES</span> },
+                { value: "NO", label: <span>NO</span> },
               ]}
               onChange={(selectedValue) =>
                 handleInputChange("stat", selectedValue)
@@ -283,8 +316,8 @@ export default function WorkersPopup(props) {
           >
             <Select
               options={[
-                { value: "TRUE", label: <span>TRUE</span> },
-                { value: "FALSE", label: <span>FALSE</span> },
+                { value: "YES", label: <span>YES</span> },
+                { value: "NO", label: <span>NO</span> },
               ]}
               onChange={(selectedValue) =>
                 handleInputChange("notify", selectedValue)

@@ -33,10 +33,8 @@ export default function TestResult() {
         </button>
       </div>
 
-      <div id="section-to-print">
-        <ResultInfo />
-        <TestsResult />
-      </div>
+      <ResultInfo />
+      <TestsResult />
       <CommonContact />
     </section>
   );

@@ -33,10 +33,8 @@ export default function TestResult() {
         </button>
       </div>
 
-      <div id="section-to-print">
-        <ResultInfo />
-        <TestsResult fin={router.query.fin} />
-      </div>
+      <ResultInfo />
+      <TestsResult fin={router.query.fin} />
 
       <CommonContact />
     </section>

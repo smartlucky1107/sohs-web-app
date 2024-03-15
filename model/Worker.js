@@ -3,63 +3,67 @@ import mongoose from "mongoose";
 const workerSchema = new mongoose.Schema({
   name: {
     type: String,
-    required: true,
+    required: false,
   },
   jobt: {
     type: String,
-    required: true,
+    required: false,
   },
   empno: {
     type: String,
-    required: true,
+    required: false,
   },
   dob: {
-    type: Date,
-    required: true,
+    type: String,
+    required: false,
   },
   date: {
-    type: Date,
-    required: true,
+    type: String,
+    required: false,
   },
   fin: {
     type: String,
-    required: true,
+    required: false,
   },
   ypj: {
     type: String,
-    required: true,
+    required: false,
   },
   exp: {
     type: String,
-    required: true,
+    required: false,
   },
   hist: {
     type: String,
-    required: true,
+    required: false,
   },
   dept: {
     type: String,
-    required: true,
+    required: false,
+  },
+  company_address: {
+    type: String,
+    required: false,
   },
   inf: {
     type: String,
-    required: true,
+    required: false,
   },
   notify: {
     type: String,
-    required: true,
+    required: false,
   },
   diag: {
     type: String,
-    required: true,
+    required: false,
   },
   stat: {
     type: String,
-    required: true,
+    required: false,
   },
   sex: {
     type: String,
-    required: true,
+    required: false,
   },
 });
 
