@@ -3,10 +3,16 @@ import { FaCheck } from "react-icons/fa6";
 
 export default function ServicesContent() {
   const bestFeatures = [
-    "That extremely painful or again is there anyone",
-    "Indignation and dislike men who are so beguiled.",
-    "Desires these cases are perfectly simple easy",
-    "That extremely painful again that is there anyone.",
+    "Hazard Identification - identify potential hazards",
+    "Risk Assessment - Evaluate exposure, duration, toxicity",
+    "Selection of methods - questionaires, medical, biological and physical monitoring",
+    "Baseline Health Assessment - to establish a baseline for comparison in future evaluations",
+    "Regular Monitoring - develops regular monitoring protocols",
+    "Data Collection and analysis - identify trends, assess effectiveness of control measures",
+    "Cummunication and Education - for the workers' awareness and protective measures",
+    "Follow-Up and Intervention - treatment & control measures",
+    "Documentation and Record-Keeping - for review and analysis",
+    "Continuous Improvement - incorporate new knowledge and technologies"
   ];
 
   return (
@@ -20,15 +26,7 @@ export default function ServicesContent() {
           className="bg-red-500 h-[435px] object-cover object-top"
         />
         <p className="mt-5 text-[#222222] text-lg leading-[32px]">
-          In Hospitals or larger hospital systems may provide their own
-          ambulance service as a service to the community, or where ambulance
-          care is unreliable or chargeable. Many hospital•based EMS departments
-          operate solely with their hospital The physicians will attempt to
-          treat casualties at the scene and will only transport them to hospital
-          if it is deemed necessary. If patients are transported to hospital,
-          they are more likely to go straight to a ward rather than to an
-          emergency department. Countries that use this model include Austria,
-          France, Belgium, Luxembourg, Italy, Spain, Brazil and Chile.
+        Detecting ill-health effects at an early stage, allowing employers to introduce better controls to prevent them from getting worse. Providing data to help employers evaluate health risks in their workplace. Program can be designed to prevent and eliminate the harm at the primary level and implement measures to to treat and manage the ill effects at the secondary level.
         </p>
       </div>
 
