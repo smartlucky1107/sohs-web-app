@@ -41,7 +41,7 @@ export default function ServicesContent() {
                 className="flex items-center gap-4 text-lg text-[#222222]"
                 key={feature}
               >
-                <FaCheck size={38} className="text-[#49b2f6]" />
+                <FaCheck size={18} className="text-[#49b2f6]" />
                 {feature}
               </li>
             ))}
