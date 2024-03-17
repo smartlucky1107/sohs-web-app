@@ -248,19 +248,19 @@ export default function TestsResult({ fin }) {
       handleInputChange("action_plans", "Review (Date)");
       handleInputChange("action_plans_text", "6 months");
     } else if (
-      (formData.air_r0_5 > 30 && formData.air_r0_5 < 45) ||
-      (formData.air_r1 > 30 && formData.air_r1 < 45) ||
-      (formData.air_r2 > 30 && formData.air_r2 < 45) ||
-      (formData.air_r3 > 30 && formData.air_r2 < 45) ||
-      (formData.air_r4 > 30 && formData.air_r4 < 45) ||
-      (formData.air_r6 > 30 && formData.air_r6 < 45) ||
-      (formData.air_r8 > 30 && formData.air_r8 < 45) ||
-      (formData.air_l2 > 30 && formData.air_l1 < 45) ||
-      (formData.air_r1 > 30 && formData.air_r1 < 45) ||
-      (formData.air_r2 > 30 && formData.air_r2 < 45) ||
-      (formData.air_r3 > 30 && formData.air_r2 < 45) ||
-      (formData.air_r4 > 30 && formData.air_r4 < 45) ||
-      (formData.air_r6 > 30 && formData.air_r6 < 45) ||
+      (formData.air_r0_5 > 30 && formData.air_r0_5 < 45) &&
+      (formData.air_r1 > 30 && formData.air_r1 < 45) &&
+      (formData.air_r2 > 30 && formData.air_r2 < 45) &&
+      (formData.air_r3 > 30 && formData.air_r2 < 45) &&
+      (formData.air_r4 > 30 && formData.air_r4 < 45) &&
+      (formData.air_r6 > 30 && formData.air_r6 < 45) &&
+      (formData.air_r8 > 30 && formData.air_r8 < 45) &&
+      (formData.air_l2 > 30 && formData.air_l1 < 45) &&
+      (formData.air_r1 > 30 && formData.air_r1 < 45) &&
+      (formData.air_r2 > 30 && formData.air_r2 < 45) &&
+      (formData.air_r3 > 30 && formData.air_r2 < 45) &&
+      (formData.air_r4 > 30 && formData.air_r4 < 45) &&
+      (formData.air_r6 > 30 && formData.air_r6 < 45) &&
       (formData.air_r8 > 30 && formData.air_r8 < 45)
     ) {
       handleInputChange("diagnosis", "Slight hearing loss");
