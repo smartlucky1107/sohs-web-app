@@ -4,7 +4,7 @@ import BoneConduction from "./test-result/charts/boneconduction";
 
 const PrintTest = ({ airconddata, boneconddata, formData }) => {
   return (
-    <div className="bg-white p-20 py-12" id="section-to-print">
+    <div className="bg-white" id="section-to-print">
       <h1 className="font-bold text-4xl uppercase mb-5 text-center">
         SINGAPORE OCCUPATION HEALTH SERVICE PTE LTD
       </h1>
@@ -40,7 +40,7 @@ const PrintTest = ({ airconddata, boneconddata, formData }) => {
             <div className="text-xl flex items-center gap-2">
               <label className="font-bold">Name:</label>
               <input
-                className="border-b border-dashed border-black bg-transparent outline-none"
+                className="border-b border-dashed border-black bg-transparent outline-none w-[300px]"
                 value={formData.name}
               />
             </div>
@@ -56,7 +56,7 @@ const PrintTest = ({ airconddata, boneconddata, formData }) => {
             <div className="text-xl flex items-center gap-2">
               <label className="font-bold">DOB:</label>
               <input
-                className="border-b border-dashed border-black bg-transparent outline-none"
+                className="border-b border-dashed border-black bg-transparent outline-none w-[195px]"
                 value={
                   formData.dob &&
                   formData.dob !== "Invalid Date" &&
@@ -104,7 +104,7 @@ const PrintTest = ({ airconddata, boneconddata, formData }) => {
             <div className="text-xl flex items-center gap-2">
               <label className="font-bold">Years of Exposure:</label>
               <input
-                className="border-b border-dashed border-black bg-transparent outline-none"
+                className="border-b border-dashed border-black bg-transparent outline-none w-[200px]"
                 value={formData.yrs_exposure}
               />
             </div>
@@ -147,7 +147,7 @@ const PrintTest = ({ airconddata, boneconddata, formData }) => {
           </div>
         </div>
 
-        <div className="py-10">
+        <div className="py-8">
           <div className="flex items-center justify-between">
             <div className="w-[550px]">
               <h1 className="text-xl font-bold underline mb-1 text-center">
@@ -406,6 +406,12 @@ const PrintTest = ({ airconddata, boneconddata, formData }) => {
             </div>
           </div>
         </div>
+
+        <p className="pt-20 text-center text-xl">
+          The audiogram is vetted by theDesignated Factory Doctor and do not
+          require any signatory. Dr Teo Tiong Kiai. MBBS, GDOM, GDMH. MCR
+          M01507E, DWD 0088
+        </p>
       </div>
     </div>
   );

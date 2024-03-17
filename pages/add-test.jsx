@@ -9,7 +9,7 @@ import { useSession } from "next-auth/react";
 export default function TestResult() {
   const router = useRouter();
 
-  useSession({
+  const { data: session } = useSession({
     required: true,
     onUnauthenticated() {
       router.push("/login?redirect=" + router.pathname);
@@ -34,7 +34,7 @@ export default function TestResult() {
       </div>
 
       <ResultInfo />
-      <TestsResult />
+      <TestsResult session={session} />
       <CommonContact />
     </section>
   );

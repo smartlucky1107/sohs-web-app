@@ -47,42 +47,42 @@ export default function WorkersPopup(props) {
 
   const handleSubmit = async () => {
     try {
-      if (
-        formData.name == "" ||
-        !formData.name ||
-        formData.jobt == "" ||
-        !formData.jobt ||
-        formData.empno == "" ||
-        !formData.empno ||
-        formData.dob == "" ||
-        !formData.dob ||
-        formData.date == "" ||
-        !formData.date ||
-        formData.fin == "" ||
-        !formData.fin ||
-        formData.ypj == "" ||
-        !formData.ypj ||
-        formData.exp == "" ||
-        !formData.exp ||
-        formData.hist == "" ||
-        !formData.hist ||
-        formData.dept == "" ||
-        !formData.dept ||
-        formData.inf == "" ||
-        !formData.inf ||
-        formData.notify == "" ||
-        !formData.notify ||
-        formData.diag == "" ||
-        !formData.diag ||
-        formData.stat == "" ||
-        !formData.stat ||
-        formData.sex == "" ||
-        !formData.sex ||
-        formData.company_address == "" ||
-        !formData.company_address
-      ) {
-        return alert("All fields are required.");
-      }
+      // if (
+      //   formData.name == "" ||
+      //   !formData.name ||
+      //   formData.jobt == "" ||
+      //   !formData.jobt ||
+      //   formData.empno == "" ||
+      //   !formData.empno ||
+      //   formData.dob == "" ||
+      //   !formData.dob ||
+      //   formData.date == "" ||
+      //   !formData.date ||
+      //   formData.fin == "" ||
+      //   !formData.fin ||
+      //   formData.ypj == "" ||
+      //   !formData.ypj ||
+      //   formData.exp == "" ||
+      //   !formData.exp ||
+      //   formData.hist == "" ||
+      //   !formData.hist ||
+      //   formData.dept == "" ||
+      //   !formData.dept ||
+      //   formData.inf == "" ||
+      //   !formData.inf ||
+      //   formData.notify == "" ||
+      //   !formData.notify ||
+      //   formData.diag == "" ||
+      //   !formData.diag ||
+      //   formData.stat == "" ||
+      //   !formData.stat ||
+      //   formData.sex == "" ||
+      //   !formData.sex ||
+      //   formData.company_address == "" ||
+      //   !formData.company_address
+      // ) {
+      //   return alert("All fields are required.");
+      // }
 
       const isUnique = await isFinUnique(formData.fin);
       if (!isUnique) {
@@ -95,7 +95,20 @@ export default function WorkersPopup(props) {
         return;
       }
       await axios.post("/api/workers/addworker", formData); // Send POST request to API
-      // Reset form data or handle success
+
+      if (props.handleInputChange) {
+        props.handleInputChange("name", formData.name);
+        props.handleInputChange("fin", formData.fin);
+        props.handleInputChange("dob", formData.dob);
+        props.handleInputChange("sex", formData.sex);
+        props.handleInputChange("empno", formData.empno);
+        props.handleInputChange("date", formData.date);
+        props.handleInputChange("jobt", formData.jobt);
+        props.handleInputChange("yrs_exposure", formData.exp);
+        props.handleInputChange("dept", formData.dept);
+        props.handleInputChange("company_address", formData.company_address);
+      }
+
       setFormData({});
       props.setPopupState(0);
     } catch (error) {

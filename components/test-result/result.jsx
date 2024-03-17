@@ -19,7 +19,7 @@ const gender = [
   { label: "Female", value: "f" },
 ];
 
-export default function TestsResult() {
+export default function TestsResult({ session }) {
   const router = useRouter();
   const [airconddata, setAirconddata] = useState({
     labels: ["500Hz", "1kHz", "2kHz", "3kHz", "4kHz", "6kHz", "8kHz"],
@@ -35,6 +35,7 @@ export default function TestsResult() {
 
   const [PopupState, setPopupState] = useState(null);
   const [workerNames, setWorkerNames] = useState([]);
+  const [filterWorkers, setFilterWorkers] = useState([]);
   const [formData, setFormData] = useState({
     company_address: "",
     name: "",
@@ -140,6 +141,10 @@ export default function TestsResult() {
       }
     }
   };
+
+  useEffect(() => {
+    handleInputChange("name_and_signature", session?.user?.name);
+  }, [session]);
 
   useEffect(() => {
     const airValues = [
@@ -252,14 +257,14 @@ export default function TestsResult() {
       (formData.air_r1 > 30 && formData.air_r1 < 45) ||
       (formData.air_r2 > 30 && formData.air_r2 < 45) ||
       (formData.air_r3 > 30 && formData.air_r2 < 45) ||
-      (formData.air_r4 > 30 && formData.air_r4 > 45) ||
+      (formData.air_r4 > 30 && formData.air_r4 < 45) ||
       (formData.air_r6 > 30 && formData.air_r6 < 45) ||
       (formData.air_r8 > 30 && formData.air_r8 < 45) ||
       (formData.air_l2 > 30 && formData.air_l1 < 45) ||
       (formData.air_r1 > 30 && formData.air_r1 < 45) ||
       (formData.air_r2 > 30 && formData.air_r2 < 45) ||
       (formData.air_r3 > 30 && formData.air_r2 < 45) ||
-      (formData.air_r4 > 30 && formData.air_r4 > 45) ||
+      (formData.air_r4 > 30 && formData.air_r4 < 45) ||
       (formData.air_r6 > 30 && formData.air_r6 < 45) ||
       (formData.air_r8 > 30 && formData.air_r8 < 45)
     ) {
@@ -312,18 +317,55 @@ export default function TestsResult() {
   useEffect(() => {
     async function fetchData() {
       const data = await fetchWorkers();
-      setWorkerNames(data?.slice(0, 0 + 10));
+      setWorkerNames(data);
+      setFilterWorkers(data.slice(0, 10));
     }
 
     fetchData();
   }, [PopupState]);
+
+  const onNameSearch = (value) => {
+    const filtered = workerNames.filter((item) =>
+      item.name.toLowerCase().includes(value.toLowerCase())
+    );
+
+    if (filtered.length > 0) {
+      const selectedObject = filtered[0];
+      const index = workerNames.indexOf(selectedObject);
+
+      if (index > -1) {
+        workerNames.splice(index, 1); // Remove selected object from its current position
+        workerNames.unshift(selectedObject); // Add selected object to the beginning of the array
+      }
+    }
+
+    setFilterWorkers(workerNames.slice(0, 10));
+  };
+
+  const onFinSearch = (value) => {
+    const filtered = workerNames.filter((item) =>
+      item.fin.toLowerCase().includes(value.toLowerCase())
+    );
+
+    if (filtered.length > 0) {
+      const selectedObject = filtered[0];
+      const index = workerNames.indexOf(selectedObject);
+
+      if (index > -1) {
+        workerNames.splice(index, 1); // Remove selected object from its current position
+        workerNames.unshift(selectedObject); // Add selected object to the beginning of the array
+      }
+    }
+
+    setFilterWorkers(workerNames.slice(0, 10));
+  };
 
   const onNameSelect = (value) => {
     const worker = workerNames.find((worker) => worker.name === value);
 
     handleInputChange("fin", worker.fin);
     handleInputChange("dob", worker.dob);
-    handleInputChange("sex", worker.sex);
+    handleInputChange("sex", worker.sex.toLowerCase());
     handleInputChange("empno", worker.empno);
     handleInputChange("date", worker.date);
     handleInputChange("jobt", worker.jobt);
@@ -337,7 +379,7 @@ export default function TestsResult() {
 
     handleInputChange("name", worker.name);
     handleInputChange("dob", worker.dob);
-    handleInputChange("sex", worker.sex);
+    handleInputChange("sex", worker.sex.toLowerCase());
     handleInputChange("empno", worker.empno);
     handleInputChange("date", worker.date);
     handleInputChange("jobt", worker.jobt);
@@ -378,7 +420,7 @@ export default function TestsResult() {
             <div className="flex gap-4 lg:flex-nowrap flex-wrap">
               <p className=" lg:text-nowrap">Name:</p>
               <div>
-                {!PopupState && (
+                {!PopupState ? (
                   <Select
                     className="w-[280px] print-w-130px"
                     showSearch
@@ -389,11 +431,9 @@ export default function TestsResult() {
                     }
                     value={formData.name ? formData.name : undefined}
                     onSelect={onNameSelect}
-                    filterOption={(input, option) =>
-                      option.children
-                        .toLowerCase()
-                        .indexOf(input.toLowerCase()) >= 0
-                    }
+                    onSearch={(value) => {
+                      onNameSearch(value);
+                    }}
                     dropdownRender={(menu) => (
                       <div>
                         {menu}
@@ -409,12 +449,14 @@ export default function TestsResult() {
                       </div>
                     )}
                   >
-                    {workerNames.map((worker, index) => (
+                    {filterWorkers.slice(0, 10).map((worker, index) => (
                       <Option value={worker.name} key={index}>
                         {worker.name}
                       </Option>
                     ))}
                   </Select>
+                ) : (
+                  ""
                 )}
 
                 {PopupState && (
@@ -422,6 +464,7 @@ export default function TestsResult() {
                     <WorkersPopup
                       setPopupState={setPopupState}
                       PopupState={PopupState}
+                      handleInputChange={handleInputChange}
                     />
                   </div>
                 )}
@@ -439,11 +482,9 @@ export default function TestsResult() {
                     handleInputChange("fin", selectedValue)
                   }
                   onSelect={onFinSelect}
-                  filterOption={(input, option) =>
-                    option.children
-                      .toLowerCase()
-                      .indexOf(input.toLowerCase()) >= 0
-                  }
+                  onSearch={(value) => {
+                    onFinSearch(value);
+                  }}
                   value={formData.fin ? formData.fin : undefined}
                   dropdownRender={(menu) => (
                     <div>
@@ -460,7 +501,7 @@ export default function TestsResult() {
                     </div>
                   )}
                 >
-                  {workerNames.map((worker, index) => (
+                  {filterWorkers.slice(0, 10).map((worker, index) => (
                     <Option value={worker.fin} key={index}>
                       {worker.fin}
                     </Option>
