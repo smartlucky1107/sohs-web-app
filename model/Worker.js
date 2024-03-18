@@ -25,10 +25,6 @@ const workerSchema = new mongoose.Schema({
     type: String,
     required: false,
   },
-  ypj: {
-    type: String,
-    required: false,
-  },
   exp: {
     type: String,
     required: false,
@@ -64,6 +60,11 @@ const workerSchema = new mongoose.Schema({
   sex: {
     type: String,
     required: false,
+  },
+  previous_result: {
+    type: String,
+    required: false,
+    default: "",
   },
 });
 

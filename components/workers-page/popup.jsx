@@ -47,50 +47,21 @@ export default function WorkersPopup(props) {
 
   const handleSubmit = async () => {
     try {
-      // if (
-      //   formData.name == "" ||
-      //   !formData.name ||
-      //   formData.jobt == "" ||
-      //   !formData.jobt ||
-      //   formData.empno == "" ||
-      //   !formData.empno ||
-      //   formData.dob == "" ||
-      //   !formData.dob ||
-      //   formData.date == "" ||
-      //   !formData.date ||
-      //   formData.fin == "" ||
-      //   !formData.fin ||
-      //   formData.ypj == "" ||
-      //   !formData.ypj ||
-      //   formData.exp == "" ||
-      //   !formData.exp ||
-      //   formData.hist == "" ||
-      //   !formData.hist ||
-      //   formData.dept == "" ||
-      //   !formData.dept ||
-      //   formData.inf == "" ||
-      //   !formData.inf ||
-      //   formData.notify == "" ||
-      //   !formData.notify ||
-      //   formData.diag == "" ||
-      //   !formData.diag ||
-      //   formData.stat == "" ||
-      //   !formData.stat ||
-      //   formData.sex == "" ||
-      //   !formData.sex ||
-      //   formData.company_address == "" ||
-      //   !formData.company_address
-      // ) {
-      //   return alert("All fields are required.");
-      // }
+      if (
+        props.handleInputChange &&
+        (!formData.name || !formData.company_address || !formData.fin)
+      ) {
+        alert("Name, Company Address and Fin is required");
+        return;
+      }
 
       const isUnique = await isFinUnique(formData.fin);
-      if (!isUnique) {
+      if (formData.fin !== "" && !isUnique) {
         // 'fin' value is not unique, handle the case by showing an error message
         alert("FIN already exists. Please enter a unique FIN.");
         return;
       }
-      if (!validateNRICFormat(formData.fin)) {
+      if (formData.fin !== "" && !validateNRICFormat(formData.fin)) {
         alert("NRIC/FIN is not valid. Please enter a valid NRIC.");
         return;
       }
@@ -210,12 +181,18 @@ export default function WorkersPopup(props) {
               value={formData.fin}
             />
           </FloatLabel>
-          <FloatLabel label="Years PJ" className="w-[40%]" value={formData.ypj}>
+          <FloatLabel
+            label="Previous Result"
+            className="w-[40%]"
+            value={formData.previous_result}
+          >
             <Input
               size="large"
-              type="number"
-              onChange={(e) => handleInputChange("ypj", e.target.value)}
-              value={formData.ypj}
+              type="text"
+              onChange={(e) =>
+                handleInputChange("previous_result", e.target.value)
+              }
+              value={formData.previous_result}
             />
           </FloatLabel>
           <FloatLabel

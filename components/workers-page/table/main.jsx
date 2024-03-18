@@ -182,6 +182,11 @@ const TableMain = ({
       key: "hist",
     },
     {
+      title: "Previous Result",
+      dataIndex: "previous_result",
+      key: "previous_result",
+    },
+    {
       title: "Action",
       key: "action",
       render: (_, record) => (

@@ -21,7 +21,7 @@ export default function WorkersEditPopup(props) {
     // Fetch data from the JSON file based on the ID received from props
     const fetchData = async () => {
       try {
-        const data = await fetchWorkers();
+        const data = await fetchWorkers(id);
         // Assuming your data is an array of objects with an 'id' property
         const worker = data.find((worker) => worker.fin === id);
         setWorkerData(worker);
@@ -157,12 +157,18 @@ export default function WorkersEditPopup(props) {
             />
           </FloatLabel>
 
-          <FloatLabel label="Years PJ" className="w-[40%]" value={formData.ypj}>
+          <FloatLabel
+            label="Previous Result"
+            className="w-[40%]"
+            value={formData.previous_result}
+          >
             <Input
               size="large"
-              type="number"
-              onChange={(e) => handleInputChange("ypj", e.target.value)}
-              value={formData.ypj}
+              type="text"
+              onChange={(e) =>
+                handleInputChange("previous_result", e.target.value)
+              }
+              value={formData.previous_result}
             />
           </FloatLabel>
 

@@ -1,4 +1,5 @@
 import Test from "@/model/Test";
+import Worker from "@/model/Worker";
 import connectDB from "@/utils/connectDB";
 
 export default async function handler(req, res) {

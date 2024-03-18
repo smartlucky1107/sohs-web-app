@@ -83,6 +83,7 @@ const testSchema = new mongoose.Schema({
   review6mo: { type: String, required: false, default: "" },
   tonotify: { type: String, required: false, default: "" },
   notified: { type: String, required: false, default: "" },
+  previous_result: { type: String, required: false, default: "" },
 });
 
 const Test = mongoose.models.Test || mongoose.model("Test", testSchema);

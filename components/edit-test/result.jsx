@@ -9,6 +9,7 @@ import axios from "axios";
 import { fetchWorkers } from "@/services";
 import { validateNRICFormat } from "@/utils/validateNRICFormat";
 import PrintTest from "../PrintTest";
+import WorkersPopup from "../workers-page/popup";
 
 const { Option } = Select;
 
@@ -35,6 +36,7 @@ export default function TestsResult({ fin }) {
   const [PopupState, setPopupState] = useState(null);
   const [workerNames, setWorkerNames] = useState([]);
   const [filterWorkers, setFilterWorkers] = useState([]);
+  const [previousResult, setPreviousResult] = useState("");
   const [formData, setFormData] = useState({
     company_address: "",
     name: "",
@@ -94,6 +96,107 @@ export default function TestsResult({ fin }) {
   });
   const [graphRefresh, setGraphRefresh] = useState(true);
 
+  function diagnosisCondition() {
+    const air_r0_5 = formData.air_r0_5 !== "" ? formData.air_r0_5 : 0;
+    const air_r1 = formData.air_r1 !== "" ? formData.air_r1 : 0;
+    const air_r2 = formData.air_r2 !== "" ? formData.air_r2 : 0;
+    const air_r3 = formData.air_r3 !== "" ? formData.air_r3 : 0;
+    const air_r4 = formData.air_r4 !== "" ? formData.air_r4 : 0;
+    const air_r6 = formData.air_r6 !== "" ? formData.air_r6 : 0;
+    const air_r8 = formData.air_r8 !== "" ? formData.air_r8 : 0;
+    const air_l0_5 = formData.air_l0_5 !== "" ? formData.air_l0_5 : 0;
+    const air_l1 = formData.air_l1 !== "" ? formData.air_l1 : 0;
+    const air_l2 = formData.air_l2 !== "" ? formData.air_l2 : 0;
+    const air_l3 = formData.air_l3 !== "" ? formData.air_l3 : 0;
+    const air_l4 = formData.air_l4 !== "" ? formData.air_l4 : 0;
+    const air_l6 = formData.air_l6 !== "" ? formData.air_l6 : 0;
+    const air_l8 = formData.air_l8 !== "" ? formData.air_l8 : 0;
+    const bone_r4 = formData.bone_r4 !== "" ? formData.bone_r4 : 0;
+    const bone_l4 = formData.bone_l4 !== "" ? formData.bone_l4 : 0;
+    const yrs_exposure =
+      formData.yrs_exposure !== "" ? formData.yrs_exposure : 0;
+
+    if (
+      air_r0_5 !== "" &&
+      air_r0_5 <= 30 &&
+      air_r1 !== "" &&
+      air_r1 <= 30 &&
+      air_r2 !== "" &&
+      air_r2 <= 30 &&
+      air_r3 !== "" &&
+      air_r3 <= 30 &&
+      air_r4 !== "" &&
+      air_r4 <= 30 &&
+      air_r6 !== "" &&
+      air_r6 <= 30 &&
+      air_r8 !== "" &&
+      air_r8 <= 30 &&
+      air_l0_5 !== "" &&
+      air_l0_5 <= 30 &&
+      air_l1 !== "" &&
+      air_l1 <= 30 &&
+      air_l2 !== "" &&
+      air_l2 <= 30 &&
+      air_l3 !== "" &&
+      air_l3 <= 30 &&
+      air_l4 !== "" &&
+      air_l4 <= 30 &&
+      air_l6 !== "" &&
+      air_l6 <= 30 &&
+      air_l8 !== "" &&
+      air_l8 <= 30
+    ) {
+      handleInputChange("diagnosis", "Normal");
+      handleInputChange("action_plans", "No Action");
+      handleInputChange("action_plans_text", "");
+    } else if (
+      air_r4 > 30 &&
+      air_l4 > 30 &&
+      bone_r4 > 30 &&
+      bone_l4 > 30 &&
+      yrs_exposure !== "" &&
+      yrs_exposure > 5
+    ) {
+      handleInputChange("diagnosis", "NID Early");
+      handleInputChange("action_plans", "Notify OSHD/MOM");
+      handleInputChange("action_plans_text", "");
+    } else if (
+      air_r4 > 30 &&
+      air_l4 > 30 &&
+      bone_r4 > 30 &&
+      bone_l4 > 30 &&
+      yrs_exposure !== "" &&
+      yrs_exposure < 5
+    ) {
+      handleInputChange("diagnosis", "NID Suspect");
+      handleInputChange("action_plans", "Review (Date)");
+      handleInputChange("action_plans_text", "6 months");
+    } else if (
+      (air_r0_5 > 30 && air_r0_5 < 45) ||
+      (air_r1 > 30 && air_r1 < 45) ||
+      (air_r2 > 30 && air_r2 < 45) ||
+      (air_r3 > 30 && air_r2 < 45) ||
+      (air_r4 > 30 && air_r4 < 45) ||
+      (air_r6 > 30 && air_r6 < 45) ||
+      (air_r8 > 30 && air_r8 < 45) ||
+      (air_l0_5 > 30 && air_l0_5 < 45) ||
+      (air_l1 > 30 && air_l1 < 45) ||
+      (air_l2 > 30 && air_l2 < 45) ||
+      (air_l3 > 30 && air_l2 < 45) ||
+      (air_l4 > 30 && air_l4 < 45) ||
+      (air_l6 > 30 && air_l6 < 45) ||
+      (air_l8 > 30 && air_l8 < 45)
+    ) {
+      handleInputChange("diagnosis", "Slight hearing loss");
+      handleInputChange("action_plans", "No Action");
+      handleInputChange("action_plans_text", "");
+    } else {
+      handleInputChange("diagnosis", "Causes other than noise");
+      handleInputChange("action_plans", "Review (Date)");
+      handleInputChange("action_plans_text", "6 months");
+    }
+  }
+
   const handleInputChange = (key, value) => {
     setFormData((prevData) => ({
       ...prevData,
@@ -102,6 +205,7 @@ export default function TestsResult({ fin }) {
 
     if (key === "yrs_exposure") {
       setGraphRefresh("yes_refresh");
+      diagnosisCondition();
     }
 
     if (key === "diagnosis") {
@@ -194,107 +298,11 @@ export default function TestsResult({ fin }) {
   }, [graphRefresh]);
 
   useEffect(() => {
-    if (
-      (formData.air_r0_5 !== "" &&
-        formData.air_r0_5 <= 30 &&
-        formData.air_r1 !== "" &&
-        formData.air_r1 <= 30 &&
-        formData.air_r2 !== "" &&
-        formData.air_r2 <= 30 &&
-        formData.air_r3 !== "" &&
-        formData.air_r3 <= 30 &&
-        formData.air_r4 !== "" &&
-        formData.air_r4 <= 30 &&
-        formData.air_r6 !== "" &&
-        formData.air_r6 <= 30 &&
-        formData.air_r8 !== "" &&
-        formData.air_r8 <= 30) ||
-      (formData.air_l0_5 !== "" &&
-        formData.air_l0_5 <= 30 &&
-        formData.air_l1 !== "" &&
-        formData.air_l1 <= 30 &&
-        formData.air_l2 !== "" &&
-        formData.air_l2 <= 30 &&
-        formData.air_l3 !== "" &&
-        formData.air_l3 <= 30 &&
-        formData.air_l4 !== "" &&
-        formData.air_l4 <= 30 &&
-        formData.air_l6 !== "" &&
-        formData.air_l6 <= 30 &&
-        formData.air_l8 !== "" &&
-        formData.air_l8 <= 30)
-    ) {
-      handleInputChange("diagnosis", "Normal");
-      handleInputChange("action_plans", "No Action");
-      handleInputChange("action_plans_text", "");
-    } else if (
-      formData.air_r4 > 30 &&
-      formData.air_l4 > 30 &&
-      formData.bone_r4 > 30 &&
-      formData.bone_l4 > 30 &&
-      formData.yrs_exposure > 5
-    ) {
-      handleInputChange("diagnosis", "NID Early");
-      handleInputChange("action_plans", "Notify OSHD/MOM");
-      handleInputChange("action_plans_text", "");
-    } else if (
-      formData.air_r4 > 30 &&
-      formData.air_l4 > 30 &&
-      formData.bone_r4 > 30 &&
-      formData.bone_l4 > 30 &&
-      formData.yrs_exposure < 5
-    ) {
-      handleInputChange("diagnosis", "NID Suspect");
-      handleInputChange("action_plans", "Review (Date)");
-      handleInputChange("action_plans_text", "6 months");
-    } else if (
-      (formData.air_r0_5 > 30 && formData.air_r0_5 < 45) &&
-      (formData.air_r1 > 30 && formData.air_r1 < 45) &&
-      (formData.air_r2 > 30 && formData.air_r2 < 45) &&
-      (formData.air_r3 > 30 && formData.air_r3 < 45) &&
-      (formData.air_r4 > 30 && formData.air_r4 < 45) &&
-      (formData.air_r6 > 30 && formData.air_r6 < 45) &&
-      (formData.air_r8 > 30 && formData.air_r8 < 45) &&
-      (formData.air_l2 > 30 && formData.air_l2 < 45) &&
-      (formData.air_l3 > 30 && formData.air_l3 < 45) &&
-      (formData.air_l4 > 30 && formData.air_l4 < 45) &&
-      (formData.air_l6 > 30 && formData.air_l6 < 45) &&
-      (formData.air_l8 > 30 && formData.air_l8 < 45) &&
-      (formData.air_l1 > 30 && formData.air_l1 < 45) &&
-      (formData.air_l0_5 > 30 && formData.air_l0_5 < 45)
-    ) {
-      handleInputChange("diagnosis", "Slight hearing loss");
-      handleInputChange("action_plans", "No Action");
-      handleInputChange("action_plans_text", "");
-    } else {
-      if (formData.air_l0_5 !== "") {
-        handleInputChange("diagnosis", "Causes other than noise");
-        handleInputChange("action_plans", "Review (Date)");
-        handleInputChange("action_plans_text", "6 months");
-      }
-    }
+    diagnosisCondition();
   }, [graphRefresh]);
-
-  const isFinUnique = async (fin) => {
-    try {
-      const response = await axios.get(
-        `/api/tests/checkFinUnique?fin=${fin}&currentFin=${id}`
-      ); // Replace with your API endpoint to check 'fin' uniqueness
-      return response.data.isUnique; // Assuming the response contains a boolean indicating uniqueness
-    } catch (error) {
-      console.error("Failed to check uniqueness of fin:", error);
-      return false; // Assuming uniqueness check fails
-    }
-  };
 
   const handleUpdate = async () => {
     try {
-      const isExists = await isFinUnique(formData.fin);
-      if (isExists) {
-        // 'fin' value is not unique, handle the case by showing an error message
-        alert("FIN already exists. Please enter a unique FIN.");
-        return;
-      }
       if (!validateNRICFormat(formData.fin)) {
         alert("NRIC/FIN is not valid. Please enter a valid NRIC.");
         return;
@@ -315,6 +323,7 @@ export default function TestsResult({ fin }) {
       try {
         const response = await axios.get(`/api/tests/test?fin=${id}`); // Replace with your API endpoint to check 'fin' uniqueness
         setFormData(response.data); // Assuming the response contains a boolean indicating uniqueness
+        setPreviousResult(response.data.previous_result);
         setGraphRefresh("ok");
       } catch (error) {
         console.error("Failed to check uniqueness of fin:", error);
@@ -382,6 +391,7 @@ export default function TestsResult({ fin }) {
     handleInputChange("yrs_exposure", worker.exp);
     handleInputChange("dept", worker.dept);
     handleInputChange("company_address", worker.company_address);
+    setPreviousResult(worker.previous_result);
   };
 
   const onFinSelect = (value) => {
@@ -396,12 +406,13 @@ export default function TestsResult({ fin }) {
     handleInputChange("yrs_exposure", worker.exp);
     handleInputChange("dept", worker.dept);
     handleInputChange("company_address", worker.company_address);
+    setPreviousResult(worker.previous_result);
   };
 
   return (
     <>
       <section className="flex w-full flex-col justify-center items-center py-10 px-4">
-        <div className="w-full max-w-[1280px] flex flex-col justify-center items-center gap-7 ">
+        <div className="w-full max-w-[1510px] flex flex-col justify-center items-center gap-7 ">
           <div className="w-full flex gap-4 lg:flex-nowrap flex-wrap">
             <p className=" lg:text-nowrap">Company Address:</p>
             <Select
@@ -426,7 +437,7 @@ export default function TestsResult({ fin }) {
             <div className="flex gap-4 lg:flex-nowrap flex-wrap">
               <p className=" lg:text-nowrap">Name:</p>
               <div>
-                {!PopupState && (
+                {!PopupState ? (
                   <Select
                     className="w-[280px] print-w-130px"
                     showSearch
@@ -435,7 +446,7 @@ export default function TestsResult({ fin }) {
                     onChange={(selectedValue) =>
                       handleInputChange("name", selectedValue)
                     }
-                    value={formData.name}
+                    value={formData.name ? formData.name : undefined}
                     onSelect={onNameSelect}
                     onSearch={(value) => {
                       onNameSearch(value);
@@ -461,6 +472,8 @@ export default function TestsResult({ fin }) {
                       </Option>
                     ))}
                   </Select>
+                ) : (
+                  ""
                 )}
 
                 {PopupState && (
@@ -506,8 +519,8 @@ export default function TestsResult({ fin }) {
                   )}
                 >
                   {filterWorkers.slice(0, 10).map((worker, index) => (
-                    <Option value={worker.name} key={index}>
-                      {worker.name}
+                    <Option value={worker.fin} key={index}>
+                      {worker.fin}
                     </Option>
                   ))}
                 </Select>
@@ -519,11 +532,7 @@ export default function TestsResult({ fin }) {
                 format="DD/MM/YYYY"
                 className="h-[32px]"
                 placeholder="DOB"
-                value={
-                  formData.dob &&
-                  formData.dob !== "Invalid Date" &&
-                  dayjs(formData.dob)
-                }
+                value={formData.dob && dayjs(formData.dob)}
                 onChange={(selectedDate) =>
                   handleInputChange("dob", selectedDate)
                 }
@@ -538,28 +547,24 @@ export default function TestsResult({ fin }) {
                 value={formData.sex}
               />
             </div>
-          </div>
-          <div className="w-full flex justify-start flex-wrap gap-4">
             <div className="flex gap-4 lg:flex-nowrap flex-wrap">
               <p className=" lg:text-nowrap">Emp. No.:</p>
               <Input
                 placeholder="Emp. No."
                 value={formData.empno}
-                onChange={(e) => handleInputChange("empno", e.target.value)}
                 className="print-w-130px"
+                onChange={(e) => handleInputChange("empno", e.target.value)}
               />
             </div>
+          </div>
+          <div className="w-full flex justify-start flex-wrap gap-4">
             <div className="flex gap-4 lg:flex-nowrap flex-wrap">
               <p className=" lg:text-nowrap">Date Joined:</p>
               <DatePicker
                 format="DD/MM/YYYY"
                 className="h-[32px]"
                 placeholder="Date Joined"
-                value={
-                  formData.date &&
-                  formData.date !== "Invalid Date" &&
-                  dayjs(formData.date)
-                }
+                value={formData.date && dayjs(formData.date)}
                 onChange={(selectedDate) =>
                   handleInputChange("date", selectedDate)
                 }
@@ -581,8 +586,7 @@ export default function TestsResult({ fin }) {
                 value={formData.jobt}
               />
             </div>
-          </div>
-          <div className="w-full flex justify-start flex-wrap gap-4">
+
             <div className="flex gap-4 lg:flex-nowrap flex-wrap">
               <p className=" lg:text-nowrap">Years of Exposure:</p>
               <Input
@@ -621,7 +625,20 @@ export default function TestsResult({ fin }) {
               />
             </div>
           </div>
+
           <div className="w-full flex justify-start flex-wrap gap-4">
+            <div className="flex gap-4 lg:flex-nowrap flex-wrap w-full">
+              <p className=" lg:text-nowrap">Previous Result</p>
+              <Input
+                placeholder="Previous Result"
+                value={previousResult}
+                onChange={(e) => setPreviousResult(e.target.value)}
+                className="border-dashed border-b border-t-0 border-x-0 !ring-0 rounded-none px-0 w-full"
+              />
+            </div>
+          </div>
+
+          <div className="w-full flex justify-start flex-col gap-4">
             <div className="flex gap-4 lg:flex-nowrap flex-wrap">
               <p className=" lg:text-nowrap">
                 Does the employees wear hearing protector when exposed to
@@ -633,8 +650,8 @@ export default function TestsResult({ fin }) {
                   handleInputChange("excessive_noise", e.target.value)
                 }
               >
-                <Radio value={"Yes"}>Yes</Radio>
-                <Radio value={"No"}>No</Radio>
+                <Radio value="Yes">Yes</Radio>
+                <Radio value="No">No</Radio>
               </Radio.Group>
             </div>
             <div className="flex gap-4 lg:flex-nowrap flex-wrap">
@@ -647,27 +664,29 @@ export default function TestsResult({ fin }) {
                   handleInputChange("hearing_protectors", e.target.value)
                 }
               >
-                <Radio value={"Yes"}>Yes</Radio>
-                <Radio value={"No"}>No</Radio>
+                <Radio value="Yes">Yes</Radio>
+                <Radio value="No">No</Radio>
               </Radio.Group>
             </div>
           </div>
-          <div className="w-full grid lg:grid-cols-2 grid-cols-1  gap-4">
-            <div>
-              <p className=" lg:text-nowrap">Right</p>
-              <RightTable
-                handleInputChange={handleInputChange}
-                formData={formData}
-                setGraphRefresh={setGraphRefresh}
-              />
-            </div>
-            <div>
-              <p className=" lg:text-nowrap">Left</p>
-              <LeftTable
-                handleInputChange={handleInputChange}
-                formData={formData}
-                setGraphRefresh={setGraphRefresh}
-              />
+          <div className="w-full">
+            <div className="max-w-[1280px] w-full grid lg:grid-cols-2 grid-cols-1  gap-4">
+              <div>
+                <p className=" lg:text-nowrap">Right</p>
+                <RightTable
+                  handleInputChange={handleInputChange}
+                  formData={formData}
+                  setGraphRefresh={setGraphRefresh}
+                />
+              </div>
+              <div>
+                <p className=" lg:text-nowrap">Left</p>
+                <LeftTable
+                  handleInputChange={handleInputChange}
+                  formData={formData}
+                  setGraphRefresh={setGraphRefresh}
+                />
+              </div>
             </div>
           </div>
           <div className="w-full flex justify-start flex-col flex-wrap gap-4">
@@ -696,11 +715,7 @@ export default function TestsResult({ fin }) {
                   format="DD/MM/YYYY"
                   className="h-[32px]"
                   placeholder="Date Tested"
-                  value={
-                    formData.date_tested &&
-                    formData.date_tested !== "Invalid Date" &&
-                    dayjs(formData.date_tested)
-                  }
+                  value={formData.date_tested && dayjs(formData.date_tested)}
                   onChange={(selectedDate) =>
                     handleInputChange("date_tested", selectedDate)
                   }
@@ -708,14 +723,16 @@ export default function TestsResult({ fin }) {
               </div>
             </div>
           </div>
-          <div className="w-full grid lg:grid-cols-2 grid-cols-1 justify-start  gap-4">
-            <div>
-              <p className=" lg:text-nowrap">Air Conduction Test</p>
-              <AirConduction data={airconddata} />
-            </div>
-            <div>
-              <p className=" lg:text-nowrap">Bone Conduction Test</p>
-              <BoneConduction data={boneconddata} />
+          <div className="w-full">
+            <div className="max-w-[1280px] w-full grid lg:grid-cols-2 grid-cols-1 justify-start  gap-4">
+              <div>
+                <p className=" lg:text-nowrap">Air Conduction Test</p>
+                <AirConduction data={airconddata} />
+              </div>
+              <div>
+                <p className=" lg:text-nowrap">Bone Conduction Test</p>
+                <BoneConduction data={boneconddata} />
+              </div>
             </div>
           </div>
 

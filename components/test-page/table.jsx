@@ -185,6 +185,7 @@ export default function TestTable(props) {
             review6mo: item.review6mths,
             tonotify: item.tonotify,
             notified: item.Notified,
+            previous_result: item.result,
           };
           allData.push(formData);
         });

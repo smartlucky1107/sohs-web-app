@@ -30,9 +30,10 @@ export const register_now = async (FormData) => {
   }
 };
 
-export const fetchWorkers = async () => {
+export const fetchWorkers = async (id) => {
   try {
-    const apiUrl = config.apiUrl + "/workers";
+    let apiUrl = config.apiUrl + "/workers";
+    if (id) apiUrl += "?fin=" + id;
     const response = await axios.get(apiUrl);
     if (response.data.success) {
       const data = response.data.data;

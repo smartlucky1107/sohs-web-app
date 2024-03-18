@@ -13,12 +13,6 @@ export default async function handler(req, res) {
     try {
       await connectDB();
 
-      // Check if 'fin' value already exists
-      const existingTest = await Test.findOne({ fin: data.fin });
-      if (existingTest) {
-        return res.status(400).json({ error: "FIN must be unique" });
-      }
-
       // Create a new test using the Test schema
       const newTest = new Test(data);
 

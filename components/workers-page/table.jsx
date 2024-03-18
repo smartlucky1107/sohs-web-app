@@ -1,4 +1,4 @@
-import { Input, Button, Modal, Spin } from "antd";
+import { Input, Button, Modal, Spin, Select } from "antd";
 import { SearchOutlined } from "@ant-design/icons";
 import { useState } from "react";
 import { CiSearch } from "react-icons/ci";
@@ -6,8 +6,21 @@ import TableMain from "./table/main";
 import Papa from "papaparse";
 import axios from "axios";
 import { downloadExcelFile, readExcelFile } from "@/utils/excelfile";
+import FloatLabel from "../FloatLabel";
 
 const { Search } = Input;
+
+const companyAddressLists = [
+  { value: "C&P", label: "C&P" },
+  { value: "SEO", label: "SEO" },
+  { value: "CONCEPT", label: "CONCEPT" },
+  { value: "CT", label: "CT" },
+  { value: "FOOD", label: "FOOD" },
+  { value: "CWT", label: "CWT" },
+  { value: "AWOLF", label: "AWOLF" },
+  { value: "PRAGAS", label: "PRAGAS" },
+  { value: "PROS", label: "PROS" },
+];
 
 function getDateString(date) {
   var dateString = date;
@@ -32,6 +45,7 @@ export default function WorkersTable(props) {
   const [data, setData] = useState([]);
   const [searchText, setSearchText] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [companyAddress, setCompanyAddress] = useState("");
   const [file, setFile] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -91,6 +105,7 @@ export default function WorkersTable(props) {
               diag: item.IHDdiag,
               stat: item.Statutory,
               sex: item.Sex,
+              company_address: companyAddress,
             };
             allData.push(formData);
           });
@@ -108,31 +123,16 @@ export default function WorkersTable(props) {
     setFile(e.target.files[0]);
   };
 
-  const handleExport = () => {
-    let Data = [];
-
-    data.map((data) => {
-      Data.push({
-        Name: data.name,
-        "Job Title": data.jobt,
-        Empno: data.empno,
-        DOB: data.dob,
-        Date: data.date,
-        "NRIC/FIN": data.fin,
-        Yrs_pj: data.ypj,
-        Yrs_exp: data.exp,
-        Occ_hist: data.hist,
-        Dept: data.dept,
-        "Company Address": data.company_address,
-        IHDinf: data.inf,
-        Notify: data.notify,
-        IHDdiag: data.diag,
-        Statutory: data.stat,
-        Sex: data.sex,
-      });
-    });
-
-    downloadExcelFile(Data, "workers.xlsx");
+  const clearData = async () => {
+    if (confirm("Are you sure you want to delete all workers?")) {
+      try {
+        await axios.post("/api/workers/clear"); // Send POST request to API
+        location.reload();
+      } catch (error) {
+        // Handle error
+        console.error("Failed to submit data:", error);
+      }
+    }
   };
 
   return (
@@ -170,10 +170,10 @@ export default function WorkersTable(props) {
               Import Excel
             </button>
             <button
-              onClick={handleExport}
-              className="bg-[#0094f1] py-3 px-5 uppercase text-white"
+              className="bg-red-500 py-3 px-5 uppercase text-white"
+              onClick={clearData}
             >
-              Export Excel
+              Clear Data
             </button>
           </div>
         </div>
@@ -194,11 +194,22 @@ export default function WorkersTable(props) {
           className="[&_.ant-btn-primary]:!bg-[#1677ff]"
         >
           {isLoading ? (
-            <Spin tip="Importing...">
-              <Input type="file" onChange={handleFileUpload} />
-            </Spin>
+            <Spin tip="Importing..."></Spin>
           ) : (
-            <Input type="file" onChange={handleFileUpload} />
+            <>
+              <FloatLabel label="Company Address" value={companyAddress}>
+                <Select
+                  options={companyAddressLists}
+                  value={companyAddress !== "" ? companyAddress : undefined}
+                  onChange={(selectedOption) =>
+                    setCompanyAddress(selectedOption)
+                  }
+                  className="w-full"
+                />
+              </FloatLabel>
+
+              <Input type="file" onChange={handleFileUpload} className="mt-2" />
+            </>
           )}
         </Modal>
       </div>
