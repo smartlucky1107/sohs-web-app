@@ -68,7 +68,7 @@ export const NumberTable = ({
                   !label ? (prevIndex + 1) % cells.length : prevIndex
                 );
             handleInputChange(label ? label : cells[currentIndex], 0);
-            setGraphRefresh(label ? label : cells[currentIndex]);
+            setGraphRefresh(Math.random() * 1000);
 
             setLabel("");
           }}
@@ -86,7 +86,7 @@ export const NumberTable = ({
                   !label ? (prevIndex + 1) % cells.length : prevIndex
                 );
             handleInputChange(label ? label : cells[currentIndex], 5);
-            setGraphRefresh(label ? label : cells[currentIndex]);
+            setGraphRefresh(Math.random() * 1000);
 
             setLabel("");
           }}
@@ -104,7 +104,7 @@ export const NumberTable = ({
                   !label ? (prevIndex + 1) % cells.length : prevIndex
                 );
             handleInputChange(label ? label : cells[currentIndex], 10);
-            setGraphRefresh(label ? label : cells[currentIndex]);
+            setGraphRefresh(Math.random() * 1000);
 
             setLabel("");
           }}
@@ -122,7 +122,7 @@ export const NumberTable = ({
                   !label ? (prevIndex + 1) % cells.length : prevIndex
                 );
             handleInputChange(label ? label : cells[currentIndex], 15);
-            setGraphRefresh(label ? label : cells[currentIndex]);
+            setGraphRefresh(Math.random() * 1000);
 
             setLabel("");
           }}
@@ -140,7 +140,7 @@ export const NumberTable = ({
                   !label ? (prevIndex + 1) % cells.length : prevIndex
                 );
             handleInputChange(label ? label : cells[currentIndex], 20);
-            setGraphRefresh(label ? label : cells[currentIndex]);
+            setGraphRefresh(Math.random() * 1000);
 
             setLabel("");
           }}
@@ -160,7 +160,7 @@ export const NumberTable = ({
                   !label ? (prevIndex + 1) % cells.length : prevIndex
                 );
             handleInputChange(label ? label : cells[currentIndex], 25);
-            setGraphRefresh(label ? label : cells[currentIndex]);
+            setGraphRefresh(Math.random() * 1000);
 
             setLabel("");
           }}
@@ -178,7 +178,7 @@ export const NumberTable = ({
                   !label ? (prevIndex + 1) % cells.length : prevIndex
                 );
             handleInputChange(label ? label : cells[currentIndex], 30);
-            setGraphRefresh(label ? label : cells[currentIndex]);
+            setGraphRefresh(Math.random() * 1000);
 
             setLabel("");
           }}
@@ -196,7 +196,7 @@ export const NumberTable = ({
                   !label ? (prevIndex + 1) % cells.length : prevIndex
                 );
             handleInputChange(label ? label : cells[currentIndex], 35);
-            setGraphRefresh(label ? label : cells[currentIndex]);
+            setGraphRefresh(Math.random() * 1000);
 
             setLabel("");
           }}
@@ -214,7 +214,7 @@ export const NumberTable = ({
                   !label ? (prevIndex + 1) % cells.length : prevIndex
                 );
             handleInputChange(label ? label : cells[currentIndex], 40);
-            setGraphRefresh(label ? label : cells[currentIndex]);
+            setGraphRefresh(Math.random() * 1000);
 
             setLabel("");
           }}
@@ -232,7 +232,7 @@ export const NumberTable = ({
                   !label ? (prevIndex + 1) % cells.length : prevIndex
                 );
             handleInputChange(label ? label : cells[currentIndex], 45);
-            setGraphRefresh(label ? label : cells[currentIndex]);
+            setGraphRefresh(Math.random() * 1000);
 
             setLabel("");
           }}
@@ -252,7 +252,7 @@ export const NumberTable = ({
                   !label ? (prevIndex + 1) % cells.length : prevIndex
                 );
             handleInputChange(label ? label : cells[currentIndex], 50);
-            setGraphRefresh(label ? label : cells[currentIndex]);
+            setGraphRefresh(Math.random() * 1000);
 
             setLabel("");
           }}
@@ -270,7 +270,7 @@ export const NumberTable = ({
                   !label ? (prevIndex + 1) % cells.length : prevIndex
                 );
             handleInputChange(label ? label : cells[currentIndex], 55);
-            setGraphRefresh(label ? label : cells[currentIndex]);
+            setGraphRefresh(Math.random() * 1000);
 
             setLabel("");
           }}
@@ -288,7 +288,7 @@ export const NumberTable = ({
                   !label ? (prevIndex + 1) % cells.length : prevIndex
                 );
             handleInputChange(label ? label : cells[currentIndex], 60);
-            setGraphRefresh(label ? label : cells[currentIndex]);
+            setGraphRefresh(Math.random() * 1000);
 
             setLabel("");
           }}
@@ -306,7 +306,7 @@ export const NumberTable = ({
                   !label ? (prevIndex + 1) % cells.length : prevIndex
                 );
             handleInputChange(label ? label : cells[currentIndex], 65);
-            setGraphRefresh(label ? label : cells[currentIndex]);
+            setGraphRefresh(Math.random() * 1000);
 
             setLabel("");
           }}
@@ -324,7 +324,7 @@ export const NumberTable = ({
                   !label ? (prevIndex + 1) % cells.length : prevIndex
                 );
             handleInputChange(label ? label : cells[currentIndex], 70);
-            setGraphRefresh(label ? label : cells[currentIndex]);
+            setGraphRefresh(Math.random() * 1000);
 
             setLabel("");
           }}
@@ -344,7 +344,7 @@ export const NumberTable = ({
                   !label ? (prevIndex + 1) % cells.length : prevIndex
                 );
             handleInputChange(label ? label : cells[currentIndex], 75);
-            setGraphRefresh(label ? label : cells[currentIndex]);
+            setGraphRefresh(Math.random() * 1000);
 
             setLabel("");
           }}
@@ -362,7 +362,7 @@ export const NumberTable = ({
                   !label ? (prevIndex + 1) % cells.length : prevIndex
                 );
             handleInputChange(label ? label : cells[currentIndex], 80);
-            setGraphRefresh(label ? label : cells[currentIndex]);
+            setGraphRefresh(Math.random() * 1000);
 
             setLabel("");
           }}
@@ -380,7 +380,7 @@ export const NumberTable = ({
                   !label ? (prevIndex + 1) % cells.length : prevIndex
                 );
             handleInputChange(label ? label : cells[currentIndex], 85);
-            setGraphRefresh(label ? label : cells[currentIndex]);
+            setGraphRefresh(Math.random() * 1000);
 
             setLabel("");
           }}
@@ -398,7 +398,7 @@ export const NumberTable = ({
                   !label ? (prevIndex + 1) % cells.length : prevIndex
                 );
             handleInputChange(label ? label : cells[currentIndex], 90);
-            setGraphRefresh(label ? label : cells[currentIndex]);
+            setGraphRefresh(Math.random() * 1000);
 
             setLabel("");
           }}
@@ -416,7 +416,7 @@ export const NumberTable = ({
                   !label ? (prevIndex + 1) % cells.length : prevIndex
                 );
             handleInputChange(label ? label : cells[currentIndex], 95);
-            setGraphRefresh(label ? label : cells[currentIndex]);
+            setGraphRefresh(Math.random() * 1000);
 
             setLabel("");
           }}
