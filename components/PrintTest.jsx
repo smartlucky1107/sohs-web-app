@@ -8,9 +8,7 @@ const PrintTest = ({ airconddata, boneconddata, formData }) => {
       <h1 className="font-bold text-4xl uppercase mb-5 text-center">
         SINGAPORE OCCUPATION HEALTH SERVICE PTE LTD
       </h1>
-      <p className="text-xl font-medium text-center">
-        Singapore Occupational Health Services Pte Ltd
-      </p>
+      
       <p className="text-xl font-medium text-center">
         16 Ayer Rajah Crescent, Tempco Technominium, #06-06B, Singapore 139955.
         Tel: 68725020, 67772829. Fax: 68725679.
@@ -409,15 +407,11 @@ const PrintTest = ({ airconddata, boneconddata, formData }) => {
           </div>
         </div>
 
-        <p className="pt-14 text-center text-xl leading-8">
+        <p className="pt-14 text-xl leading-8">
           This audiogram is vetted by the Designated Workplace Doctor and do not
           require any signatory.
           <br />
-          Dr Teo Tiong Kiat
-          <br />
-          MBBS, GDOM, GDMH
-          <br />
-          MCR M01507E, DWD 0088
+          <span style={{fontSize: '0.9em'}}> Dr Teo Tiong Kiat MBBS, GDOM, GDMH, MCR M01507E, DWD 0088</span>
         </p>
       </div>
     </div>

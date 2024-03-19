@@ -80,35 +80,37 @@ export default function WorkersTable(props) {
     if (file) {
       if (file) {
         readExcelFile(file, (excelData) => {
+          console.log('3333333333333');
+          console.log(excelData);
           let allData = [];
 
           excelData.map((item) => {
             const formData = {
-              name: item.Name,
-              jobt: item[Object.keys(item).find((key) => key === "Job Title")],
-              empno: item.Empno,
+              name: item.Name ? item.Name : '',
+              jobt: item[Object.keys(item).find((key) => key === "Job Title")] ? item[Object.keys(item).find((key) => key === "Job Title")] : '',
+              empno: item.Empno ? item.Empno : '',
               dob:
                 getDateString(item.DOB) != "Invalid Date"
                   ? getDateString(item.DOB)
                   : "",
               date:
-                getDateString(item.Date) != "Invalid Date"
-                  ? getDateString(item.Date)
+                getDateString(item.Date_j) != "Invalid Date"
+                  ? getDateString(item.Date_j)
                   : "",
               fin: item[Object.keys(item).find((key) => key === "NRIC/FIN")],
-              ypj: item.Yrs_pj,
-              exp: item.Yrs_exp,
-              hist: item.Occ_hist,
-              dept: item.Dept,
+              ypj: item.Yrs_pj ? item.Yrs_pj : '',
+              exp: item.Yrs_exp ? item.Yrs_exp : '',
+              hist: item.Occ_hist ? item.Occ_hist : '',
+              dept: item.Dept ? item.Dept : '',
               company_address:
                 item[
                   Object.keys(item).find((key) => key === "Company Address")
                 ],
-              inf: item.IHDinf,
-              notify: item.Notify,
-              diag: item.IHDdiag,
-              stat: item.Statutory,
-              sex: item.Sex,
+              inf: item.IHDinf ? item.IHDinf : '',
+              notify: item.Notify ? item.Notify : '',
+              diag: item.IHDdiag ? item.IHDdiag : '',
+              stat: item.Statutory ? item.Statutory : '',
+              sex: item.Sex ? item.Sex : '',
               company_address: companyAddress,
             };
             allData.push(formData);
