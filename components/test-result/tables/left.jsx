@@ -490,240 +490,355 @@ const RightTable = ({ handleInputChange, formData, setGraphRefresh }) => {
     {
       freq: <span class="px-4">Rt AC/db</span>,
       0.5: (
-        <button
-          onClick={() => {
-            setLabel("air_l0_5");
-          }}
-          className="w-[71px] h-[52px] flex items-center justify-center"
-        >
-          {formData.air_l0_5}
-
-          {formData.air_l0_5 === "" ? <span className="blink"></span> : ""}
-        </button>
+        <div className="w-[71px] h-[52px] flex items-center justify-center relative">
+          <input
+            type="text"
+            value={formData.air_l0_5}
+            onClick={() => {
+              setLabel("air_l0_5");
+            }}
+            className="w-[71px] h-[52px] flex items-center justify-center text-center caret-transparent"
+            onKeyDown={(event) => {
+              if (event.key === "Backspace") {
+                handleInputChange("air_l0_5", "");
+                setGraphRefresh("empty_air_l0_5");
+              }
+            }}
+          />
+          {formData.air_l0_5 === "" ? (
+            <span className="blink absolute top-[50%] -translate-y-[50%]"></span>
+          ) : (
+            ""
+          )}
+        </div>
       ),
       one: (
-        <button
-          onClick={() => {
-            setLabel("air_l1");
-          }}
-          className="w-[71px] h-[52px] flex items-center justify-center"
-        >
-          {formData.air_l1}
+        <div className="w-[71px] h-[52px] flex items-center justify-center relative">
+          <input
+            type="text"
+            value={formData.air_l1}
+            onClick={() => {
+              setLabel("air_l1");
+            }}
+            className="w-[71px] h-[52px] flex items-center justify-center text-center caret-transparent"
+            onKeyDown={(event) => {
+              if (event.key === "Backspace") {
+                handleInputChange("air_l1", "");
+                setGraphRefresh("empty_air_l1");
+              }
+            }}
+          />
 
           {(formData.air_l0_5 !== "" && formData.air_l1 === "") ||
           label == "air_l1" ? (
-            <span className="blink"></span>
+            <span className="blink absolute top-[50%] -translate-y-[50%]"></span>
           ) : (
             ""
           )}
-        </button>
+        </div>
       ),
       two: (
-        <button
-          onClick={() => {
-            setLabel("air_l2");
-          }}
-          className="w-[71px] h-[52px] flex items-center justify-center"
-        >
-          {formData.air_l2}
+        <div className="w-[71px] h-[52px] flex items-center justify-center relative">
+          <input
+            type="text"
+            value={formData.air_l2}
+            onClick={() => {
+              setLabel("air_l2");
+            }}
+            className="w-[71px] h-[52px] flex items-center justify-center text-center caret-transparent"
+            onKeyDown={(event) => {
+              if (event.key === "Backspace") {
+                handleInputChange("air_l2", "");
+                setGraphRefresh("empty_air_l2");
+              }
+            }}
+          />
 
           {(formData.air_l1 !== "" && formData.air_l2 === "") ||
           label == "air_l2" ? (
-            <span className="blink"></span>
+            <span className="blink absolute top-[50%] -translate-y-[50%]"></span>
           ) : (
             ""
           )}
-        </button>
+        </div>
       ),
       three: (
-        <button
-          onClick={() => {
-            setLabel("air_l3");
-          }}
-          className="w-[71px] h-[52px] flex items-center justify-center"
-        >
-          {formData.air_l3}
+        <div className="w-[71px] h-[52px] flex items-center justify-center relative">
+          <input
+            type="text"
+            value={formData.air_l3}
+            onClick={() => {
+              setLabel("air_l3");
+            }}
+            className="w-[71px] h-[52px] flex items-center justify-center text-center caret-transparent"
+            onKeyDown={(event) => {
+              if (event.key === "Backspace") {
+                handleInputChange("air_l3", "");
+                setGraphRefresh("empty_air_l3");
+              }
+            }}
+          />
 
           {(formData.air_l2 !== "" && formData.air_l3 === "") ||
           label == "air_l3" ? (
-            <span className="blink"></span>
+            <span className="blink absolute top-[50%] -translate-y-[50%]"></span>
           ) : (
             ""
           )}
-        </button>
+        </div>
       ),
       four: (
-        <button
-          onClick={() => {
-            setLabel("air_l4");
-          }}
-          className="w-[71px] h-[52px] flex items-center justify-center"
-        >
-          {formData.air_l4}
+        <div className="w-[71px] h-[52px] flex items-center justify-center relative">
+          <input
+            type="text"
+            value={formData.air_l4}
+            onClick={() => {
+              setLabel("air_l4");
+            }}
+            className="w-[71px] h-[52px] flex items-center justify-center text-center caret-transparent"
+            onKeyDown={(event) => {
+              if (event.key === "Backspace") {
+                handleInputChange("air_l4", "");
+                setGraphRefresh("empty_air_l4");
+              }
+            }}
+          />
 
           {(formData.air_l3 !== "" && formData.air_l4 === "") ||
           label == "air_l4" ? (
-            <span className="blink"></span>
+            <span className="blink absolute top-[50%] -translate-y-[50%]"></span>
           ) : (
             ""
           )}
-        </button>
+        </div>
       ),
       six: (
-        <button
-          onClick={() => {
-            setLabel("air_l6");
-          }}
-          className="w-[71px] h-[52px] flex items-center justify-center"
-        >
-          {formData.air_l6}
+        <div className="w-[71px] h-[52px] flex items-center justify-center relative">
+          <input
+            type="text"
+            value={formData.air_l6}
+            onClick={() => {
+              setLabel("air_l6");
+            }}
+            className="w-[71px] h-[52px] flex items-center justify-center text-center caret-transparent"
+            onKeyDown={(event) => {
+              if (event.key === "Backspace") {
+                handleInputChange("air_l6", "");
+                setGraphRefresh("empty_air_l6");
+              }
+            }}
+          />
 
           {(formData.air_l4 !== "" && formData.air_l6 === "") ||
           label == "air_l6" ? (
-            <span className="blink"></span>
+            <span className="blink absolute top-[50%] -translate-y-[50%]"></span>
           ) : (
             ""
           )}
-        </button>
+        </div>
       ),
       eight: (
-        <button
-          onClick={() => {
-            setLabel("air_l8");
-          }}
-          className="w-[71px] h-[52px] flex items-center justify-center"
-        >
-          {formData.air_l8}
+        <div className="w-[71px] h-[52px] flex items-center justify-center relative">
+          <input
+            type="text"
+            value={formData.air_l8}
+            onClick={() => {
+              setLabel("air_l8");
+            }}
+            className="w-[71px] h-[52px] flex items-center justify-center text-center caret-transparent"
+            onKeyDown={(event) => {
+              if (event.key === "Backspace") {
+                handleInputChange("air_l8", "");
+                setGraphRefresh("empty_air_l8");
+              }
+            }}
+          />
 
           {(formData.air_l6 !== "" && formData.air_l8 === "") ||
           label == "air_l8" ? (
-            <span className="blink"></span>
+            <span className="blink absolute top-[50%] -translate-y-[50%]"></span>
           ) : (
             ""
           )}
-        </button>
+        </div>
       ),
     },
     {
       freq: <span class="px-4">Rt BC/db</span>,
       0.5: (
-        <button
-          onClick={() => {
-            setLabel("bone_l0_5");
-          }}
-          className="w-[71px] h-[52px] flex items-center justify-center"
-        >
-          {formData.bone_l0_5}
+        <div className="w-[71px] h-[52px] flex items-center justify-center relative">
+          <input
+            type="text"
+            value={formData.bone_l0_5}
+            onClick={() => {
+              setLabel("bone_l0_5");
+            }}
+            className="w-[71px] h-[52px] flex items-center justify-center text-center caret-transparent"
+            onKeyDown={(event) => {
+              if (event.key === "Backspace") {
+                handleInputChange("bone_l0_5", "");
+                setGraphRefresh("empty_bone_l0_5");
+              }
+            }}
+          />
 
           {(formData.air_l8 !== "" && formData.bone_l0_5 === "") ||
           label == "bone_l0_5" ? (
-            <span className="blink"></span>
+            <span className="blink absolute top-[50%] -translate-y-[50%]"></span>
           ) : (
             ""
           )}
-        </button>
+        </div>
       ),
       one: (
-        <button
-          onClick={() => {
-            setLabel("bone_l1");
-          }}
-          className="w-[71px] h-[52px] flex items-center justify-center"
-        >
-          {formData.bone_l1}
+        <div className="w-[71px] h-[52px] flex items-center justify-center relative">
+          <input
+            type="text"
+            value={formData.bone_l1}
+            onClick={() => {
+              setLabel("bone_l1");
+            }}
+            className="w-[71px] h-[52px] flex items-center justify-center text-center caret-transparent"
+            onKeyDown={(event) => {
+              if (event.key === "Backspace") {
+                handleInputChange("bone_l1", "");
+                setGraphRefresh("empty_bone_l1");
+              }
+            }}
+          />
 
           {(formData.bone_l0_5 !== "" && formData.bone_l1 === "") ||
           label == "bone_l1" ? (
-            <span className="blink"></span>
+            <span className="blink absolute top-[50%] -translate-y-[50%]"></span>
           ) : (
             ""
           )}
-        </button>
+        </div>
       ),
       two: (
-        <button
-          onClick={() => {
-            setLabel("bone_l2");
-          }}
-          className="w-[71px] h-[52px] flex items-center justify-center"
-        >
-          {formData.bone_l2}
+        <div className="w-[71px] h-[52px] flex items-center justify-center relative">
+          <input
+            type="text"
+            value={formData.bone_l2}
+            onClick={() => {
+              setLabel("bone_l2");
+            }}
+            className="w-[71px] h-[52px] flex items-center justify-center text-center caret-transparent"
+            onKeyDown={(event) => {
+              if (event.key === "Backspace") {
+                handleInputChange("bone_l2", "");
+                setGraphRefresh("empty_bone_l2");
+              }
+            }}
+          />
 
           {(formData.bone_l1 !== "" && formData.bone_l2 === "") ||
           label == "bone_l2" ? (
-            <span className="blink"></span>
+            <span className="blink absolute top-[50%] -translate-y-[50%]"></span>
           ) : (
             ""
           )}
-        </button>
+        </div>
       ),
       three: (
-        <button
-          onClick={() => {
-            setLabel("bone_l3");
-          }}
-          className="w-[71px] h-[52px] flex items-center justify-center"
-        >
-          {formData.bone_l3}
+        <div className="w-[71px] h-[52px] flex items-center justify-center relative">
+          <input
+            type="text"
+            value={formData.bone_l3}
+            onClick={() => {
+              setLabel("bone_l3");
+            }}
+            className="w-[71px] h-[52px] flex items-center justify-center text-center caret-transparent"
+            onKeyDown={(event) => {
+              if (event.key === "Backspace") {
+                handleInputChange("bone_l3", "");
+                setGraphRefresh("empty_bone_l3");
+              }
+            }}
+          />
 
           {(formData.bone_l2 !== "" && formData.bone_l3 === "") ||
           label == "bone_l3" ? (
-            <span className="blink"></span>
+            <span className="blink absolute top-[50%] -translate-y-[50%]"></span>
           ) : (
             ""
           )}
-        </button>
+        </div>
       ),
       four: (
-        <button
-          onClick={() => {
-            setLabel("bone_l4");
-          }}
-          className="w-[71px] h-[52px] flex items-center justify-center"
-        >
-          {formData.bone_l4}
+        <div className="w-[71px] h-[52px] flex items-center justify-center relative">
+          <input
+            type="text"
+            value={formData.bone_l4}
+            onClick={() => {
+              setLabel("bone_l4");
+            }}
+            className="w-[71px] h-[52px] flex items-center justify-center text-center caret-transparent"
+            onKeyDown={(event) => {
+              if (event.key === "Backspace") {
+                handleInputChange("bone_l4", "");
+                setGraphRefresh("empty_bone_l4");
+              }
+            }}
+          />
 
           {(formData.bone_l3 !== "" && formData.bone_l4 === "") ||
           label == "bone_l4" ? (
-            <span className="blink"></span>
+            <span className="blink absolute top-[50%] -translate-y-[50%]"></span>
           ) : (
             ""
           )}
-        </button>
+        </div>
       ),
       six: (
-        <button
-          onClick={() => {
-            setLabel("bone_l6");
-          }}
-          className="w-[71px] h-[52px] flex items-center justify-center"
-        >
-          {formData.bone_l6}
+        <div className="w-[71px] h-[52px] flex items-center justify-center relative">
+          <input
+            type="text"
+            value={formData.bone_l6}
+            onClick={() => {
+              setLabel("bone_l6");
+            }}
+            className="w-[71px] h-[52px] flex items-center justify-center text-center caret-transparent"
+            onKeyDown={(event) => {
+              if (event.key === "Backspace") {
+                handleInputChange("bone_l6", "");
+                setGraphRefresh("empty_bone_l6");
+              }
+            }}
+          />
 
           {(formData.bone_l4 !== "" && formData.bone_l6 === "") ||
           label == "bone_l6" ? (
-            <span className="blink"></span>
+            <span className="blink absolute top-[50%] -translate-y-[50%]"></span>
           ) : (
             ""
           )}
-        </button>
+        </div>
       ),
       eight: (
-        <button
-          onClick={() => {
-            setLabel("bone_l8");
-          }}
-          className="w-[71px] h-[52px] flex items-center justify-center"
-        >
-          {formData.bone_l8}
+        <div className="w-[71px] h-[52px] flex items-center justify-center relative">
+          <input
+            type="text"
+            value={formData.bone_l8}
+            onClick={() => {
+              setLabel("bone_l8");
+            }}
+            className="w-[71px] h-[52px] flex items-center justify-center text-center caret-transparent"
+            onKeyDown={(event) => {
+              if (event.key === "Backspace") {
+                handleInputChange("bone_l8", "");
+                setGraphRefresh("empty_bone_l8");
+              }
+            }}
+          />
 
           {(formData.bone_l6 !== "" && formData.bone_l8 === "") ||
           label == "bone_l8" ? (
-            <span className="blink"></span>
+            <span className="blink absolute top-[50%] -translate-y-[50%]"></span>
           ) : (
             ""
           )}
-        </button>
+        </div>
       ),
     },
   ];

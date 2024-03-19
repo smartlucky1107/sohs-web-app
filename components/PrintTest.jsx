@@ -8,10 +8,12 @@ const PrintTest = ({ airconddata, boneconddata, formData }) => {
       <h1 className="font-bold text-4xl uppercase mb-5 text-center">
         SINGAPORE OCCUPATION HEALTH SERVICE PTE LTD
       </h1>
-      <p className="text-xl font-medium">
-        Singapore Occupational Health Services Pte Ltd, Tempco Technominium, 16
-        Ayer Rajah Crescent #06-06B, Singapore 139965 Tel:68725020, 67772829
-        Fax: 68725679
+      <p className="text-xl font-medium text-center">
+        Singapore Occupational Health Services Pte Ltd
+      </p>
+      <p className="text-xl font-medium text-center">
+        16 Ayer Rajah Crescent, Tempco Technominium, #06-06B, Singapore 139955.
+        Tel: 68725020, 67772829. Fax: 68725679.
       </p>
 
       <ul className="border-b-2 border-black pb-8 mb-8 mt-3">
@@ -120,7 +122,7 @@ const PrintTest = ({ airconddata, boneconddata, formData }) => {
             <div className="text-xl flex items-center gap-2">
               <label className="font-bold">IHD:</label>
               <input
-                className="border-b border-dashed border-black bg-transparent outline-none"
+                className="border-b border-dashed border-black bg-transparent outline-none w-[278px]"
                 value={formData.ihd}
               />
             </div>
@@ -407,10 +409,15 @@ const PrintTest = ({ airconddata, boneconddata, formData }) => {
           </div>
         </div>
 
-        <p className="pt-20 text-center text-xl">
-          The audiogram is vetted by theDesignated Factory Doctor and do not
-          require any signatory. Dr Teo Tiong Kiai. MBBS, GDOM, GDMH. MCR
-          M01507E, DWD 0088
+        <p className="pt-14 text-center text-xl leading-8">
+          This audiogram is vetted by the Designated Workplace Doctor and do not
+          require any signatory.
+          <br />
+          Dr Teo Tiong Kiat
+          <br />
+          MBBS, GDOM, GDMH
+          <br />
+          MCR M01507E, DWD 0088
         </p>
       </div>
     </div>

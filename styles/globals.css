@@ -163,6 +163,7 @@ body {
 @media print {
   @page {
     size: A4;
+    margin: 0;
   }
 
   body {
@@ -172,6 +173,7 @@ body {
     height: 0;
   }
   #section-to-print {
+    padding: 55px;
     visibility: visible;
     position: absolute;
     left: 0;

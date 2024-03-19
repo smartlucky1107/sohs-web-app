@@ -23,6 +23,7 @@ const TableMain = ({
       await axios.post(`/api/workers/deleteworker`, { _id }); // Send POST request to API
       // Reset form data or handle success
       alert("Data deleted successfully");
+      location.reload();
     } catch (error) {
       // Handle error
       console.error("Failed to submit data:", error);
@@ -214,26 +215,21 @@ const TableMain = ({
 
   useEffect(() => {
     async function fetchData() {
-      const data = await fetchWorkers();
-
-      if (searchText) {
-        const filtered = data.filter(
-          (item) =>
-            item.name.toLowerCase().includes(searchText.toLowerCase()) ||
-            item.fin.toLowerCase().includes(searchText.toLowerCase())
-        );
-        setFilteredData(filtered);
-        setData(filtered);
+      let data;
+      if (searchText !== "") {
+        data = await fetchWorkers(null, { q: searchText });
       } else {
-        setFilteredData(data);
-        setData(data);
+        data = await fetchWorkers();
       }
+
+      setFilteredData(data);
+      setData(data);
 
       setIsLoading(false);
     }
 
     fetchData();
-  }, [searchText, PopupState, EditPopupState, handleDelete]);
+  }, [searchText, PopupState, EditPopupState]);
 
   return (
     <Table

@@ -2,11 +2,10 @@ import { useState } from "react";
 import { CiSearch } from "react-icons/ci";
 import TableMain from "./table/main";
 import Link from "next/link";
-import { DatePicker, Input, Modal, Spin } from "antd";
-import Papa from "papaparse";
+import { DatePicker } from "antd";
 import axios from "axios";
 import { capitalizeText } from "@/utils/capitalizeText";
-import { downloadExcelFile, readExcelFile } from "@/utils/excelfile";
+import { downloadExcelFile } from "@/utils/excelfile";
 
 function getDateString(date) {
   var dateString = date;
@@ -37,10 +36,6 @@ export default function TestTable(props) {
   });
   const searchFields = ["name", "fin", "company_address"];
 
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [file, setFile] = useState(null);
-  const [isLoading, setIsLoading] = useState(false);
-
   const handleSearchDataChange = (key, value) => {
     setSearchData((prevData) => ({
       ...prevData,
@@ -67,140 +62,6 @@ export default function TestTable(props) {
 
   const showModal = () => {
     setIsModalOpen(true);
-  };
-
-  const handleOk = () => {
-    setIsLoading(true);
-
-    if (file) {
-      readExcelFile(file, (excelData) => {
-        let allData = [];
-
-        excelData.map((item) => {
-          let action_plans = "";
-          let action_plans_text = "";
-          if (item.Action.includes("Review")) {
-            action_plans = "Review (Date)";
-            action_plans_text = item.Action.replace(
-              "To review in ",
-              ""
-            ).replace("Review in ", "");
-          }
-
-          const formData = {
-            name: item.Name,
-            dept: item.Dept,
-            fin: item[Object.keys(item).find((key) => key === "NRIC/FIN")],
-            sex: item.Sex,
-            dob: item.DOB != "" ? getDateString(item.DOB) : "",
-            empno: item.Empno,
-            date: item.Date_j,
-            jobt: item.Job_Title,
-            yrs_exposure: item.Yrs_exp,
-            statutory: item.Statutory, // new field
-            notify: item.Notify, // new field
-            IHDinf: item.IHDinf, // new field
-            IHDiag: item.IHDdiag, // new field
-            occ_hist: item.Occ_hist, // new field
-            ear_discharge:
-              item[Object.keys(item).find((key) => key === "Ear Discharge")], // new field
-            ear_operation:
-              item[Object.keys(item).find((key) => key === "Ear operation")], // new field
-            ringing_ears:
-              item[Object.keys(item).find((key) => key === "Ringing ears")], // new field
-            head_or_ear:
-              item[
-                Object.keys(item).find((key) => key === "Head or ear Injury")
-              ], // new field
-            ear_problem:
-              item[
-                Object.keys(item).find(
-                  (key) => key === "Consult Dr for Ear problem"
-                )
-              ], // new field
-            loud_noise_exposure:
-              item[
-                Object.keys(item).find(
-                  (key) => key === "Ever Exposed To loud Noise"
-                )
-              ], // new field
-            medication: item.Medication, // new field
-            military_service:
-              item[Object.keys(item).find((key) => key === "Military Service")], // new field
-            medical_problem:
-              item[Object.keys(item).find((key) => key === "Medical Problem")], // new field
-            med_hist: item.Med_hist, // new field
-            other_info:
-              item[Object.keys(item).find((key) => key === "Other info")], // new field
-            counsel: item.Counsel, // new field
-            protect: item.protect, // new field
-            prototype: item.protype, // new field
-            profreq: item.profreq, // new field
-            prototype: item.prototype, // new field
-            demo: item.Demo, // new field
-            cleanfreq: item.cleanfreq, // new field
-            rearex: item.rearex, // new field
-            learex: item.learex, // new field
-
-            air_r0_5: item.air_r2,
-            air_r1: item.air_r3,
-            air_r2: item.air_r4,
-            air_r3: item.air_r5,
-            air_r4: item.air_r6,
-            air_r6: item.air_r7,
-            air_r8: item.air_r8,
-
-            air_l0_5: item.air_l2,
-            air_l1: item.air_l3,
-            air_l2: item.air_l4,
-            air_l3: item.air_l5,
-            air_l4: item.air_l6,
-            air_l6: item.air_l7,
-            air_l8: item.air_l8,
-
-            bone_r0_5: item.bone_r2,
-            bone_r1: item.bone_r3,
-            bone_r2: item.bone_r4,
-            bone_r3: item.bone_r5,
-            bone_r4: item.bone_r6,
-            bone_r6: item.bone_r7,
-            bone_r8: item.bone_r8,
-
-            bone_l0_5: item.bone_l2,
-            bone_l1: item.bone_l3,
-            bone_l2: item.bone_l4,
-            bone_l3: item.bone_l5,
-            bone_l4: item.bone_l6,
-            bone_l6: item.bone_l7,
-            bone_l8: item.bone_l8,
-
-            tester: item.Tester,
-            certify: item.certify,
-            action_plans: action_plans,
-            action_plans_text: action_plans_text,
-            diagnosis: item.result,
-            date_tested:
-              item.Date_tested != "" ? getDateString(item.Date_tested) : "",
-            review1yr: item.review1yr,
-            review6mo: item.review6mths,
-            tonotify: item.tonotify,
-            notified: item.Notified,
-            previous_result: item.result,
-          };
-          allData.push(formData);
-        });
-
-        importData(allData);
-      });
-    }
-  };
-
-  const handleCancel = () => {
-    setIsModalOpen(false);
-  };
-
-  const handleFileUpload = (e) => {
-    setFile(e.target.files[0]);
   };
 
   const handleExport = () => {
@@ -366,12 +227,6 @@ export default function TestTable(props) {
               Add Test Result
             </Link>
             <button
-              className="bg-[#0094f1] py-3 px-5 uppercase text-white"
-              onClick={showModal}
-            >
-              Import Excel
-            </button>
-            <button
               onClick={handleExport}
               className="bg-[#0094f1] py-3 px-5 uppercase text-white"
             >
@@ -386,22 +241,6 @@ export default function TestTable(props) {
           setEditPopupState={props.setEditPopupState}
           setData={setData}
         />
-
-        <Modal
-          title="Import Excel File"
-          open={isModalOpen}
-          onOk={handleOk}
-          onCancel={handleCancel}
-          className="[&_.ant-btn-primary]:!bg-[#1677ff]"
-        >
-          {isLoading ? (
-            <Spin tip="Importing...">
-              <Input type="file" onChange={handleFileUpload} />
-            </Spin>
-          ) : (
-            <Input type="file" onChange={handleFileUpload} />
-          )}
-        </Modal>
       </div>
     </section>
   );

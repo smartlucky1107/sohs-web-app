@@ -767,27 +767,13 @@ const TableMain = ({ searchData, dateRange, setData }) => {
   const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
     async function fetchData() {
-      const data = await fetchTests();
+      const data = await fetchTests({
+        name: searchData?.name,
+        fin: searchData?.fin,
+        company_address: searchData?.company_address,
+      });
 
       let filtered = data;
-
-      if (searchData?.name) {
-        filtered = filtered.filter((item) =>
-          item.name.toLowerCase().includes(searchData.name.toLowerCase())
-        );
-      }
-      if (searchData?.fin) {
-        filtered = filtered.filter((item) =>
-          item.fin.toLowerCase().includes(searchData.fin.toLowerCase())
-        );
-      }
-      if (searchData?.company_address) {
-        filtered = filtered.filter((item) =>
-          item.company_address
-            .toLowerCase()
-            .includes(searchData.company_address.toLowerCase())
-        );
-      }
 
       if (dateRange?.length === 2) {
         filtered = filtered.filter((item) => {

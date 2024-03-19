@@ -12,7 +12,15 @@ export default async function handler(req, res) {
       if (req.query.fin) {
         workers = await Worker.find({ fin: req.query.fin });
       } else {
-        workers = await Worker.find();
+        let query = {};
+
+        if (req.query.q) {
+          query.$or = [
+            { name: { $regex: req.query.q, $options: "i" } },
+            { fin: { $regex: req.query.q, $options: "i" } },
+          ];
+        }
+        workers = await Worker.find(query);
       }
 
       const updatedWorkers = await Promise.all(

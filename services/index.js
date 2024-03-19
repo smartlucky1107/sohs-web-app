@@ -30,11 +30,11 @@ export const register_now = async (FormData) => {
   }
 };
 
-export const fetchWorkers = async (id) => {
+export const fetchWorkers = async (id, searchParams) => {
   try {
     let apiUrl = config.apiUrl + "/workers";
     if (id) apiUrl += "?fin=" + id;
-    const response = await axios.get(apiUrl);
+    const response = await axios.get(apiUrl, { params: searchParams });
     if (response.data.success) {
       const data = response.data.data;
       return data;
@@ -46,10 +46,10 @@ export const fetchWorkers = async (id) => {
   }
 };
 
-export const fetchTests = async () => {
+export const fetchTests = async (searchParams) => {
   try {
     const apiUrl = config.apiUrl + "/tests";
-    const response = await axios.get(apiUrl);
+    const response = await axios.get(apiUrl, { params: searchParams });
     if (response.data.success) {
       const data = response.data.data;
       return data;

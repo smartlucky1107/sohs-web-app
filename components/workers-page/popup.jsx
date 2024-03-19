@@ -12,6 +12,18 @@ const gender = [
   { label: "Female", value: "f" },
 ];
 
+const companyAddressLists = [
+  { value: "C&P", label: "C&P" },
+  { value: "SEO", label: "SEO" },
+  { value: "CONCEPT", label: "CONCEPT" },
+  { value: "CT", label: "CT" },
+  { value: "FOOD", label: "FOOD" },
+  { value: "CWT", label: "CWT" },
+  { value: "AWOLF", label: "AWOLF" },
+  { value: "PRAGAS", label: "PRAGAS" },
+  { value: "PROS", label: "PROS" },
+];
+
 export default function WorkersPopup(props) {
   const router = useRouter();
 
@@ -124,15 +136,10 @@ export default function WorkersPopup(props) {
             className="w-[40%]"
             value={formData.jobt}
           >
-            <Select
-              options={[
-                { value: "Technician", label: <span>Technician</span> },
-                { value: "Senior Technician", label: <span>Senior</span> },
-                { value: "Component", label: <span>Component</span> },
-              ]}
-              onChange={(selectedValue) =>
-                handleInputChange("jobt", selectedValue)
-              }
+            <Input
+              size="large"
+              type="text"
+              onChange={(e) => handleInputChange("jobt", e.target.value)}
               value={formData.jobt}
             />
           </FloatLabel>
@@ -219,17 +226,10 @@ export default function WorkersPopup(props) {
             />
           </FloatLabel>
           <FloatLabel label="Dept" className="w-[40%]" value={formData.dept}>
-            <Select
-              options={[
-                { value: "FE", label: <span>FE</span> },
-                { value: "BE", label: <span>BE</span> },
-                { value: "Repair", label: <span>Repair</span> },
-                { value: "Accessory", label: <span>Accessory</span> },
-                { value: "Component", label: <span>Component</span> },
-              ]}
-              onChange={(selectedValue) =>
-                handleInputChange("dept", selectedValue)
-              }
+            <Input
+              size="large"
+              type="text"
+              onChange={(e) => handleInputChange("dept", e.target.value)}
               value={formData.dept}
             />
           </FloatLabel>
@@ -239,25 +239,37 @@ export default function WorkersPopup(props) {
             value={formData.company_address}
           >
             <Select
-              options={[
-                { value: "C&P", label: "C&P" },
-                { value: "SEO", label: "SEO" },
-                { value: "CONCEPT", label: "CONCEPT" },
-                { value: "CT", label: "CT" },
-                { value: "FOOD", label: "FOOD" },
-                { value: "CWT", label: "CWT" },
-                { value: "AWOLF", label: "AWOLF" },
-                { value: "PRAGAS", label: "PRAGAS" },
-                { value: "PROS", label: "PROS" },
-              ]}
               value={
                 formData.company_address ? formData.company_address : undefined
               }
               onChange={(selectedOption) =>
                 handleInputChange("company_address", selectedOption)
               }
+              optionFilterProp="children"
               className="w-full"
-            />
+              dropdownRender={(menu) => (
+                <div>
+                  <div className="border-b border-dashed mb-2 pb-2">
+                    <Input
+                      className="w-full"
+                      type="text"
+                      onChange={(e) =>
+                        handleInputChange("company_address", e.target.value)
+                      }
+                      value={formData.company_address}
+                      placeholder="Enter custom address"
+                    />
+                  </div>
+                  {menu}
+                </div>
+              )}
+            >
+              {companyAddressLists.map((item, key) => (
+                <Select.Option key={key} value={item.value}>
+                  {item.label}
+                </Select.Option>
+              ))}
+            </Select>
           </FloatLabel>
           <FloatLabel label="IHDinf" className="w-[40%]" value={formData.inf}>
             <Select

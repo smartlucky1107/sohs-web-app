@@ -71,6 +71,10 @@ export default function WorkersTable(props) {
   };
 
   const handleOk = () => {
+    if (!file || companyAddress === "") {
+      return alert("Please select a company adress and choose a excel file");
+    }
+
     setIsLoading(true);
 
     if (file) {
@@ -199,13 +203,33 @@ export default function WorkersTable(props) {
             <>
               <FloatLabel label="Company Address" value={companyAddress}>
                 <Select
-                  options={companyAddressLists}
-                  value={companyAddress !== "" ? companyAddress : undefined}
+                  value={companyAddress}
                   onChange={(selectedOption) =>
                     setCompanyAddress(selectedOption)
                   }
+                  optionFilterProp="children"
                   className="w-full"
-                />
+                  dropdownRender={(menu) => (
+                    <div>
+                      <div className="border-b border-dashed mb-2 pb-2">
+                        <Input
+                          className="w-full"
+                          type="text"
+                          onChange={(e) => setCompanyAddress(e.target.value)}
+                          value={companyAddress}
+                          placeholder="Enter custom address"
+                        />
+                      </div>
+                      {menu}
+                    </div>
+                  )}
+                >
+                  {companyAddressLists.map((item, key) => (
+                    <Select.Option key={key} value={item.value}>
+                      {item.label}
+                    </Select.Option>
+                  ))}
+                </Select>
               </FloatLabel>
 
               <Input type="file" onChange={handleFileUpload} className="mt-2" />

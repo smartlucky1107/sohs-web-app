@@ -18,6 +18,18 @@ const gender = [
   { label: "Female", value: "f" },
 ];
 
+const companyAddressLists = [
+  { value: "C&P", label: "C&P" },
+  { value: "SEO", label: "SEO" },
+  { value: "CONCEPT", label: "CONCEPT" },
+  { value: "CT", label: "CT" },
+  { value: "FOOD", label: "FOOD" },
+  { value: "CWT", label: "CWT" },
+  { value: "AWOLF", label: "AWOLF" },
+  { value: "PRAGAS", label: "PRAGAS" },
+  { value: "PROS", label: "PROS" },
+];
+
 export default function TestsResult({ fin }) {
   const id = fin;
 
@@ -172,20 +184,34 @@ export default function TestsResult({ fin }) {
       handleInputChange("action_plans", "Review (Date)");
       handleInputChange("action_plans_text", "6 months");
     } else if (
-      (air_r0_5 > 30 && air_r0_5 < 45) ||
-      (air_r1 > 30 && air_r1 < 45) ||
-      (air_r2 > 30 && air_r2 < 45) ||
-      (air_r3 > 30 && air_r2 < 45) ||
-      (air_r4 > 30 && air_r4 < 45) ||
-      (air_r6 > 30 && air_r6 < 45) ||
-      (air_r8 > 30 && air_r8 < 45) ||
-      (air_l0_5 > 30 && air_l0_5 < 45) ||
-      (air_l1 > 30 && air_l1 < 45) ||
-      (air_l2 > 30 && air_l2 < 45) ||
-      (air_l3 > 30 && air_l2 < 45) ||
-      (air_l4 > 30 && air_l4 < 45) ||
-      (air_l6 > 30 && air_l6 < 45) ||
-      (air_l8 > 30 && air_l8 < 45)
+      air_r0_5 > 30 &&
+      air_r0_5 < 45 &&
+      air_r1 > 30 &&
+      air_r1 < 45 &&
+      air_r2 > 30 &&
+      air_r2 < 45 &&
+      air_r3 > 30 &&
+      air_r2 < 45 &&
+      air_r4 > 30 &&
+      air_r4 < 45 &&
+      air_r6 > 30 &&
+      air_r6 < 45 &&
+      air_r8 > 30 &&
+      air_r8 < 45 &&
+      air_l0_5 > 30 &&
+      air_l0_5 < 45 &&
+      air_l1 > 30 &&
+      air_l1 < 45 &&
+      air_l2 > 30 &&
+      air_l2 < 45 &&
+      air_l3 > 30 &&
+      air_l2 < 45 &&
+      air_l4 > 30 &&
+      air_l4 < 45 &&
+      air_l6 > 30 &&
+      air_l6 < 45 &&
+      air_l8 > 30 &&
+      air_l8 < 45
     ) {
       handleInputChange("diagnosis", "Slight hearing loss");
       handleInputChange("action_plans", "No Action");
@@ -384,7 +410,7 @@ export default function TestsResult({ fin }) {
 
     handleInputChange("fin", worker.fin);
     handleInputChange("dob", worker.dob);
-    handleInputChange("sex", worker.sex);
+    handleInputChange("sex", worker.sex?.toLowerCase());
     handleInputChange("empno", worker.empno);
     handleInputChange("date", worker.date);
     handleInputChange("jobt", worker.jobt);
@@ -399,7 +425,7 @@ export default function TestsResult({ fin }) {
 
     handleInputChange("name", worker.name);
     handleInputChange("dob", worker.dob);
-    handleInputChange("sex", worker.sex);
+    handleInputChange("sex", worker.sex?.toLowerCase());
     handleInputChange("empno", worker.empno);
     handleInputChange("date", worker.date);
     handleInputChange("jobt", worker.jobt);
@@ -416,13 +442,6 @@ export default function TestsResult({ fin }) {
           <div className="w-full flex gap-4 lg:flex-nowrap flex-wrap">
             <p className=" lg:text-nowrap">Company Address:</p>
             <Select
-              options={[
-                { value: "Company 1", label: "Company 1" },
-                { value: "Company 2", label: "Company 2" },
-                { value: "Company 3", label: "Company 3" },
-                { value: "Company 4", label: "Company 4" },
-                { value: "Company 5", label: "Company 5" },
-              ]}
               placeholder="Company Address"
               value={
                 formData.company_address ? formData.company_address : undefined
@@ -430,8 +449,31 @@ export default function TestsResult({ fin }) {
               onChange={(selectedOption) =>
                 handleInputChange("company_address", selectedOption)
               }
+              optionFilterProp="children"
               className="w-full"
-            />
+              dropdownRender={(menu) => (
+                <div>
+                  <div className="border-b border-dashed mb-2 pb-2">
+                    <Input
+                      className="w-full"
+                      type="text"
+                      onChange={(e) =>
+                        handleInputChange("company_address", e.target.value)
+                      }
+                      value={formData.company_address}
+                      placeholder="Enter custom address"
+                    />
+                  </div>
+                  {menu}
+                </div>
+              )}
+            >
+              {companyAddressLists.map((item, key) => (
+                <Option key={key} value={item.value}>
+                  {item.label}
+                </Option>
+              ))}
+            </Select>
           </div>
           <div className="w-full flex justify-start flex-wrap gap-4">
             <div className="flex gap-4 lg:flex-nowrap flex-wrap">
@@ -572,18 +614,12 @@ export default function TestsResult({ fin }) {
             </div>
             <div className="flex gap-4 lg:flex-nowrap flex-wrap">
               <p className=" lg:text-nowrap">Job Title:</p>
-              <Select
+              <Input
                 className="w-[122px]"
-                options={[
-                  { value: "Technician", label: <span>Technician</span> },
-                  { value: "Senior Technician", label: <span>Senior</span> },
-                  { value: "Component", label: <span>Component</span> },
-                ]}
-                onChange={(selectedValue) =>
-                  handleInputChange("jobt", selectedValue)
-                }
-                defaultValue="Job Title"
+                type="text"
+                onChange={(e) => handleInputChange("jobt", e.target.value)}
                 value={formData.jobt}
+                placeholder="Job Title"
               />
             </div>
 
@@ -600,20 +636,12 @@ export default function TestsResult({ fin }) {
             </div>
             <div className="flex gap-4 lg:flex-nowrap flex-wrap">
               <p className=" lg:text-nowrap">Dept:</p>
-              <Select
-                options={[
-                  { value: "FE", label: <span>FE</span> },
-                  { value: "BE", label: <span>BE</span> },
-                  { value: "Repair", label: <span>Repair</span> },
-                  { value: "Accessory", label: <span>Accessory</span> },
-                  { value: "Component", label: <span>Component</span> },
-                ]}
-                onChange={(selectedValue) =>
-                  handleInputChange("dept", selectedValue)
-                }
-                defaultValue="Dept"
-                value={formData.dept}
+              <Input
                 className="w-[183px]"
+                type="text"
+                onChange={(e) => handleInputChange("dept", e.target.value)}
+                value={formData.dept}
+                placeholder="Dept"
               />
             </div>
             <div className="flex gap-4 lg:flex-nowrap flex-wrap">
