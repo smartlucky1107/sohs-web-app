@@ -161,12 +161,12 @@ export default function WorkersTable(props) {
             </button>
           </div>
           <div className="flex gap-3">
-            <button
+            {/* <button
               onClick={() => props.setPopupState(1)}
               className="bg-[#0094f1] py-3 px-5 uppercase text-white"
             >
               Add Worker
-            </button>
+            </button> */}
             <button
               className="bg-[#0094f1] py-3 px-5 uppercase text-white"
               onClick={showModal}

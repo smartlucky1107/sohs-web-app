@@ -224,7 +224,7 @@ export default function TestTable(props) {
               href="/add-test"
               className="bg-[#0094f1] py-3 px-5 uppercase text-white"
             >
-              Add Test Result
+              Add Test
             </Link>
             <button
               onClick={handleExport}
