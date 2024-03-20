@@ -23,19 +23,15 @@ const companyAddressLists = [
 ];
 
 function getDateString(date) {
-  var dateString = date;
+  if (!isNaN(date)) {
+    return new Date((date - 25569) * 86400 * 1000);
+  }
 
+  var dateString = date;
   if (typeof dateString === "string") {
-    var dateParts = dateString.split("/");
-    var formattedDate = new Date(
-      dateParts[2],
-      dateParts[0] - 1,
-      dateParts[1],
-      18,
-      0,
-      0
-    ).toUTCString();
-    return formattedDate;
+    var formattedDate = new Date(dateString);
+
+    return formattedDate != "Invalid Date" ? formattedDate : "";
   } else {
     return "";
   }
@@ -87,14 +83,8 @@ export default function WorkersTable(props) {
               name: item.Name,
               jobt: item[Object.keys(item).find((key) => key === "Job Title")],
               empno: item.Empno,
-              dob:
-                getDateString(item.DOB) != "Invalid Date"
-                  ? getDateString(item.DOB)
-                  : "",
-              date:
-                getDateString(item.Date_j) != "Invalid Date"
-                  ? getDateString(item.Date_j)
-                  : "",
+              dob: getDateString(item.DOB),
+              date: getDateString(item.Date_j),
               fin: item[Object.keys(item).find((key) => key === "NRIC/FIN")],
               ypj: item.Yrs_pj,
               exp: item.Yrs_exp,

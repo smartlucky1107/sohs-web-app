@@ -230,7 +230,7 @@ export default function TestsResult({ fin }) {
     }));
 
     if (key === "yrs_exposure") {
-      setGraphRefresh("yes_refresh");
+      setGraphRefresh(Math.random() * 1000);
       diagnosisCondition();
     }
 
@@ -371,17 +371,17 @@ export default function TestsResult({ fin }) {
 
   const onNameSearch = (value) => {
     const filtered = workerNames.filter((item) =>
-      item.name.toLowerCase().includes(value.toLowerCase())
+      item?.name?.toLowerCase().includes(value.toLowerCase())
     );
 
     if (filtered.length > 0) {
-      const selectedObject = filtered[0];
-      const index = workerNames.indexOf(selectedObject);
-
-      if (index > -1) {
-        workerNames.splice(index, 1); // Remove selected object from its current position
-        workerNames.unshift(selectedObject); // Add selected object to the beginning of the array
-      }
+      filtered.forEach((selectedObject) => {
+        const index = workerNames.indexOf(selectedObject);
+        if (index > -1) {
+          workerNames.splice(index, 1); // Remove selected object from its current position
+          workerNames.unshift(selectedObject); // Add selected object to the beginning of the array
+        }
+      });
     }
 
     setFilterWorkers(workerNames.slice(0, 10));
@@ -389,17 +389,17 @@ export default function TestsResult({ fin }) {
 
   const onFinSearch = (value) => {
     const filtered = workerNames.filter((item) =>
-      item.fin.toLowerCase().includes(value.toLowerCase())
+      item?.fin?.toLowerCase().includes(value.toLowerCase())
     );
 
     if (filtered.length > 0) {
-      const selectedObject = filtered[0];
-      const index = workerNames.indexOf(selectedObject);
-
-      if (index > -1) {
-        workerNames.splice(index, 1); // Remove selected object from its current position
-        workerNames.unshift(selectedObject); // Add selected object to the beginning of the array
-      }
+      filtered.forEach((selectedObject) => {
+        const index = workerNames.indexOf(selectedObject);
+        if (index > -1) {
+          workerNames.splice(index, 1); // Remove selected object from its current position
+          workerNames.unshift(selectedObject); // Add selected object to the beginning of the array
+        }
+      });
     }
 
     setFilterWorkers(workerNames.slice(0, 10));
