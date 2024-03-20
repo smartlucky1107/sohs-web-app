@@ -2,31 +2,16 @@ import { useState } from "react";
 import { CiSearch } from "react-icons/ci";
 import TableMain from "./table/main";
 import Link from "next/link";
-import { DatePicker } from "antd";
+import { DatePicker, Modal } from "antd";
 import axios from "axios";
 import { capitalizeText } from "@/utils/capitalizeText";
 import { downloadExcelFile } from "@/utils/excelfile";
-
-function getDateString(date) {
-  var dateString = date;
-
-  if (typeof dateString === "string") {
-    var dateParts = dateString.split("/");
-    var formattedDate = new Date(
-      dateParts[2],
-      dateParts[0] - 1,
-      dateParts[1],
-      18,
-      0,
-      0
-    ).toUTCString();
-    return formattedDate;
-  } else {
-    return "";
-  }
-}
+import dayjs from "dayjs";
 
 export default function TestTable(props) {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [deleteDate, setDeleteDate] = useState("");
+
   const [data, setData] = useState([]);
   const [dateRange, setDateRange] = useState([]);
   const [searchData, setSearchData] = useState({
@@ -47,21 +32,35 @@ export default function TestTable(props) {
     setDateRange(dates);
   };
 
-  async function importData(formData) {
-    try {
-      await axios.post("/api/tests/bulk-import", formData); // Send POST request to API
-      setIsLoading(false);
-      setFile(null);
+  const showModal = () => {
+    setIsModalOpen(true);
+  };
 
+  const handleOk = async () => {
+    const parsedDate = dayjs(deleteDate, "DD-MM-YYYY");
+    const nextDate = parsedDate.add(1, "day");
+    const convertedNextDate = nextDate.format("MM-DD-YYYY");
+
+    try {
+      const response = await axios.post(
+        "/api/tests/delete-records-before-date?date=" + convertedNextDate
+      );
+
+      alert(response.data.message);
+      setIsModalOpen(false);
       location.reload();
     } catch (error) {
       // Handle error
       console.error("Failed to submit data:", error);
     }
-  }
+  };
 
-  const showModal = () => {
-    setIsModalOpen(true);
+  const handleCancel = () => {
+    setIsModalOpen(false);
+  };
+
+  const onDateChange = (date, dateString) => {
+    setDeleteDate(dateString);
   };
 
   const handleExport = () => {
@@ -232,6 +231,13 @@ export default function TestTable(props) {
             >
               Export Excel
             </button>
+
+            <button
+              onClick={showModal}
+              className="bg-[#0094f1] py-3 px-5 uppercase text-white"
+            >
+              Delete Before Date
+            </button>
           </div>
         </div>
 
@@ -241,6 +247,20 @@ export default function TestTable(props) {
           setEditPopupState={props.setEditPopupState}
           setData={setData}
         />
+
+        <Modal
+          title="Delete Before Date"
+          open={isModalOpen}
+          onOk={handleOk}
+          onCancel={handleCancel}
+          className="[&_.ant-btn-primary]:!bg-[#1677ff]"
+        >
+          <DatePicker
+            format="DD/MM/YYYY"
+            onChange={onDateChange}
+            className="w-full"
+          />
+        </Modal>
       </div>
     </section>
   );
