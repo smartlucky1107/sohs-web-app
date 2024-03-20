@@ -2,8 +2,8 @@ import mongoose from "mongoose";
 
 const connectDB = async () => {
   const connectionUrl =
-  // "mongodb+srv://tkteo:12345@cluster0.r4owu5w.mongodb.net/sohs";
-    "mongodb+srv://karyna:yj19981107@cluster0.bvdzxs2.mongodb.net/sohs";
+  "mongodb+srv://tkteo:12345@cluster0.g7u7o6v.mongodb.net/";
+    // "mongodb+srv://karyna:yj19981107@cluster0.bvdzxs2.mongodb.net/sohs";
   mongoose
     .connect(connectionUrl, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => console.log(`Database connected successfully`))
