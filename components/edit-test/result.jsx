@@ -10,6 +10,7 @@ import { fetchWorkers } from "@/services";
 import { validateNRICFormat } from "@/utils/validateNRICFormat";
 import PrintTest from "../PrintTest";
 import WorkersPopup from "../workers-page/popup";
+import { useRouter } from "next/router";
 
 const { Option } = Select;
 
@@ -32,6 +33,8 @@ const companyAddressLists = [
 
 export default function TestsResult({ fin }) {
   const id = fin;
+
+  const router = useRouter();
 
   const [airconddata, setAirconddata] = useState({
     labels: ["500Hz", "1kHz", "2kHz", "3kHz", "4kHz", "6kHz", "8kHz"],
@@ -336,7 +339,7 @@ export default function TestsResult({ fin }) {
       const testData = { ...formData, id: id };
       await axios.post(`/api/tests/edit-test?fin=${id}`, testData); // Send POST request to API
       // Reset form data or handle success
-      alert("Data updated successfully");
+      router.push("/test");
     } catch (error) {
       // Handle error
       console.error("Failed to submit data:", error);
