@@ -247,6 +247,12 @@ const TableMain = ({
     pagination.pageSize,
   ]);
 
+  useEffect(() => {
+    setTimeout(() => {
+      fetchData();
+    }, 500);
+  }, []);
+
   const handleTableChange = (pagination) => {
     setPagination(pagination);
   };
