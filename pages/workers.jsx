@@ -24,6 +24,10 @@ export default function Workers() {
     id: null,
   });
 
+  if (router.query.reload == "true") {
+    window.location.href = "/workers";
+  }
+
   return (
     <section className="w-full h-auto">
       <WorkersHero />
