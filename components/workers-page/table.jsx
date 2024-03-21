@@ -51,7 +51,7 @@ export default function WorkersTable(props) {
       setIsLoading(false);
       setFile(null);
 
-      window.location.href = "/workers";
+      window.location.reload(true);
     } catch (error) {
       // Handle error
       console.error("Failed to submit data:", error);
