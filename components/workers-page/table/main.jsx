@@ -71,7 +71,7 @@ const TableMain = ({
       key: "empno",
     },
     {
-      title: "Date",
+      title: "Date_j",
       dataIndex: "date",
       key: "date",
       render: (date) => {
