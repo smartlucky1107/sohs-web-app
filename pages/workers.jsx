@@ -29,7 +29,6 @@ export default function Workers() {
       <WorkersHero />
       <WorkersInfo />
       <WorkersTable
-        reload={router.query.reload}
         setPopupState={setPopupState}
         setEditPopupState={setEditPopupState}
         EditPopupState={EditPopupState}

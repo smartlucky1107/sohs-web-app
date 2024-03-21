@@ -36,7 +36,12 @@ export const fetchWorkers = async (id, searchParams) => {
     if (id) apiUrl += "?fin=" + id;
     const response = await axios.get(apiUrl, { params: searchParams });
     if (response.data.success) {
-      const data = response.data.data;
+      let data;
+      if (id) {
+        data = response.data.data;
+      } else {
+        data = response;
+      }
       return data;
     } else {
       console.error("Error:", response.data.error);

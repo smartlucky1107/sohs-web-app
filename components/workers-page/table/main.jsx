@@ -12,7 +12,6 @@ const TableMain = ({
   PopupState,
   EditPopupState,
   setData,
-  reload,
 }) => {
   const handleEdit = (record) => {
     // Display an alert with the value of the "name" key from the record
@@ -213,30 +212,44 @@ const TableMain = ({
 
   const [filteredData, setFilteredData] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [pagination, setPagination] = useState({ current: 1, pageSize: 10 });
+
+  async function fetchData() {
+    setIsLoading(true);
+    let data;
+    if (searchText !== "") {
+      data = await fetchWorkers(null, {
+        q: searchText,
+        page: pagination.current,
+        pageSize: pagination.pageSize,
+      });
+    } else {
+      data = await fetchWorkers(null, {
+        page: pagination.current,
+        pageSize: pagination.pageSize,
+      });
+    }
+
+    setFilteredData(data.data.data);
+    setData(data.data.data);
+    setPagination({ ...pagination, total: data.data.totalRecords });
+
+    setIsLoading(false);
+  }
 
   useEffect(() => {
-    async function fetchData() {
-      let data;
-      if (searchText !== "") {
-        data = await fetchWorkers(null, { q: searchText });
-      } else {
-        data = await fetchWorkers();
-      }
-
-      setFilteredData(data);
-      setData(data);
-
-      setIsLoading(false);
-    }
-
     fetchData();
+  }, [
+    searchText,
+    PopupState,
+    EditPopupState,
+    pagination.current,
+    pagination.pageSize,
+  ]);
 
-    if (reload == "true") {
-      setTimeout(() => {
-        fetchData();
-      }, 500);
-    }
-  }, [searchText, PopupState, EditPopupState, reload]);
+  const handleTableChange = (pagination) => {
+    setPagination(pagination);
+  };
 
   return (
     <Table
@@ -249,6 +262,8 @@ const TableMain = ({
       virtual={"scrollX"}
       loading={isLoading}
       locale={filteredData == null && { emptyText: "Loading..." }} // Set custom loading text
+      pagination={pagination}
+      onChange={handleTableChange}
     />
   );
 };

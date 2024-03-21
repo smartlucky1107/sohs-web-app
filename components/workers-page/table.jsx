@@ -51,7 +51,7 @@ export default function WorkersTable(props) {
       setIsLoading(false);
       setFile(null);
 
-      window.location.href = "/workers?reload=true";
+      window.location.href = "/workers";
     } catch (error) {
       // Handle error
       console.error("Failed to submit data:", error);
@@ -178,7 +178,6 @@ export default function WorkersTable(props) {
           PopupState={props.PopupState}
           EditPopupState={props.EditPopupState}
           setData={setData}
-          reload={props.reload}
         />
 
         <Modal

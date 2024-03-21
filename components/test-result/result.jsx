@@ -351,9 +351,12 @@ export default function TestsResult({ session }) {
 
   useEffect(() => {
     async function fetchData() {
-      const data = await fetchWorkers();
-      setWorkerNames(data);
-      setFilterWorkers(data.slice(0, 10));
+      const response = await fetchWorkers(null, {
+        pageSize: 999999999,
+        page: 1,
+      });
+      setWorkerNames(response.data.data);
+      setFilterWorkers(response.data.data.slice(0, 10));
     }
 
     fetchData();
