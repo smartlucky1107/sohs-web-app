@@ -12,6 +12,7 @@ const TableMain = ({
   PopupState,
   EditPopupState,
   setData,
+  reload,
 }) => {
   const handleEdit = (record) => {
     // Display an alert with the value of the "name" key from the record
@@ -229,7 +230,13 @@ const TableMain = ({
     }
 
     fetchData();
-  }, [searchText, PopupState, EditPopupState]);
+
+    if (reload == "true") {
+      setTimeout(() => {
+        fetchData();
+      }, 500);
+    }
+  }, [searchText, PopupState, EditPopupState, reload]);
 
   return (
     <Table

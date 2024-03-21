@@ -178,6 +178,7 @@ export default function WorkersTable(props) {
           PopupState={props.PopupState}
           EditPopupState={props.EditPopupState}
           setData={setData}
+          reload={props.reload}
         />
 
         <Modal
