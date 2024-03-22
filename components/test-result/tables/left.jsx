@@ -488,7 +488,7 @@ const RightTable = ({ handleInputChange, formData, setGraphRefresh }) => {
   ];
   const data = [
     {
-      freq: <span class="px-4">Rt AC/db</span>,
+      freq: <span class="px-4">Lt AC/db</span>,
       0.5: (
         <div className="w-[71px] h-[52px] flex items-center justify-center relative">
           <input
@@ -664,7 +664,7 @@ const RightTable = ({ handleInputChange, formData, setGraphRefresh }) => {
       ),
     },
     {
-      freq: <span class="px-4">Rt BC/db</span>,
+      freq: <span class="px-4">Lt BC/db</span>,
       0.5: (
         <div className="w-[71px] h-[52px] flex items-center justify-center relative">
           <input

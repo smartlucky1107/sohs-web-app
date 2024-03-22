@@ -6,12 +6,12 @@ const PrintTest = ({ airconddata, boneconddata, formData }) => {
   return (
     <div className="bg-white" id="section-to-print">
       <h1 className="font-bold text-4xl uppercase mb-5 text-center">
-        SINGAPORE OCCUPATION HEALTH SERVICE PTE LTD
+        Singapore Occupational Health Services Pte Ltd
       </h1>
       
       <p className="text-xl font-medium text-center">
         16 Ayer Rajah Crescent, Tempco Technominium, #06-06B, Singapore 139955.
-        Tel: 68725020, 67772829. Fax: 68725679.
+        Tel: 68725020, 67772829.
       </p>
 
       <ul className="border-b-2 border-black pb-8 mb-8 mt-3">
